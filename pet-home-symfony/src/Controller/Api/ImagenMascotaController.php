@@ -1,5 +1,5 @@
 <?php
-// src/Controller/Api/ImagenMascotaController.php
+// sdrxgcvdvrc/Controller/Api/ImagenMascotaController.php
 
 namespace App\Controller\Api;
 
