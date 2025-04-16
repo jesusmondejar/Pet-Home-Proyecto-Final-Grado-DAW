@@ -13,19 +13,19 @@ class Protectora
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(['protectora'])]
+    #[Groups(['protectora' , 'mascota'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 150)]
-    #[Groups(['protectora'])]
+    #[Groups(['protectora', 'mascota'])]
     private string $nombre;
 
     #[ORM\Column(length: 100, unique: true)]
-    #[Groups(['protectora'])]
+    #[Groups(['protectora', 'mascota'])]
     private string $email;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['protectora'])]
+    #[Groups(['protectora', 'mascota'])]
     private string $contrasena;
 
     #[ORM\Column(length: 15, nullable: true)]
@@ -33,15 +33,15 @@ class Protectora
     private ?string $telefono = null;
 
     #[ORM\Column(type: 'text', nullable: true)]
-    #[Groups(['protectora'])]
+    #[Groups(['protectora', 'mascota'])]
     private ?string $direccion = null;
 
     #[ORM\Column(type: 'text', nullable: true)]
-    #[Groups(['protectora'])]
+    #[Groups(['protectora', 'mascota'])]
     private ?string $descripcion = null;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    #[Groups(['protectora'])]
+    #[Groups(['protectora', 'mascota'])]
     private \DateTimeImmutable $fechaRegistro;
 
     #[ORM\OneToMany(mappedBy: 'protectora', targetEntity: Mascota::class)]
