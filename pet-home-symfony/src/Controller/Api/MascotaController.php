@@ -108,5 +108,45 @@ public function borrar(int $id, MascotaRepository $repo, EntityManagerInterface 
 
 
 
+    #[Route('/api/mascotas/{id}', name: 'editar_mascota', methods: ['PUT'])]
+    public function editar(
+        int $id,
+        Request $request,
+        EntityManagerInterface $em,
+        MascotaRepository $repo,
+        SerializerInterface $serializer
+    ): JsonResponse {
+        $mascota = $repo->find($id);
+        
+        if (!$mascota) {
+            return new JsonResponse(['error' => 'Mascota no encontrada'], 404);
+        }
+
+        $data = json_decode($request->getContent(), true);
+
+        $mascota->setNombre($data['nombre'] ?? $mascota->getNombre());
+        $mascota->setEspecie($data['especie'] ?? $mascota->getEspecie());
+        $mascota->setRaza($data['raza'] ?? $mascota->getRaza());
+        $mascota->setEdad($data['edad'] ?? $mascota->getEdad());
+        $mascota->setTamanio($data['tamanio'] ?? $mascota->getTamanio());
+        $mascota->setDescripcion($data['descripcion'] ?? $mascota->getDescripcion());
+        $mascota->setEstado($data['estado'] ?? $mascota->getEstado());
+
+        if (isset($data['protectora_id'])) {
+            $protectora = $em->getRepository(Protectora::class)->find($data['protectora_id']);
+            if ($protectora) {
+                $mascota->setProtectora($protectora);
+            }
+        }
+
+        $em->flush();
+
+        $json = $serializer->serialize($mascota, 'json', ['groups' => 'mascota']);
+        return new JsonResponse($json, 200, [], true);
+    }
+
+
+
+
 
 }
