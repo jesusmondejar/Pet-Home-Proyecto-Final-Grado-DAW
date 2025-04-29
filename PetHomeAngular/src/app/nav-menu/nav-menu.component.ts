@@ -28,7 +28,7 @@ import { Component } from '@angular/core';
     color: white;
     font-size: 16px;
     &.mask {
-      top: 150px;
+      
       mask-image: linear-gradient(black 70%, transparent);
       -webkit-mask-image: linear-gradient(black 70%, transparent);
     }
