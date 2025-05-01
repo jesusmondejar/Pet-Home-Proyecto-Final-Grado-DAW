@@ -12,6 +12,11 @@ import { Component } from '@angular/core';
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
   }
+  .logo {
+    height: 100%; /* Ajusta según necesites */
+    display: flex;
+    align-items: center;  
+  }
   nav{
     position: fixed;
     z-index: 99;
@@ -37,22 +42,30 @@ import { Component } from '@angular/core';
     text-decoration: none;
   }
   .wrapper .nav-links{
-    display: inline-flex;
+    display: flex;
+  align-items: center; /* Esto centra verticalmente todos los elementos */
+  gap: 20px; /* Espacio entre elementos */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 60px; /* Altura del navbar */
   }
   .nav-links li{
-    list-style: none;
+    display: flex;
+  align-items: center;
+  height: 100%;
   }
   .nav-links li a{
-    color: #FC713E;
+    color: #fc713e;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 500;
     padding: 9px 15px;
     border-radius: 5px;
     transition: all 0.3s ease;
   }
   .nav-links li a:hover{
-    background: #3A3B3C;
+    
   }
   .nav-links .mobile-item{
     display: none;
@@ -278,6 +291,38 @@ import { Component } from '@angular/core';
     font-size: 45px;
     font-weight: 600;
   }
+
+  .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 15px;
+  background-color: #fc713e;
+  outline: 3px #fc713e solid;
+  outline-offset: -3px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: 400ms;
+  height: 60%; /* Ajusta según necesites */
+}
+
+.button .text {
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  transition: 400ms;
+  margin: 0;
+}
+
+.button:hover {
+  background-color: transparent;
+}
+
+.button:hover .text {
+  color: black;
+}
 `
 })
 export class HeadComponent {
