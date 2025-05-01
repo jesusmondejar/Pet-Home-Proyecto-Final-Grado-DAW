@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use App\Repository\UsuarioRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UsuarioRepository::class)]
-class Usuario
+#[ORM\Table(name: 'usuario')]
+class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -21,7 +23,7 @@ class Usuario
     private string $email;
 
     #[ORM\Column(length: 255)]
-    private string $contrasena;
+    private string $password;
 
     #[ORM\Column(length: 15, nullable: true)]
     private ?string $telefono = null;
@@ -32,75 +34,58 @@ class Usuario
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $fechaRegistro;
 
-   public function getId(): ?int
-{
-    return $this->id;
-}
+    #[ORM\Column(length: 50)]
+    private string $tipoUsuario = 'usuario';
 
-public function getNombre(): string
-{
-    return $this->nombre;
-}
+    #[ORM\Column(type: 'json')]
+    private array $roles = [];
 
-public function setNombre(string $nombre): self
-{
-    $this->nombre = $nombre;
-    return $this;
-}
 
-public function getEmail(): string
-{
-    return $this->email;
-}
+    public function getId(): ?int { return $this->id; }
 
-public function setEmail(string $email): self
-{
-    $this->email = $email;
-    return $this;
-}
+    public function getNombre(): string { return $this->nombre; }
+    public function setNombre(string $nombre): self { $this->nombre = $nombre; return $this; }
 
-public function getContrasena(): string
-{
-    return $this->contrasena;
-}
+    public function getEmail(): string { return $this->email; }
+    public function setEmail(string $email): self { $this->email = $email; return $this; }
 
-public function setContrasena(string $contrasena): self
-{
-    $this->contrasena = $contrasena;
-    return $this;
-}
+    public function getPassword(): string { return $this->password; }
+    public function setPassword(string $password): self { $this->password = $password; return $this; }
 
-public function getTelefono(): ?string
-{
-    return $this->telefono;
-}
+    public function getTelefono(): ?string { return $this->telefono; }
+    public function setTelefono(?string $telefono): self { $this->telefono = $telefono; return $this; }
 
-public function setTelefono(?string $telefono): self
-{
-    $this->telefono = $telefono;
-    return $this;
-}
+    public function getDireccion(): ?string { return $this->direccion; }
+    public function setDireccion(?string $direccion): self { $this->direccion = $direccion; return $this; }
 
-public function getDireccion(): ?string
-{
-    return $this->direccion;
-}
+    public function getFechaRegistro(): \DateTimeImmutable { return $this->fechaRegistro; }
+    public function setFechaRegistro(\DateTimeImmutable $fechaRegistro): self { $this->fechaRegistro = $fechaRegistro; return $this; }
 
-public function setDireccion(?string $direccion): self
-{
-    $this->direccion = $direccion;
-    return $this;
-}
+    public function getTipoUsuario(): string { return $this->tipoUsuario; }
+    public function setTipoUsuario(string $tipoUsuario): self {
+        $this->tipoUsuario = $tipoUsuario;
+        return $this;
+    }
 
-public function getFechaRegistro(): \DateTimeImmutable
-{
-    return $this->fechaRegistro;
-}
+    public function getRoles(): array {
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+        if ($this->tipoUsuario === 'protectora') {
+            $roles[] = 'ROLE_PROTECTORA';
+        }
+        return array_unique($roles);
+    }
 
-public function setFechaRegistro(\DateTimeImmutable $fechaRegistro): self
-{
-    $this->fechaRegistro = $fechaRegistro;
-    return $this;
-}
+    public function setRoles(array $roles): self {
+        $this->roles = $roles;
+        return $this;
+    }
 
+    public function getUserIdentifier(): string {
+        return $this->email;
+    }
+
+    public function eraseCredentials(): void {
+        // Por si quieres limpiar campos sensibles del usuario tras la autenticación
+    }
 }
