@@ -1,9 +1,32 @@
-<div class="auth-container">
-    <h2>Iniciar Sesión</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <input type="email" formControlName="email" placeholder="Correo electrónico" />
-      <input type="password" formControlName="password" placeholder="Contraseña" />
-      <button type="submit">Entrar</button>
-    </form>
-  </div>
-  
+<!-- From Uiverse.io by Yaya12085 --> 
+<form class="form">
+  <p class="title">¡Crea tu cuenta en PetHome!</p>
+  <p class="message">Únete a nuestra comunidad y dale una segunda oportunidad a una mascota. 🐶🐱 </p>
+      <div class="flex">
+      <label>
+          <input required="" placeholder="" type="text" class="input">
+          <span>Nombre</span>
+      </label>
+
+      <label>
+          <input required="" placeholder="" type="text" class="input">
+          <span>Apellidos</span>
+      </label>
+  </div>  
+          
+  <label>
+      <input required="" placeholder="" type="email" class="input">
+      <span>Email</span>
+  </label> 
+      
+  <label>
+      <input required="" placeholder="" type="password" class="input">
+      <span>Contraseña</span>
+  </label>
+  <label>
+      <input required="" placeholder="" type="password" class="input">
+      <span>Confirmar contraseña</span>
+  </label>
+  <button class="submit">Continuar</button>
+  <p class="signin">¿Ya tienes una cuenta ? <a href="#">Iniciar sesión</a> </p>
+</form>

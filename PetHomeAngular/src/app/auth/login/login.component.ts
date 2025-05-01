@@ -25,6 +25,8 @@ import { CommonModule } from '@angular/common';
     .ng-invalid.ng-touched:not(form) {
       border: 1px solid red;
     }
+
+   
   `]
 })
 export class LoginComponent {
@@ -43,4 +45,6 @@ export class LoginComponent {
       // Lógica para enviar datos al backend
     }
   }
+
+  
 }
