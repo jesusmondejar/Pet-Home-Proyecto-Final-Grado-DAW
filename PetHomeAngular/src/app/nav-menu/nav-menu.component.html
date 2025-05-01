@@ -1,1 +1,34 @@
-<p>nav-menu works!</p>
+<nav>
+    <div class="wrapper">
+      <div class="logo"><img src="/assets/img/logo pet home.png" alt="logo" class="logo"></div>
+      <input type="radio" name="slider" id="menu-btn">
+      <input type="radio" name="slider" id="close-btn">
+      <ul class="nav-links">
+        <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+        <li><a class="nav-link active" aria-current="page" routerLink="/inicio" routerLinkActive="fw-bold">Inicio</a></li>
+        <li>
+        <a class="nav-link" routerLink="/adopta" routerLinkActive="fw-bold">Adopta</a>
+          <input type="checkbox" id="showDrop">
+          <label for="showDrop" class="mobile-item">Mascotas</label>
+          <ul class="drop-menu">
+            <li><a class="nav-link" routerLink="/mascotas/perros" routerLinkActive="fw-bold">Perros</a></li>
+            <li><a class="nav-link" routerLink="/mascotas/gatos" routerLinkActive="fw-bold">Gatos</a></li>
+            <li><a class="nav-link" routerLink="/mascotas/otros" routerLinkActive="fw-bold">Otros</a></li>
+          </ul>
+        </li>
+       
+        <li><a class="nav-link" routerLink="/organizaciones" routerLinkActive="fw-bold">Organizaciones</a></li>
+        <li><a class="nav-link" routerLink="/nosotros" routerLinkActive="fw-bold">Sobre Nosotros</a></li>
+        <li><!-- From Uiverse.io by kamehame-ha --> 
+          <button routerLink="/login" class="button">
+            <p class="text">Iniciar Sesión</p>
+          </button></li>
+          <li><!-- From Uiverse.io by kamehame-ha --> 
+            <button routerLink="/register"class="button">
+              <p class="text">Regístrate ya</p>
+            </button></li>
+      </ul>
+      <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+    </div>
+  </nav>
+  
