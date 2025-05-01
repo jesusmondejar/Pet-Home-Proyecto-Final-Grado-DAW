@@ -12,6 +12,7 @@ class ImagenMascota
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups(['imagen', 'mascota'])]
     private ?int $id = null;
 
     #[ORM\ManyToOne(targetEntity: Mascota::class, inversedBy: 'imagenes')]
@@ -19,6 +20,7 @@ class ImagenMascota
     private Mascota $mascota;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['imagen', 'mascota'])]
     private string $urlImagen;
 
     public function getId(): ?int

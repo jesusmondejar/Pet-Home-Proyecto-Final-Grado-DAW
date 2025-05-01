@@ -28,7 +28,7 @@ class MascotaRepository extends ServiceEntityRepository
     public function findByEspecie(string $especie): array
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.especie = :especie')
+            ->andWhere('LOWER(m.especie) = LOWER(:especie)')
             ->setParameter('especie', $especie)
             ->orderBy('m.nombre', 'ASC')
             ->getQuery()
