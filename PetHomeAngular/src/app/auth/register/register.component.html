@@ -1,1 +1,18 @@
-<p>register works!</p>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <h2>Registrarse</h2>
+    
+    <input formControlName="nombre" placeholder="Nombre" />
+    <input formControlName="email" placeholder="Email" type="email" />
+    <input formControlName="contrasena" placeholder="Contraseña" type="password" />
+    <input formControlName="telefono" placeholder="Teléfono" />
+    <input formControlName="direccion" placeholder="Dirección" />
+    
+    <!-- Select para tipo de usuario -->
+    <select formControlName="tipoUsuario">
+      <option value="cliente">Cliente</option>
+      <option value="protectora">Protectora</option>
+    </select>
+    
+    <button type="submit" [disabled]="!registerForm.valid">Registrarse</button>
+  </form>
+  
