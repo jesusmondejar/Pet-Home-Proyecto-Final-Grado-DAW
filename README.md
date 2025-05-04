@@ -5,14 +5,14 @@ Este proyecto es una plataforma web diseñada para facilitar la adopción de per
 
 Tecnologías principales:
 
-Backend: Symfony (PHP) – API REST con autenticación mediante JWT.
+Backend: Symfony (PHP) – API REST con autenticación.
 
 Frontend: Angular – Aplicación web para la interacción de los usuarios.
 
 Base de datos: MySQL – Almacén de datos de usuarios, mascotas y adopciones.
 
 Características:
-Autenticación segura: Inicio de sesión y registro mediante JWT.
+Autenticación segura: Inicio de sesión y registro.
 
 Gestión de usuarios: Usuarios adoptantes y perreras con roles diferenciados.
 

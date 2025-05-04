@@ -1,9 +1,8 @@
-<div class="auth-container">
-    <h2>Iniciar Sesión</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <input type="email" formControlName="email" placeholder="Correo electrónico" />
-      <input type="password" formControlName="password" placeholder="Contraseña" />
-      <button type="submit">Entrar</button>
-    </form>
-  </div>
-  
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <h2>Iniciar sesión</h2>
+
+  <input formControlName="email" placeholder="Email" type="email" />
+  <input formControlName="password" placeholder="Contraseña" type="password" />
+
+  <button type="submit" [disabled]="!loginForm.valid">Iniciar sesión</button>
+</form>
