@@ -1,1 +1,5 @@
-<p>adopta works!</p>
+<div class="row row-cols-md-5">
+     @for (mascota of getMascota(); track $index) {
+      <app-mascota-card [mascota]="mascota"/>
+     }
+</div>
