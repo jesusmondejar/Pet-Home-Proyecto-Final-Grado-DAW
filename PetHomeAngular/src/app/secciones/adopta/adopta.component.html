@@ -1,9 +1,14 @@
 
-hola
 
-
-<div class="row row-cols-md-5">
-     @for (mascota of getMascotas(); track $index) {
-      <app-mascota-card [mascota]="mascota"/>
-     }
-</div>
+  
+      <div class="container mt-5 mb-5 adopta-container">
+        <h1 class="text-center section-title mb-3">Mascotas disponibles para adopción</h1>
+        <p class="text-center section-subtitle mb-5">¡Encuentra a tu nuevo mejor amigo!</p>
+      
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 justify-content-center">
+            @for (mascotas of getMascotas(); track $index) {
+                <app-mascota-card [mascota]="mascotas"/>
+               }
+        </div>
+      </div>
+      

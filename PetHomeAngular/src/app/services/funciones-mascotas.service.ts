@@ -6,7 +6,9 @@ import { MascotaService } from './conexion-db.service';
 })
 export class FuncionesMascotasService {
 
-  constructor(private conexionSrvc:MascotaService) { }
+  constructor(private conexionSrvc:MascotaService) {
+    this.getMascotas()
+   }
 
   mascotas: any[] = [];
 
@@ -17,13 +19,9 @@ getMascotas() {
 
       let data:any = json
       this.mascotas = data
+      console.log(this.mascotas)
     }
   );
-
-  
-   
-
-
 }
 
 getMascota(){
