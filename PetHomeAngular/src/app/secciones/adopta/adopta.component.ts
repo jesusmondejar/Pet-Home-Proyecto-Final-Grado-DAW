@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FuncionesMascotasService } from '../../services/funciones-mascotas.service';
 
 @Component({
   selector: 'app-adopta',
@@ -8,4 +9,13 @@ import { Component } from '@angular/core';
 })
 export class AdoptaComponent {
 
+  constructor(private funcionesMascotas: FuncionesMascotasService) { }
+
+
+  getMascotas() {
+    this.funcionesMascotas.getMascotas()
+  }
+
+
+  
 }
