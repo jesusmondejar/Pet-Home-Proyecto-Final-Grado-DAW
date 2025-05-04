@@ -13,7 +13,7 @@ export class AdoptaComponent {
   constructor(private funcionesMascotas: FuncionesMascotasService) { }
 
 
-  getMascota() {
+  getMascotas() {
     return this.funcionesMascotas.getMascota()
   }
 
