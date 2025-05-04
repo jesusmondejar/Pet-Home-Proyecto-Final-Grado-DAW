@@ -13,7 +13,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     font-family: 'Poppins', sans-serif;
   }
   .logo {
-    height: 100%; /* Ajusta según necesites */
+    height: 90%; /* Ajusta según necesites */
     display: flex;
     align-items: center;  
   }
