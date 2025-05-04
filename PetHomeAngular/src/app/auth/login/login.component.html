@@ -1,32 +1,8 @@
-<!-- From Uiverse.io by Yaya12085 --> 
-<form class="form">
-  <p class="title">¡Crea tu cuenta en PetHome!</p>
-  <p class="message">Únete a nuestra comunidad y dale una segunda oportunidad a una mascota. 🐶🐱 </p>
-      <div class="flex">
-      <label>
-          <input required="" placeholder="" type="text" class="input">
-          <span>Nombre</span>
-      </label>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <h2>Iniciar sesión</h2>
 
-      <label>
-          <input required="" placeholder="" type="text" class="input">
-          <span>Apellidos</span>
-      </label>
-  </div>  
-          
-  <label>
-      <input required="" placeholder="" type="email" class="input">
-      <span>Email</span>
-  </label> 
-      
-  <label>
-      <input required="" placeholder="" type="password" class="input">
-      <span>Contraseña</span>
-  </label>
-  <label>
-      <input required="" placeholder="" type="password" class="input">
-      <span>Confirmar contraseña</span>
-  </label>
-  <button class="submit">Continuar</button>
-  <p class="signin">¿Ya tienes una cuenta ? <a href="#">Iniciar sesión</a> </p>
+  <input formControlName="email" placeholder="Email" type="email" />
+  <input formControlName="password" placeholder="Contraseña" type="password" />
+
+  <button type="submit" [disabled]="!loginForm.valid">Iniciar sesión</button>
 </form>
