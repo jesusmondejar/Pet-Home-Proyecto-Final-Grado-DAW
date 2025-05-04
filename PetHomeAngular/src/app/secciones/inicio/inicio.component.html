@@ -7,51 +7,86 @@
       </div>
     </div>
   </div>
-  <!-- From Uiverse.io by musashi-13 --> 
-<!-- From Uiverse.io by musashi-13 --> 
-<div class="card-3d">
-  <div class="carousel-card" data-id="1"><img src="/assets/perro1.jpg" alt="Perro 1" /></div>
-  <div class="carousel-card" data-id="2"><img src="/assets/perro2.jpg" alt="Perro 2" /></div>
-  <div class="carousel-card" data-id="3"><img src="/assets/perro3.jpg" alt="Perro 3" /></div><div class="carousel-card" data-id="1"><img src="/assets/perro1.jpg" alt="Perro 1" /></div>
-  <div class="carousel-card" data-id="2"><img src="/assets/perro2.jpg" alt="Perro 2" /></div>
-  <div class="carousel-card" data-id="3"><img src="/assets/perro3.jpg" alt="Perro 3" /></div><div class="carousel-card" data-id="1"><img src="/assets/perro1.jpg" alt="Perro 1" /></div>
-  <div class="carousel-card" data-id="2"><img src="/assets/perro2.jpg" alt="Perro 2" /></div>
-  <div class="carousel-card" data-id="3"><img src="/assets/perro3.jpg" alt="Perro 3" /></div>
-</div>
-<script>
-  const card3d = document.querySelector('.card-3d');
-  const cards = document.querySelectorAll('.carousel-card');
 
-  // Acciones al hacer clic
-  cards.forEach(card => {
-    card.addEventListener('click', () => {
-      const id = card.dataset.id;
-      alert(`Clic en la tarjeta ${id}`); // Aquí puedes abrir un modal, etc.
-    });
-  });
+ 
+ <section class="adopcion-section">
+  <h2>Descubre cómo adoptar a tu nuevo mejor amigo en simples pasos.</h2>
+  <div class="card-container">
+    <div class="step-card">
+      <img src="assets/huella1.png" alt="Paso 1" />
+      <p>El proceso de adopción comienza con la selección de una mascota. Finalmente, si todo está en orden, podrás llevarte a tu nuevo amigo a casa.</p>
+    </div>
+    <div class="step-card">
+      <img src="assets/huella2.png" alt="Paso 2" />
+      <p>El proceso de adopción comienza con la selección de una mascota. Finalmente, si todo está en orden, podrás llevarte a tu nuevo amigo a casa.</p>
+    </div>
+    <div class="step-card">
+      <img src="assets/huella3.png" alt="Paso 3" />
+      <p>El proceso de adopción comienza con la selección de una mascota. Finalmente, si todo está en orden, podrás llevarte a tu nuevo amigo a casa.</p>
+    </div>
+  </div>
+</section>
 
-  // Rotación manual con el ratón
-  let isDragging = false;
-  let lastX = 0;
-  let currentRotation = 0;
 
-  card3d.style.animation = 'none'; // Desactiva rotación automática
+<section class="adopcion-section">
+  <h2>Encuentra a tu compañero ideal</h2>
+  <!-- From Uiverse.io by musashi-13 -->
+  <div class="card-container">
+    <!-- Carrusel 3D -->
+    <div class="card-3d">
+      <a href="#1"></a>
+      <a href="#2"></a>
+      <a href="#3"></a>
+      <a href="#4"></a>
+      <a href="#5"></a>
+      <a href="#6"></a>
+      <a href="#7"></a>
+      <a href="#8"></a>
+      <a href="#9"></a>
+      <a href="#10"></a>
+    </div>
+    
+  </div>
+  <!-- From Uiverse.io by kamehame-ha --> 
+  <button routerLink="/register" class="button">
+    <p class="text">Regístrate ya</p>
+  </button>
+</section>
 
-  card3d.addEventListener('mousedown', (e) => {
-    isDragging = true;
-    lastX = e.clientX;
-  });
+<section class="faq-section">
+  <div class="faq-card">
+    <h2>Preguntas</h2>
+    <p>Aquí encontrarás respuestas a tus dudas sobre la adopción y el cuidado de mascotas.</p>
 
-  window.addEventListener('mouseup', () => {
-    isDragging = false;
-  });
+    <div class="faq-list">
+      <details>
+        <summary>¿Cómo adopto una mascota?</summary>
+        <p>El proceso de adopción comienza con la selección de una mascota. Luego, debes completar un formulario y asistir a una entrevista. Finalmente, si todo está en orden, podrás llevarte a tu nuevo amigo a casa.</p>
+      </details>
 
-  window.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    const deltaX = e.clientX - lastX;
-    lastX = e.clientX;
-    currentRotation += deltaX * 0.5;
-    card3d.style.transform = `perspective(800px) rotateY(${currentRotation}deg)`;
-  });
-</script>
+      <details>
+        <summary>¿Qué cuidados necesitan?</summary>
+        <p>Las mascotas requieren atención diaria, incluyendo alimentación, ejercicio y visitas al veterinario. Es importante proporcionarles un ambiente seguro y estimulante. Además, el cariño y la compañía son esenciales para su bienestar.</p>
+      </details>
+
+      <details>
+        <summary>¿Qué documentos necesito?</summary>
+        <p>Generalmente, necesitarás una identificación válida y, en algunos casos, un comprobante de domicilio. También puede ser útil tener referencias que avalen tu capacidad para cuidar de una mascota. Consulta con la organización de adopción para más detalles.</p>
+      </details>
+
+      <details>
+        <summary>¿Puedo adoptar varias?</summary>
+        <p>Sí, es posible adoptar más de una mascota, siempre y cuando puedas garantizar su bienestar. Es recomendable que las mascotas sean compatibles entre sí. Asegúrate de tener suficiente espacio y recursos para cuidarlas adecuadamente.</p>
+      </details>
+
+      <details>
+        <summary>¿Qué pasa si no puedo?</summary>
+        <p>Si en algún momento no puedes cuidar de tu mascota, es importante buscar ayuda. Puedes contactar a la organización donde adoptaste o a refugios locales. Ellos te orientarán sobre las mejores opciones para garantizar el bienestar de tu mascota.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+
+
 
