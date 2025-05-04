@@ -4,7 +4,271 @@ import { Component } from '@angular/core';
   selector: 'app-inicio',
   imports: [],
   templateUrl: './inicio.component.html',
-  styles: ``
+  styles: `
+  
+   /* IMAGEN INICIO */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 70vh; /* Alto de la sección héroe */
+    background: url('/assets/img/pexels-cdomingues10-731022.jpg') no-repeat center center;
+    background-size: cover;
+  }
+  
+  .hero .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4); /* capa semitransparente */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  
+  .hero .overlay h1 {
+    color: #fff;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  }
+  
+  .hero .overlay .buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .hero .overlay .btn {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .hero .overlay .btn.adopt {
+    background-color: #fc713e;
+    color: #fff;
+  }
+  
+  .hero .overlay .btn.adopt:hover {
+    background-color: #ff5722;
+  }
+  
+  .hero .overlay .btn.more {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+  }
+  
+  .hero .overlay .btn.more:hover {
+    background-color: rgba(255,255,255,0.2);
+  }
+   /* From Uiverse.io by musashi-13 CARRUSEL*/
+   @keyframes autoRun3d {
+      from { transform: perspective(800px) rotateY(-360deg); }
+      to   { transform: perspective(800px) rotateY(0deg); }
+    }
+    @keyframes animateBrightness {
+      10% { filter: brightness(1); }
+      50% { filter: brightness(0.1); }
+      90% { filter: brightness(1); }
+    }
+    .card-3d {
+      position: relative;
+      width: 400px;
+      height: 200px;
+      transform-style: preserve-3d;
+      transform: perspective(800px);
+      animation: autoRun3d 20s linear infinite;
+      will-change: transform;
+      cursor: grab;
+    }
+    .card-3d:hover {
+      animation-play-state: paused !important;
+    }
+    .card-3d:hover a {
+      animation-play-state: paused !important;
+    }
+    .card-3d a {
+      position: absolute;
+      width: 80px;
+      height: 112px;
+      top: 50%;
+      left: 50%;
+      transform-origin: center center;
+      animation: animateBrightness 20s linear infinite;
+      transition-duration: 200ms;
+      will-change: transform, filter;
+      background-size: cover;
+      background-position: center;
+      border: solid 2px lightgray;
+      border-radius: 0.5rem;
+      display: block;
+    }
+    .card-3d a:hover {
+      filter: brightness(1.2);
+    }
+    /* Posiciones y fondos */
+    .card-3d a:nth-child(1)  { transform: translate(-50%, -50%) rotateY(0deg)   translateZ(150px); animation-delay: -0s; background-image: url('https://placedog.net/200/150?random=1'); }
+    .card-3d a:nth-child(2)  { transform: translate(-50%, -50%) rotateY(36deg)  translateZ(150px); animation-delay: -2s; background-image: url('https://placedog.net/200/150?random=2'); }
+    .card-3d a:nth-child(3)  { transform: translate(-50%, -50%) rotateY(72deg)  translateZ(150px); animation-delay: -4s; background-image: url('https://placedog.net/200/150?random=3'); }
+    .card-3d a:nth-child(4)  { transform: translate(-50%, -50%) rotateY(108deg) translateZ(150px); animation-delay: -6s; background-image: url('https://placedog.net/200/150?random=4'); }
+    .card-3d a:nth-child(5)  { transform: translate(-50%, -50%) rotateY(144deg) translateZ(150px); animation-delay: -8s; background-image: url('https://placedog.net/200/150?random=5'); }
+    .card-3d a:nth-child(6)  { transform: translate(-50%, -50%) rotateY(180deg) translateZ(150px); animation-delay: -10s; background-image: url('https://placedog.net/200/150?random=6'); }
+    .card-3d a:nth-child(7)  { transform: translate(-50%, -50%) rotateY(216deg) translateZ(150px); animation-delay: -12s; background-image: url('https://placedog.net/200/150?random=7'); }
+    .card-3d a:nth-child(8)  { transform: translate(-50%, -50%) rotateY(252deg) translateZ(150px); animation-delay: -14s; background-image: url('https://placedog.net/200/150?random=8'); }
+    .card-3d a:nth-child(9)  { transform: translate(-50%, -50%) rotateY(288deg) translateZ(150px); animation-delay: -16s; background-image: url('https://placedog.net/200/150?random=9'); }
+    .card-3d a:nth-child(10) { transform: translate(-50%, -50%) rotateY(324deg) translateZ(150px); animation-delay: -18s; background-image: url('https://placedog.net/200/150?random=10'); }
+
+
+   /* descubre */
+.adopcion-section {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  margin: 2rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+.adopcion-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.step-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 250px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.step-card:hover {
+  transform: translateY(-5px);
+}
+
+.step-card img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 1rem;
+}
+
+.step-card p {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/*PREGUNTAS */
+
+.faq-section {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.faq-card {
+  width: 100%;
+  max-width: 800px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.faq-card h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.faq-card p.intro {
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.faq-list details {
+  border-bottom: 1px solid #ddd;
+  padding: 0.75rem 0;
+}
+
+.faq-list summary {
+  font-size: 1.125rem;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  padding-right: 1.5rem;
+  list-style: none;
+}
+
+.faq-list summary::marker {
+  display: none;
+}
+
+.faq-list summary::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  transition: transform 0.2s ease;
+}
+
+.faq-list details[open] summary::after {
+  content: '–';
+}
+
+.faq-list details p {
+  margin-top: 0.75rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.button {
+  padding: 10px 15px;
+  gap: 15px;
+  background-color: #fc713e;
+  outline: 3px #fc713e solid;
+  outline-offset: -3px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: 400ms;
+  height: 60%; /* Ajusta según necesites */
+}
+
+.button .text {
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  transition: 400ms;
+  margin: 0;
+}
+
+.button:hover {
+  background-color: transparent;
+}
+
+.button:hover .text {
+  color: black;
+}
+
+  `
 })
 export class InicioComponent {
 

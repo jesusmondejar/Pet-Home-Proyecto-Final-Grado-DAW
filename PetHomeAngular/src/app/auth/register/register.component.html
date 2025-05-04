@@ -1,18 +1,34 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <h2>Registrarse</h2>
-    
-    <input formControlName="nombre" placeholder="Nombre" />
-    <input formControlName="email" placeholder="Email" type="email" />
-    <input formControlName="contrasena" placeholder="Contraseña" type="password" />
-    <input formControlName="telefono" placeholder="Teléfono" />
-    <input formControlName="direccion" placeholder="Dirección" />
-    
-    <!-- Select para tipo de usuario -->
-    <select formControlName="tipoUsuario">
-      <option value="cliente">Cliente</option>
-      <option value="protectora">Protectora</option>
-    </select>
-    
-    <button type="submit" [disabled]="!registerForm.valid">Registrarse</button>
-  </form>
+<!-- From Uiverse.io by Yaya12085 --> 
+<div class="center-wrapper">
+<form class="form">
+    <p class="title">¡Crea tu cuenta en PetHome!</p>
+    <p class="message">Únete a nuestra comunidad y dale una segunda oportunidad a una mascota. 🐶🐱 </p>
+        <div class="flex">
+        <label>
+            <input required="" placeholder="" type="text" class="input">
+            <span>Nombre</span>
+        </label>
   
+        <label>
+            <input required="" placeholder="" type="text" class="input">
+            <span>Apellidos</span>
+        </label>
+    </div>  
+            
+    <label>
+        <input required="" placeholder="" type="email" class="input">
+        <span>Email</span>
+    </label> 
+        
+    <label>
+        <input required="" placeholder="" type="password" class="input">
+        <span>Contraseña</span>
+    </label>
+    <label>
+        <input required="" placeholder="" type="password" class="input">
+        <span>Confirmar contraseña</span>
+    </label>
+    <button class="submit">Continuar</button>
+    <p class="signin">¿Ya tienes una cuenta ? <a href="#">Iniciar sesión</a> </p>
+</form>
+</div>
