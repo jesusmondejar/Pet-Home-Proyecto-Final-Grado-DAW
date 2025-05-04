@@ -1,1 +1,57 @@
-<p>inicio works!</p>
+<div class="hero">
+    <div class="overlay">
+      <h1>ADOPTA A UNA MASCOTA</h1>
+      <div class="buttons">
+        <button class="btn adopt">Adoptar</button>
+        <button class="btn more">Más</button>
+      </div>
+    </div>
+  </div>
+  <!-- From Uiverse.io by musashi-13 --> 
+<!-- From Uiverse.io by musashi-13 --> 
+<div class="card-3d">
+  <div class="carousel-card" data-id="1"><img src="/assets/perro1.jpg" alt="Perro 1" /></div>
+  <div class="carousel-card" data-id="2"><img src="/assets/perro2.jpg" alt="Perro 2" /></div>
+  <div class="carousel-card" data-id="3"><img src="/assets/perro3.jpg" alt="Perro 3" /></div><div class="carousel-card" data-id="1"><img src="/assets/perro1.jpg" alt="Perro 1" /></div>
+  <div class="carousel-card" data-id="2"><img src="/assets/perro2.jpg" alt="Perro 2" /></div>
+  <div class="carousel-card" data-id="3"><img src="/assets/perro3.jpg" alt="Perro 3" /></div><div class="carousel-card" data-id="1"><img src="/assets/perro1.jpg" alt="Perro 1" /></div>
+  <div class="carousel-card" data-id="2"><img src="/assets/perro2.jpg" alt="Perro 2" /></div>
+  <div class="carousel-card" data-id="3"><img src="/assets/perro3.jpg" alt="Perro 3" /></div>
+</div>
+<script>
+  const card3d = document.querySelector('.card-3d');
+  const cards = document.querySelectorAll('.carousel-card');
+
+  // Acciones al hacer clic
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const id = card.dataset.id;
+      alert(`Clic en la tarjeta ${id}`); // Aquí puedes abrir un modal, etc.
+    });
+  });
+
+  // Rotación manual con el ratón
+  let isDragging = false;
+  let lastX = 0;
+  let currentRotation = 0;
+
+  card3d.style.animation = 'none'; // Desactiva rotación automática
+
+  card3d.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    lastX = e.clientX;
+  });
+
+  window.addEventListener('mouseup', () => {
+    isDragging = false;
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const deltaX = e.clientX - lastX;
+    lastX = e.clientX;
+    currentRotation += deltaX * 0.5;
+    card3d.style.transform = `perspective(800px) rotateY(${currentRotation}deg)`;
+  });
+</script>
+
