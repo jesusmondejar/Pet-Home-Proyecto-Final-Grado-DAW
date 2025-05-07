@@ -7,68 +7,145 @@ import { Component } from '@angular/core';
   styles: `
   
    /* IMAGEN INICIO */
-  .hero {
-    position: relative;
-    width: 100%;
-    height: 70vh; /* Alto de la sección héroe */
-    background: url('/assets/img/pexels-cdomingues10-731022.jpg') no-repeat center center;
-    background-size: cover;
-  }
+   .hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.background-video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.overlay {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* oscuro translúcido */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.hero-content {
+  text-align: center;
+  color: white;
+  max-width: 900px;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+}
+
+.search-panel {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 1.5rem;
+  border-radius: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.search-panel select {
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: none;
+}
+
+.search-btn {
+  background-color:#fc713e;
+  color:white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+// imagen de inicio antigua
+
+  // .hero {
+  //   position: relative;
+  //   width: 100%;
+  //   height: 70vh; /* Alto de la sección héroe */
+  //   background: url('/assets/img/pexels-cdomingues10-731022.jpg') no-repeat center center;
+  //   background-size: cover;
+  // }
   
-  .hero .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.4); /* capa semitransparente */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0 1rem;
-  }
+  // .hero .overlay {
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 100%;
+  //   background: rgba(0,0,0,0.4); /* capa semitransparente */
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: center;
+  //   align-items: center;
+  //   text-align: center;
+  //   padding: 0 1rem;
+  // }
   
-  .hero .overlay h1 {
-    color: #fff;
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-  }
+  // .hero .overlay h1 {
+  //   color: #fff;
+  //   font-size: 3rem;
+  //   margin-bottom: 1.5rem;
+  //   text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  // }
   
-  .hero .overlay .buttons {
-    display: flex;
-    gap: 1rem;
-  }
+  // .hero .overlay .buttons {
+  //   display: flex;
+  //   gap: 1rem;
+  // }
   
-  .hero .overlay .btn {
-    padding: 0.8rem 2rem;
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
+  // .hero .overlay .btn {
+  //   padding: 0.8rem 2rem;
+  //   font-size: 1.1rem;
+  //   border: none;
+  //   border-radius: 6px;
+  //   cursor: pointer;
+  //   transition: background 0.3s ease;
+  // }
   
-  .hero .overlay .btn.adopt {
-    background-color: #fc713e;
-    color: #fff;
-  }
+  // .hero .overlay .btn.adopt {
+  //   background-color: #fc713e;
+  //   color: #fff;
+  // }
   
-  .hero .overlay .btn.adopt:hover {
-    background-color: #ff5722;
-  }
+  // .hero .overlay .btn.adopt:hover {
+  //   background-color: #ff5722;
+  // }
   
-  .hero .overlay .btn.more {
-    background-color: transparent;
-    color: #fff;
-    border: 2px solid #fff;
-  }
+  // .hero .overlay .btn.more {
+  //   background-color: transparent;
+  //   color: #fff;
+  //   border: 2px solid #fff;
+  // }
   
-  .hero .overlay .btn.more:hover {
-    background-color: rgba(255,255,255,0.2);
-  }
+  // .hero .overlay .btn.more:hover {
+  //   background-color: rgba(255,255,255,0.2);
+  // }
    /* From Uiverse.io by musashi-13 CARRUSEL*/
    @keyframes autoRun3d {
       from { transform: perspective(800px) rotateY(-360deg); }
@@ -138,7 +215,7 @@ import { Component } from '@angular/core';
 }
 
 .adopcion-section h2 {
-  font-size: 1.5rem;
+  font-size: 3rem;
   margin-bottom: 2rem;
   color: #333;
 }
@@ -173,6 +250,12 @@ import { Component } from '@angular/core';
   font-size: 0.95rem;
   color: #444;
 }
+.step-card h3 {
+  font-size: 1.1rem;
+  color: #fc713e;
+  margin-bottom: 0.5rem;
+}
+
 
 /*PREGUNTAS */
 
