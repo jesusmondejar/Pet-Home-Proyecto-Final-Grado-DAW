@@ -208,24 +208,24 @@ option::checkmark {
     position: relative;
     width: 100%;
     height: 70vh; /* Alto de la sección héroe */
-    background: url('/assets/img/pexels-cdomingues10-731022.jpg') no-repeat center center;
+    background: url('/assets/img/perros.jpg') no-repeat center center;
     background-size: cover;
   }
   
-  .hero .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.4); /* capa semitransparente */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0 1rem;
-  }
+  // .hero .overlay {
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 100%;
+  //   background: rgba(0,0,0,0.4); /* capa semitransparente */
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: center;
+  //   align-items: center;
+  //   text-align: center;
+  //   padding: 0 1rem;
+  // }
   
   .hero .overlay h1 {
     color: #fff;
