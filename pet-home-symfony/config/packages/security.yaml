@@ -25,11 +25,16 @@ security:
             stateless: true
             security: false  # Desactivar la seguridad para esta ruta
 
+        api:
+            pattern: ^/api
+            stateless: true
+            jwt: ~
+
         dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/  # Rutas para desarrollo sin seguridad
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
     access_control:
-        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }  # Login sin autenticación
-        - { path: ^/api/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }  # Registro sin autenticación
-        - { path: ^/api, roles: ROLE_USER }  # Otras rutas de la API requieren autenticación
+        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
