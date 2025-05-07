@@ -5,11 +5,11 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    background: #fff;
+    background: transparent;
   }
   /* From Uiverse.io by rillala */ 
 .spinner {
-  position: absolute;
+  position: relative;
   width: 25px;
   height: 40px;
 }
@@ -22,7 +22,7 @@
   transform: rotate(calc(var(--rotation) * 1deg))
     translate(0, calc(var(--translation) * 1%));
   animation: spinner-fzua35 1s calc(var(--delay) * 1s) infinite ease;
-  color: #3eb3c2;
+  color: #fc713e;
   text-align: end;
   font-weight: 700;
   font-size: 20px;
