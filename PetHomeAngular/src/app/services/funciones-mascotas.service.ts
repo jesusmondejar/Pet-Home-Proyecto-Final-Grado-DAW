@@ -29,9 +29,25 @@ getMascota(){
 }
 
 getMascotaPorEspecie(especie: string) {
-  return this.conexionSrvc.getMascotasPorEspecie(especie)
+  return this.conexionSrvc.getMascotasPorEspecie(especie).subscribe(
+    json => {
+
+      let data:any = json
+      this.mascotas = data
+      console.log(this.mascotas)
+    }
+  );
 }
 
+getMascotaPorEdad(rangoEdad: string): any[] {
+  const [min, max] = rangoEdad.split('-').map(n => +n); // convierte '2-4' en [2, 4]
+  
+  const resultado = this.mascotas.filter(m => m.edad >= min && m.edad <= max);
+  
+  console.log(`Mascotas filtradas por edad ${min}-${max}:`, resultado);
+  
+  return resultado;
+}
 
 getMascotaPorProtectora(id: number) {
   return this.conexionSrvc.getMascotasPorProtectora(id)
