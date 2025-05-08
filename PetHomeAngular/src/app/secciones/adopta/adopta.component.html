@@ -77,36 +77,41 @@
         <div class="radio-container">
           <div class="radio-wrapper">
             <label class="radio-button">
-              <input id="option1" name="radio-group" type="radio">
+              <input id="option1" name="radio-especie" type="radio" value="Perro"
+                     (change)="getMascotasPorEspecie(especieSeleccionadaPerro)">
               <span class="radio-checkmark"></span>
               <span class="radio-label">Perro</span>
             </label>
           </div>
-        
+          
           <div class="radio-wrapper">
             <label class="radio-button">
-              <input id="option2" name="radio-group" type="radio">
+              <input id="option2" name="radio-especie" type="radio" value="Gato"
+                     (change)="getMascotasPorEspecie( especieSeleccionadaGato)">
               <span class="radio-checkmark"></span>
               <span class="radio-label">Gato</span>
             </label>
           </div>
-        
+          
           <div class="radio-wrapper">
             <label class="radio-button">
-              <input id="option3" name="radio-group" type="radio">
+              <input id="option3" name="radio-especie" type="radio" value="Otro"
+                     (change)="getMascotasPorEspecie(especieSeleccionadaOtro)">
               <span class="radio-checkmark"></span>
               <span class="radio-label">Otro</span>
             </label>
           </div>
+          
         </div>
       </div>
 
-      <div class="radio-especie">
+      <div class="radio-edad">
         <h4 class="section-title mb-4">Edad</h4>
         <div class="radio-container">
           <div class="radio-wrapper">
             <label class="radio-button">
-              <input id="option1" name="radio-group" type="radio">
+              <input id="option1" name="radio-edad" type="radio" value="0-1" 
+                     (change)="getMascotasPorEdad(edadSeleccionada0_1)">
               <span class="radio-checkmark"></span>
               <span class="radio-label">0-1 años</span>
             </label>
@@ -114,7 +119,8 @@
         
           <div class="radio-wrapper">
             <label class="radio-button">
-              <input id="option2" name="radio-group" type="radio">
+              <input id="option2" name="radio-edad" type="radio"  value="1-2" 
+                     (change)="getMascotasPorEdad(edadSeleccionada1_2)">
               <span class="radio-checkmark"></span>
               <span class="radio-label">1-2 años</span>
             </label>
@@ -122,9 +128,28 @@
         
           <div class="radio-wrapper">
             <label class="radio-button">
-              <input id="option3" name="radio-group" type="radio">
+              <input id="option3" name="radio-edad" type="radio" value="2-4" 
+                     (change)="getMascotasPorEdad(edadSeleccionada2_4)">
               <span class="radio-checkmark"></span>
               <span class="radio-label">2-4 años</span>
+            </label>
+          </div>
+
+          <div class="radio-wrapper">
+            <label class="radio-button">
+              <input id="option4" name="radio-edad" type="radio" value="4-6" 
+                     (change)="getMascotasPorEdad(edadSeleccionada4_6)">
+              <span class="radio-checkmark"></span>
+              <span class="radio-label">4-6 años</span>
+            </label>
+          </div>
+
+          <div class="radio-wrapper">
+            <label class="radio-button">
+              <input id="option5" name="radio-edad" type="radio" value="6-10" 
+                     (change)="getMascotasPorEdad(edadSeleccionada6_10)">
+              <span class="radio-checkmark"></span>
+              <span class="radio-label">6-10 años</span>
             </label>
           </div>
         </div>

@@ -237,13 +237,42 @@ option::checkmark {
 })
 export class AdoptaComponent {
 
-  constructor(private funcionesMascotas: FuncionesMascotasService) { }
+  constructor(private funcionesMascotas: FuncionesMascotasService) {
+    this.funcionesMascotas.getMascotas(); // carga datos al inicio
+    this.mascotasFiltradas = this.funcionesMascotas.getMascota(); // muestra todos por defecto
+   }
+
+  especieSeleccionadaPerro: string = 'Perro';
+  especieSeleccionadaGato: string = 'Gato';
+  especieSeleccionadaOtro: string = 'Otro';
+
+  edadSeleccionada0_1: string = '0-1';
+  edadSeleccionada1_2: string = '1-2';
+  edadSeleccionada2_4: string = '2-4';
+  edadSeleccionada4_6: string = '4-6';
+  edadSeleccionada6_10: string = '6-10';
+
+  mascotasFiltradas: any[] = [];
+
+ 
 
 
   getMascotas() {
     return this.funcionesMascotas.getMascota()
   }
 
+  getMascotasPorEspecie(especie: string) {
+    return this.funcionesMascotas.getMascotaPorEspecie(especie)
+    
+  }
+  
+  filtrarMascotas(especie: string, edad: string) {
+    const especieFiltrada = this.funcionesMascotas.getMascotaPorEspecie(especie);
+    this.mascotasFiltradas = this.funcionesMascotas.getMascotaPorEdad(edad);
+  }
 
 
+  getMascotasPorEdad(rangoEdad: string) {
+    this.mascotasFiltradas = this.funcionesMascotas.getMascotaPorEdad(rangoEdad)
+  }
 }
