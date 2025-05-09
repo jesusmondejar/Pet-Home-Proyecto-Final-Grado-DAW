@@ -47,3 +47,37 @@ export class MascotaService {
     return this.http.put<Mascota>(`${this.apiUrl}/mascotas/${id}`, mascota);
   }
 }
+
+
+
+export interface Organizacion {
+  id: number;
+  nombre: string;
+  email: string;
+  contrasena: string;
+  telefono: string;
+  direccion: string;
+  descripcion: string;
+  fecha_registro: string;
+  
+}
+
+export class OrganizacionService {
+  private apiUrl = 'http://localhost:8000/api';
+
+  constructor(private http: HttpClient) {}
+
+  /** Listado completo */
+  getOrganizaciones(): Observable<Organizacion[]> {
+    return this.http.get<Organizacion[]>(`${this.apiUrl}/organizaciones`);
+  }
+
+  /** Filtrar por provincia */
+  getOrganizacionesPorProvincia(provincia: string): Observable<Organizacion[]> {
+    return this.http.get<Organizacion[]>(
+      `${this.apiUrl}/organizaciones/provincia/${encodeURIComponent(provincia)}`
+    );
+  }
+}
+
+
