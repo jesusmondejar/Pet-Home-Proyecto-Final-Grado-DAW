@@ -1,1 +1,22 @@
-<p>mascota-detalle works!</p>
+
+
+<div class="mascota-container">
+  <div class="mascota-card">
+    <div class="mascota-img">
+      <img src="/assets/img/pexels-cdomingues10-731022.jpg" >
+    </div>
+    <div class="mascota-info">
+      <h2>{{ mascota.nombre }}</h2>
+      <p><strong>Edad:</strong> {{ mascota.edad }} años</p>
+      <p><strong>Raza:</strong> {{ mascota.raza }}</p>
+      <p><strong>Especie:</strong> {{ mascota.especie }}</p>
+      <p><strong>Tamaño:</strong> {{ mascota.tamanio }}</p>
+      <p><strong>Estado:</strong> {{ mascota.estado }}</p>
+      <p><strong>Descripción:</strong> {{ mascota.descripcion }}</p>
+      <hr>
+      <p><strong>Protectora:</strong> {{ mascota.protectora?.nombre }}</p>
+      <p><strong>Dirección:</strong> {{ mascota.protectora?.direccion }}</p>
+      <p><strong>Email:</strong> {{ mascota.protectora?.email }}</p>
+    </div>
+  </div>
+</div>

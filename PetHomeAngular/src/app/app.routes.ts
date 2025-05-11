@@ -6,6 +6,7 @@ import { SobreNosotrosComponent } from './secciones/sobre-nosotros/sobre-nosotro
 import { Page404Component } from './secciones/page404/page404.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { MascotaDetalleComponent } from './secciones/mascota-detalle/mascota-detalle.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -14,6 +15,7 @@ export const routes: Routes = [
     { path: "adopta", component: AdoptaComponent },
     { path: "organizaciones", component: OrganizacionesComponent },
     { path: "sobre-nosotros", component: SobreNosotrosComponent },
+    { path: "detalle-mascota/:id", component: MascotaDetalleComponent },
     { path: "", redirectTo: "inicio", pathMatch: "full" },
     { path: "**", component: Page404Component }
 ];
