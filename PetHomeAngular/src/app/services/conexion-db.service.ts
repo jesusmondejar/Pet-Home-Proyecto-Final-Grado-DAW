@@ -52,6 +52,7 @@ export interface Organizacion {
   id: number;
   nombre: string;
   telefono: string;
+  foto: string;
   // email: string;
   // contrasena: string;
   direccion: string;

@@ -14,12 +14,11 @@ import { OrganizacionCardComponent } from './organizacion-card/organizacion-card
     background-size: cover;
   }
   .organizacion-card-section {
-    background-color: white;
+    
     padding: 2rem;
     border-radius: 10px;
     text-align: center;
     margin: 2rem;
-    box-shadow: 0 0 10px rgba(0,0,0,0.15);
   }`
 })
 export class OrganizacionesComponent {

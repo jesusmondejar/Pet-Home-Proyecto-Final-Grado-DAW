@@ -1,23 +1,39 @@
+<div class="org-card p-4 rounded shadow-sm mb-4">
+  <div class="row align-items-center gx-4">
+    <!-- Columna Izquierda: Info de la Protectora -->
+    <div class="col-12 col-md-4 text-start mb-3 mb-md-0">
+      <img 
+        [src]="org.foto || 'assets/img/placeholder.png'" 
+        alt="{{ org.nombre }}" 
+        class="img-fluid rounded-circle mb-2"
+        style="width: 100px; height: 100px;">
+      <h5 class="org-title">{{ org.nombre }}</h5>
+      <p class="org-text">
+        <i class="bi bi-building org-icon"></i>
+        {{ org.descripcion }}
+      </p>
+      <button class="btn btn-sm btn-warning mt-2">Ver mascotas</button>
+    </div>
 
-    <div class="row align-items-center">
-        <!-- Izquierda: info de organización -->
-        <div class="col-md-4">
-          <h3 class="org-name">{{ org.nombre }}</h3>
-          <p class="org-desc">{{ org.descripcion }}</p>
-          <button class="btn btn-warning mt-2">Ver mascotas</button>
-        </div>
-        <!-- Derecha: preview de últimas 3 mascotas -->
-        <!-- <div class="col-md-8">
-          <div class="row">
-             <div class="col-4">
-              <div class="pet-preview text-center">
-                 @for (organizacion of getOrganizaciones(); track $index) {
+    <!-- Columna Derecha: Últimas 3 Mascotas -->
+     <div class="col-12 col-md-8"> 
+       <div class="row gx-2">
+        <div class="col-4">
+          <!-- *ngFor="let pet of org.mascotas.slice(-3)" -->
+          <!-- @for (organizacion of getOrganizaciones(); track $index) {
             <app-organizacion-card [org]="organizacion"/>
-          }
-                <img [src]="pet.fotoUrl" alt="{{pet.nombre}}" class="img-fluid rounded mb-2" />
-                <p class="pet-name mb-0">{{ pet.nombre }}</p>
-                <small class="text-muted">{{ pet.edad }}</small>
-              </div>
-            </div>
+          }  -->
+          <!-- <div class="pet-thumb text-center">
+            <img 
+              [src]="pet.imagenes[0] || 'assets/img/placeholder.png'" 
+              alt="{{ pet.nombre }}" 
+              class="img-fluid rounded mb-2"
+            />
+            <p class="pet-name mb-0">{{ pet.nombre }}</p>
+            <small class="text-muted">{{ pet.edad }} años</small>
           </div> -->
         </div>
+      </div> 
+    </div> 
+  </div>
+</div>

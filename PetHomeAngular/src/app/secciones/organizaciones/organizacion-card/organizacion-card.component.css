@@ -6,3 +6,41 @@
     margin: 2rem;
     box-shadow: 0 0 10px rgba(0,0,0,0.15);
   }
+
+
+  .org-card {
+  background: #fff;
+  border: 1px solid #eee;
+}
+
+.org-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.org-text {
+  color: #555;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.org-icon {
+  font-size: 1.2rem;
+  color: #fc713e;
+}
+
+.pet-thumb img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.pet-name {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #333;
+}
