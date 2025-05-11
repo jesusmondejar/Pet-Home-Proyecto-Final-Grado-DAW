@@ -327,7 +327,38 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 
 .button:hover .text {
   color: black;
+}
+
+.button-inicio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 15px;
+  background-color: #f2f2f2;
+  outline-offset: -3px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: 400ms;
+  height: 60%; /* Ajusta según necesites */
+}
+
+.button-inicio .text {
+  font-weight: 600;
+  font-size: 15px;
+  transition: 400ms;
+  margin: 0;
+}
+
+.button-inicio:hover {
+  background-color: transparent;
+}
+
+.button-inicio:hover .text {
+  color: black;
 }`
+
 })
 export class NavMenuComponent {
 
