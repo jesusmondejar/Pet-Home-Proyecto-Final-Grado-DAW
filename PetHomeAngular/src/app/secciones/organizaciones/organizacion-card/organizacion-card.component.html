@@ -12,27 +12,26 @@
         <i class="bi bi-building org-icon"></i>
         {{ org.descripcion }}
       </p>
-      <button class="btn btn-sm btn-warning mt-2">Ver mascotas</button>
+      <button routerLink="/register" class="button">
+              <p class="text">Ver mascotas</p>
+            </button>
     </div>
 
     <!-- Columna Derecha: Últimas 3 Mascotas -->
-     <div class="col-12 col-md-8"> 
-       <div class="row gx-2">
-        <div class="col-4">
-          <!-- *ngFor="let pet of org.mascotas.slice(-3)" -->
-          <!-- @for (organizacion of getOrganizaciones(); track $index) {
-            <app-organizacion-card [org]="organizacion"/>
-          }  -->
-          <!-- <div class="pet-thumb text-center">
-            <img 
-              [src]="pet.imagenes[0] || 'assets/img/placeholder.png'" 
-              alt="{{ pet.nombre }}" 
-              class="img-fluid rounded mb-2"
-            />
-            <p class="pet-name mb-0">{{ pet.nombre }}</p>
-            <small class="text-muted">{{ pet.edad }} años</small>
-          </div> -->
-        </div>
+     <div class="col-12 col-md-6 pet-thumb"> 
+       <div class="row g-4">
+      
+          <div class="pet-thumb">
+            @for (mascotas of getMascotas().slice(-3); track $index) {
+            <div class="col-6 col-md-4">
+              <app-mascota-card [mascota]="mascotas"/>
+            </div>
+          
+
+          }
+          </div>
+           
+        
       </div> 
     </div> 
   </div>

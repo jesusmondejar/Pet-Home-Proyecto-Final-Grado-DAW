@@ -44,3 +44,45 @@
   font-size: 0.9rem;
   color: #333;
 }
+
+
+/* Dentro de organizacion-card.component.css */
+.pet-thumb {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Ajusta este valor según el espacio que desees */
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 15px;
+  background-color: #fc713e;
+  outline: 3px #fc713e solid;
+  outline-offset: -3px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: 400ms;
+  height: 60%; /* Ajusta según necesites */
+}
+
+.button .text {
+  color: white;
+  font-weight: 500;
+  font-size: 15px;
+  transition: 400ms;
+  margin: 0;
+}
+
+.button:hover {
+  background-color: transparent;
+}
+
+.button:hover .text {
+  color: black;
+}
+
+

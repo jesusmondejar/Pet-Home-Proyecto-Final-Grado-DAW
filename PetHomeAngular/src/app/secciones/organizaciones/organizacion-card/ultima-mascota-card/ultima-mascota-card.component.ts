@@ -7,8 +7,8 @@ import { Component, Input } from '@angular/core';
   styles: `
   .card {
     position: relative;
-    width: 300px;
-    height: 200px;
+    width: 200px;
+    height: 150px;
     background-color: #f2f2f2;
     border-radius: 10px;
     display: flex;
