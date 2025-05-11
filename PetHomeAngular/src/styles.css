@@ -132,3 +132,6 @@ div.icon-2 {
       translate(0, calc(var(--translation) * 1.5%));
   }
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
