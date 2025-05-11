@@ -6,7 +6,7 @@ import { MascotaCardComponent } from "./mascota-card/mascota-card.component";
   selector: 'app-adopta',
   imports: [MascotaCardComponent],
   templateUrl: './adopta.component.html',
-  styles: `/* Color principal naranja */
+  styles: `
   .section-title,
   .section-subtitle,
   .card-title,
@@ -15,12 +15,12 @@ import { MascotaCardComponent } from "./mascota-card/mascota-card.component";
     color: #fc713e !important;
   }
   
-  /* Espacio entre tarjetas */
+
   .adopta-container .card {
     margin-bottom: 30px;
   }
   
-  /* Botón estilo personalizado */
+ 
   .btn-outline-primary {
     border-color: #fc713e;
   }
@@ -147,7 +147,7 @@ option::checkmark {
   top: calc(anchor(bottom) + 1px);
   left: anchor(10%);
 }
-/* From Uiverse.io by JkHuger */ 
+
 .radio-container {
   margin: 0 auto;
   max-width: 300px;
@@ -204,42 +204,50 @@ option::checkmark {
   font-size: 16px;
   font-weight: 600;
 }
-.hero {
-    position: relative;
-    width: 100%;
-    height: 70vh; /* Alto de la sección héroe */
-    background: url('/assets/img/perros.jpg') no-repeat center center;
-    background-size: cover;
-  }
-  
-  // .hero .overlay {
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   width: 100%;
-  //   height: 100%;
-  //   background: rgba(0,0,0,0.4); /* capa semitransparente */
-  //   display: flex;
-  //   flex-direction: column;
-  //   justify-content: center;
-  //   align-items: center;
-  //   text-align: center;
-  //   padding: 0 1rem;
-  // }
-  
-  .hero .overlay h1 {
-    color: #fff;
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-  }
+ .hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 15px;
+  background-color: #fc713e;
+  outline: 3px #fc713e solid;
+  outline-offset: -3px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: 400ms;
+  height: 60%; 
+}
+
+.button .text {
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  transition: 400ms;
+  margin: 0;
+}
+
+.button:hover {
+  background-color: transparent;
+}
+
+.button:hover .text {
+  color: black;
+}
   `
 })
 export class AdoptaComponent {
 
   constructor(private funcionesMascotas: FuncionesMascotasService) {
-    this.funcionesMascotas.getMascotas(); // carga datos al inicio
-    this.mascotasFiltradas = this.funcionesMascotas.getMascota(); // muestra todos por defecto
+    this.funcionesMascotas.getMascotas(); 
+    this.mascotasFiltradas = this.funcionesMascotas.getMascota(); 
    }
 
   especieSeleccionadaPerro: string = 'Perro';
