@@ -7,14 +7,17 @@
           <button class="btn btn-warning mt-2">Ver mascotas</button>
         </div>
         <!-- Derecha: preview de últimas 3 mascotas -->
-        <div class="col-md-8">
+        <!-- <div class="col-md-8">
           <div class="row">
-            <!-- <div class="col-4" *ngFor="let pet of ultimasMascotas">
+             <div class="col-4">
               <div class="pet-preview text-center">
+                 @for (organizacion of getOrganizaciones(); track $index) {
+            <app-organizacion-card [org]="organizacion"/>
+          }
                 <img [src]="pet.fotoUrl" alt="{{pet.nombre}}" class="img-fluid rounded mb-2" />
                 <p class="pet-name mb-0">{{ pet.nombre }}</p>
                 <small class="text-muted">{{ pet.edad }}</small>
-              </div> -->
+              </div>
             </div>
-          </div>
+          </div> -->
         </div>
