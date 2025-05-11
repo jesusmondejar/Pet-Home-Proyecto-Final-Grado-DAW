@@ -4,11 +4,14 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { NgIf } from '@angular/common';
+
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule], // 👈 AÑADE ESTO
+  imports: [ReactiveFormsModule, HttpClientModule, MatButtonToggleModule, NgIf], // 👈 AÑADE ESTO
   templateUrl: './register.component.html',
   styles: `
 
@@ -16,12 +19,13 @@ import { Router } from '@angular/router';
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-width: 350px;
+    max-width: 420px;
     background-color: #fff;
     padding: 20px;
     border-radius: 20px;
     position: relative;
     margin-top: 1rem;
+    margin-bottom: 3rem;
   }
   
   .title {
@@ -147,7 +151,40 @@ html, body {
   box-sizing: border-box;
   }
   
-  /* Asegúrate de envolver tu <form class="form"> en un <div class="center-wrapper"> */
+  ::ng-deep .user-toggle {
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+  background-color: #fff;
+  font-weight: 500;
+}
+
+::ng-deep .user-toggle .mat-button-toggle {
+  flex: 1;
+  text-transform: none;
+  font-size: 14px;
+  color: #555;
+  padding: 10px 0;
+  transition: all 0.3s ease;
+  border-right: 1px solid rgba(105, 105, 105, 0.1);
+}
+
+::ng-deep .user-toggle .mat-button-toggle:last-child {
+  border-right: none;
+}
+
+::ng-deep .user-toggle .mat-button-toggle-checked {
+  background-color: #fc713e;
+  color: white;
+}
+
+::ng-deep .user-toggle .mat-button-toggle:not(.mat-button-toggle-checked):hover {
+  background-color: rgba(252, 113, 62, 0.1);
+  color: #fc713e;
+}
+
   
   
   @keyframes pulse {
@@ -165,6 +202,8 @@ html, body {
   `
 })
 export class RegisterComponent {
+
+
   registerForm: FormGroup;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
@@ -174,8 +213,33 @@ export class RegisterComponent {
       contrasena: ['', Validators.required],
       telefono: [''],
       direccion: [''],
-      tipoUsuario: ['cliente', Validators.required] // Asegúrate de que es obligatorio
+      tipoUsuario: ['cliente', Validators.required],
+      provincia: [''],
+      dni: [''],
+      descripcion: ['']
     });
+
+    this.registerForm.get('tipoUsuario')?.valueChanges.subscribe(value => {
+      const provincia = this.registerForm.get('provincia');
+      const dni = this.registerForm.get('dni');
+      const descripcion = this.registerForm.get('descripcion');
+
+      if (value === 'protectora') {
+        provincia?.setValidators([Validators.required]);
+        dni?.setValidators([Validators.required]);
+        descripcion?.setValidators([Validators.required]);
+      } else {
+        provincia?.clearValidators();
+        dni?.clearValidators();
+        descripcion?.clearValidators();
+      }
+
+      provincia?.updateValueAndValidity();
+      dni?.updateValueAndValidity();
+      descripcion?.updateValueAndValidity();
+    });
+
+
   }
 
   onSubmit() {
@@ -187,6 +251,10 @@ export class RegisterComponent {
         },
         error: (err) => console.error('Error al registrar:', err)
       });
-    
   }
+
+  get esProtectora(): boolean {
+    return this.registerForm.get('tipoUsuario')?.value === 'protectora';
+  }
+
 }

@@ -1,40 +1,52 @@
-<!-- From Uiverse.io by Yaya12085 --> 
 <div class="center-wrapper">
-<form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <p class="title">¡Crea tu cuenta en PetHome!</p>
-    <p class="message">Únete a nuestra comunidad y dale una segunda oportunidad a una mascota. 🐶🐱 </p>
+    <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <p class="title">¡Crea tu cuenta en PetHome!</p>
+        <mat-button-toggle-group formControlName="tipoUsuario" appearance="legacy" class="user-toggle">
+            <mat-button-toggle value="cliente">Cliente</mat-button-toggle>
+            <mat-button-toggle value="protectora">Protectora</mat-button-toggle>
+        </mat-button-toggle-group>
+        <p class="message">Únete a nuestra comunidad y dale una segunda oportunidad a una mascota. 🐶🐱 </p>
         <div class="flex">
-        <label>
-            <input required="" formControlName="nombre" type="text" class="input">
-            <span>Nombre</span>
-        </label>
-  
-        <label>
-            <input required="" formControlName="telefono" placeholder="" type="text" class="input">
-            <span>Telefóno</span>
-        </label>
-    </div>  
-     
-    <label>
-      <input required="" formControlName="direccion" placeholder="" type="text" class="input">
-      <span>Dirección</span>
-    </label> 
+            <label>
+                <input required="" formControlName="nombre" type="text" class="input">
+                <span>Nombre</span>
+            </label>
 
-    <label>
-        <input required="" formControlName="email" placeholder="" type="email" class="input">
-        <span>Email</span>
-    </label> 
+            <label>
+                <input required="" formControlName="telefono" placeholder="" type="text" class="input">
+                <span>Telefóno</span>
+            </label>
+        </div>
+
         
-    <label>
-        <input required="" formControlName="contrasena" placeholder="" type="password" class="input">
-        <span>Contraseña</span>
-    </label>
-    <select formControlName="tipoUsuario">
-      <option value="cliente">Cliente</option>
-      <option value="protectora">Protectora</option>
-    </select>
-    <button class="submit" button type="submit" [disabled]="!registerForm.valid">Continuar</button>
-    <p class="signin">¿Ya tienes una cuenta ? <a href="#">Iniciar sesión</a> </p>
-</form>
-</div>
+        <label>
+            <input required="" formControlName="email" placeholder="" type="email" class="input">
+            <span>Email</span>
+        </label>
+        
+        <label>
+            <input required="" formControlName="contrasena" placeholder="" type="password" class="input">
+            <span>Contraseña</span>
+        </label>
 
+        @if (registerForm.get('tipoUsuario')?.value === 'protectora') {
+        <label>
+            <input required="" formControlName="direccion" placeholder="" type="text" class="input">
+            <span>Dirección</span>
+        </label>
+
+        <label>
+            <input required formControlName="provincia" type="text" class="input">
+            <span>Localidad</span>
+        </label>
+
+        <label>
+            <input required formControlName="descripcion" type="text" class="input">
+            <span>Descripción</span>
+        </label>
+        }
+
+        <button class="submit" button type="submit" [disabled]="!registerForm.valid">Registrarme</button>
+        <p class="signin">¿Ya tienes una cuenta ? <a href="#">Iniciar sesión</a> </p>
+    </form>
+</div>
