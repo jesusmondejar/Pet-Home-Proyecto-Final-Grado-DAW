@@ -48,33 +48,34 @@ export class MascotaService {
   }
 }
 
-
-
 export interface Organizacion {
   id: number;
   nombre: string;
-  email: string;
-  contrasena: string;
   telefono: string;
+  // email: string;
+  // contrasena: string;
   direccion: string;
   descripcion: string;
-  fecha_registro: string;
+  // fecha_registro: string;
   
 }
 
+@Injectable({
+  providedIn: 'root'
+})
 export class OrganizacionService {
   private apiUrl = 'http://localhost:8000/api';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http2: HttpClient) {}
 
   /** Listado completo */
   getOrganizaciones(): Observable<Organizacion[]> {
-    return this.http.get<Organizacion[]>(`${this.apiUrl}/organizaciones`);
+    return this.http2.get<Organizacion[]>(`${this.apiUrl}/organizaciones`);
   }
 
   /** Filtrar por provincia */
   getOrganizacionesPorProvincia(provincia: string): Observable<Organizacion[]> {
-    return this.http.get<Organizacion[]>(
+    return this.http2.get<Organizacion[]>(
       `${this.apiUrl}/organizaciones/provincia/${encodeURIComponent(provincia)}`
     );
   }

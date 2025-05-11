@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { OrganizacionService } from './conexion-db.service';
+import {OrganizacionService } from './conexion-db.service';
 
 @Injectable({
   providedIn: 'root'
