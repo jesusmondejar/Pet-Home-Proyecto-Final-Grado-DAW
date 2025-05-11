@@ -11,7 +11,7 @@ import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule, MatButtonToggleModule, NgIf], // 👈 AÑADE ESTO
+  imports: [ReactiveFormsModule, HttpClientModule, MatButtonToggleModule], // 👈 AÑADE ESTO
   templateUrl: './register.component.html',
   styles: `
 
