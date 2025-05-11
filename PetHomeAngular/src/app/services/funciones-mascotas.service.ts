@@ -28,6 +28,17 @@ getMascota(){
   return this.mascotas
 }
 
+getMascotaPorId(id: number) {
+  return this.conexionSrvc.getMascotas().subscribe(
+    json => {
+      let data:any = json
+      this.mascotas = data.filter((mascota:any) => mascota.id === id)
+      console.log(this.mascotas)
+    }
+  );
+}
+
+
 getMascotaPorEspecie(especie: string) {
   return this.conexionSrvc.getMascotasPorEspecie(especie).subscribe(
     json => {

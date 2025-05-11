@@ -70,7 +70,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   .button {
   display: flex;
   justify-content: center;
-  align-items: center;
+  
   padding: 10px 15px;
   gap: 15px;
   background-color: #fc713e;
@@ -80,15 +80,13 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   border: none;
   cursor: pointer;
   transition: 400ms;
-  height: 60%; 
+  height: 20%; 
 }
 
 .button .text {
   color: white;
-  font-weight: 600;
-  font-size: 15px;
   transition: 400ms;
-  margin: 0;
+  
 }
 
 .button:hover {
