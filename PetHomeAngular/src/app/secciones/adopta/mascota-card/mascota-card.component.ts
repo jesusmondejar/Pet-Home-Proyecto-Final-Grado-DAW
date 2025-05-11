@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-mascota-card',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './mascota-card.component.html',
-  styles: `/* From Uiverse.io by gharsh11032000 */ 
+  styles: `
   .card {
     position: relative;
     width: 300px;
@@ -66,6 +67,37 @@ import { Component, Input } from '@angular/core';
     color: #777;
     line-height: 1.4;
   }
+  .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 15px;
+  background-color: #fc713e;
+  outline: 3px #fc713e solid;
+  outline-offset: -3px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: 400ms;
+  height: 60%; 
+}
+
+.button .text {
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  transition: 400ms;
+  margin: 0;
+}
+
+.button:hover {
+  background-color: transparent;
+}
+
+.button:hover .text {
+  color: black;
+}
   `
 })
 export class MascotaCardComponent {
