@@ -22,24 +22,23 @@ export class LoginComponent {
 
   
 
-  onSubmit() {
+  
+  // Método de login en tu componente de login
+  login() {
     if (this.loginForm.valid) {
       this.http.post('http://localhost:8000/api/login', this.loginForm.value)
         .subscribe({
-          next: (res) => {
+          next: (res: any) => {
             console.log('Login exitoso:', res);
-            // Guardar datos si quieres
-            localStorage.setItem('usuario', JSON.stringify(res));
-            // Redirigir al home
-            this.router.navigate(['/inicio']); // o la ruta que tengas
-          }
-          ,
+            if (res.redirect) {
+              this.router.navigate([res.redirect]);
+            }
+          },
           error: (err) => {
             console.error('Error al iniciar sesión:', err);
+            alert('Credenciales incorrectas');
           }
         });
-    } else {
-      console.warn('Formulario inválido');
     }
   }
 }
