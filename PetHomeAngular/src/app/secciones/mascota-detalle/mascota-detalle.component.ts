@@ -8,67 +8,146 @@ import { FuncionesMascotasService } from '../../services/funciones-mascotas.serv
   imports: [],
   templateUrl: './mascota-detalle.component.html',
   styles: `
-  .mascota-container {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
+  .tarjeta-mascota {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  max-width: 1200px;
+  margin: 20px auto;
 }
 
-.mascota-card {
+.galeria {
+  text-align: center;
+}
+
+.imagen-principal img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.miniaturas {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.miniaturas img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.2s;
+}
+
+.miniaturas img.activa {
+  border-color: #ff5722;
+}
+
+.info-detalle {
   display: flex;
   flex-direction: column;
-  max-width: 800px;
-  width: 100%;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  overflow: hidden;
+  gap: 30px;
+  margin-top: 30px;
 }
 
-.mascota-img img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+.info-principal h1 {
+  font-size: 2rem;
+  margin-bottom: 5px;
 }
 
-.mascota-info {
-  padding: 20px;
+.subtitulo {
+  font-size: 1rem;
+  color: #666;
 }
 
-.mascota-info h2 {
-  margin-bottom: 10px;
+.descripcion {
+  margin: 15px 0;
+  font-size: 1.1rem;
   color: #333;
 }
 
-.mascota-info p {
-  margin: 5px 0;
-  color: #555;
+.info-extra {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-hr {
-  margin: 15px 0;
+.info-extra h3 {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.info-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.adopcion-box, .fundacion-box {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #fafafa;
+  text-align: center;
+}
+
+
+
+.btn-naranja {
+  margin-top: 10px;
+  background-color: #fc713e;
+  outline: 3px #fc713e solid;
+  color: white;
   border: none;
-  border-top: 1px solid #ddd;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+   transition: 400ms;
 }
 
-/* Responsive */
+.btn-naranja:hover {
+  background-color: transparent;
+  color: black;
+ 
+  
+}
+
+
 @media (min-width: 768px) {
-  .mascota-card {
+  .info-detalle {
     flex-direction: row;
+    gap: 40px;
   }
 
-  .mascota-img {
+  .info-principal {
+    flex: 3;
+  }
+
+  .info-lateral {
     flex: 1;
   }
 
-  .mascota-info {
-    flex: 2;
+  .info-extra {
+    flex-direction: row;
+    justify-content: space-between;
   }
 
-  .mascota-img img {
-    height: 100%;
+  .info-extra div {
+    flex: 1;
+    padding-right: 15px;
   }
 }
+
+
+
 `
 })
 export class MascotaDetalleComponent implements OnInit {

@@ -1,22 +1,45 @@
-
-
-<div class="mascota-container">
-  <div class="mascota-card">
-    <div class="mascota-img">
-      <img src="/assets/img/pexels-cdomingues10-731022.jpg" >
+<div class="tarjeta-mascota">
+  <div class="galeria">
+    <div class="imagen-principal">
+      <img src="/assets/img/pexels-cdomingues10-731022.jpg" alt="Imagen principal">
     </div>
-    <div class="mascota-info">
-      <h2>{{ mascota.nombre }}</h2>
-      <p><strong>Edad:</strong> {{ mascota.edad }} años</p>
-      <p><strong>Raza:</strong> {{ mascota.raza }}</p>
-      <p><strong>Especie:</strong> {{ mascota.especie }}</p>
-      <p><strong>Tamaño:</strong> {{ mascota.tamanio }}</p>
-      <p><strong>Estado:</strong> {{ mascota.estado }}</p>
-      <p><strong>Descripción:</strong> {{ mascota.descripcion }}</p>
-      <hr>
-      <p><strong>Protectora:</strong> {{ mascota.protectora?.nombre }}</p>
-      <p><strong>Dirección:</strong> {{ mascota.protectora?.direccion }}</p>
-      <p><strong>Email:</strong> {{ mascota.protectora?.email }}</p>
+    
+  </div>
+
+  <div class="info-detalle">
+    <div class="info-principal">
+      <h1>{{ mascota.nombre }}</h1>
+      <p class="subtitulo">{{ mascota.especie }} | {{ mascota.edad }} años | {{ mascota.raza }}</p>
+      <p class="descripcion">{{ mascota.descripcion }}</p>
+
+      <div class="info-extra">
+        <div>
+          <h3>Características</h3>
+          <p>{{ mascota.caracteristicas || 'No especificadas.' }}</p>
+        </div>
+        <div>
+          <h3>Salud</h3>
+          <p>{{ mascota.salud || 'No especificada.' }}</p>
+        </div>
+        <div>
+          <h3>Detalles</h3>
+          <p>{{ mascota.detalles || 'Sin detalles adicionales.' }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-lateral">
+      <div class="adopcion-box">
+        <p>¿Quieres adoptar a {{ mascota.nombre }}?</p>
+        <button class="btn-naranja">Contacto</button>
+      </div>
+
+      <div class="fundacion-box">
+        <p><strong>{{ mascota.protectora?.nombre }}</strong></p>
+        <p>{{ mascota.protectora?.direccion }}</p>
+        <p>{{ mascota.protectora?.email }}</p>
+        <button class="btn-naranja">Ver más mascotas →</button>
+      </div>
     </div>
   </div>
 </div>
