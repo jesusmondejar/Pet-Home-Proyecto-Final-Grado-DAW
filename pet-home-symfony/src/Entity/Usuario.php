@@ -28,19 +28,11 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 15, nullable: true)]
     private ?string $telefono = null;
 
-    #[ORM\Column(type: 'text', nullable: true)]
-    private ?string $direccion = null;
-
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $fechaRegistro;
 
-    #[ORM\Column(length: 50)]
-    private string $tipoUsuario = 'usuario';
-
     #[ORM\Column(type: 'json')]
     private array $roles = [];
-
-    
 
     public function getId(): ?int { return $this->id; }
 
@@ -56,25 +48,11 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     public function getTelefono(): ?string { return $this->telefono; }
     public function setTelefono(?string $telefono): self { $this->telefono = $telefono; return $this; }
 
-    public function getDireccion(): ?string { return $this->direccion; }
-    public function setDireccion(?string $direccion): self { $this->direccion = $direccion; return $this; }
-
     public function getFechaRegistro(): \DateTimeImmutable { return $this->fechaRegistro; }
     public function setFechaRegistro(\DateTimeImmutable $fechaRegistro): self { $this->fechaRegistro = $fechaRegistro; return $this; }
 
-    public function getTipoUsuario(): string { return $this->tipoUsuario; }
-    public function setTipoUsuario(string $tipoUsuario): self {
-        $this->tipoUsuario = $tipoUsuario;
-        return $this;
-    }
-
     public function getRoles(): array {
-        $roles = $this->roles;
-        $roles[] = 'ROLE_USER';
-        if ($this->tipoUsuario === 'protectora') {
-            $roles[] = 'ROLE_PROTECTORA';
-        }
-        return array_unique($roles);
+        return array_unique($this->roles); // Asegura que no haya roles duplicados
     }
 
     public function setRoles(array $roles): self {
@@ -87,6 +65,6 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     public function eraseCredentials(): void {
-        // Por si quieres limpiar campos sensibles del usuario tras la autenticación
+        // Limpiar datos sensibles tras la autenticación si lo deseas
     }
 }

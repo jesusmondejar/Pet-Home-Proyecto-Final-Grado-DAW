@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class ProtectoraController extends AbstractController
 {
-    #[Route('/api/organizaciones', name: 'api_protectoras', methods: ['GET'])]
+    #[Route('/api/protectoras', name: 'api_protectoras', methods: ['GET'])]
     public function index(ProtectoraRepository $repo, SerializerInterface $serializer): JsonResponse
     {
         $protectoras = $repo->findAll();
