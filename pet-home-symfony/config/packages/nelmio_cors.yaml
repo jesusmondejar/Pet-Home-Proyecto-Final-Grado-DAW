@@ -1,8 +1,14 @@
+# framework.yaml (o config/packages/cors.yaml)
+framework:
+  session:
+    cookie_secure: false # si usas http, para dev está bien, en prod usar true con https
+
+# config/packages/nelmio_cors.yaml (si usas NelmioCorsBundle)
 nelmio_cors:
-    defaults:
-        allow_credentials: true
-        allow_origin: ['http://localhost:4200']  # Tu front-end
-        allow_headers: ['Content-Type', 'Authorization']
-        allow_methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE']
     paths:
-        '^/api/': ~
+        '^/api/':
+            allow_origin: ['http://localhost:4200']  # URL de tu Angular dev server
+            allow_credentials: true
+            allow_headers: ['Content-Type', 'Authorization']
+            allow_methods: ['POST', 'GET', 'OPTIONS']
+            max_age: 3600
