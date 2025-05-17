@@ -9,6 +9,30 @@
   border-radius: 20px;
   position: relative;
   margin-top: 1rem;
+  margin-bottom: 4rem;
+}
+
+.user-toggle {
+  display: inline-flex;
+  border-radius: 12px;
+  background-color: #f0f0f0;
+  padding: 4px;
+}
+
+.user-toggle .mat-button-toggle {
+  border-radius: 12px;
+  flex: 1;
+  color: #fc713e;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.user-toggle .mat-button-toggle.mat-button-toggle-checked {
+  background-color: #fc713e !important;
+  color: #fff !important;
+}
+
+.user-toggle .mat-button-toggle:not(.mat-button-toggle-checked):hover {
+  background-color: rgba(252, 113, 62, 0.15);
 }
 
 .title {

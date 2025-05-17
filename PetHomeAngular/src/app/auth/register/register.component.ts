@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private AuthService: AuthService
+    private AuthService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -45,6 +47,7 @@ export class RegisterComponent implements OnInit {
     this.AuthService.register(datos).subscribe({
       next: (res) => {
         console.log('Registro exitoso', res);
+        this.router.navigate(['/inicio']);
       },
       error: (err) => {
         console.error('Error en el registro', err);

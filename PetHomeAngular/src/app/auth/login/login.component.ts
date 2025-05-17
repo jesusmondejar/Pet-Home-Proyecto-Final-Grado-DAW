@@ -1,44 +1,47 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule], // Asegúrate de tener esto
+  imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  errorMessage = '';
+  successMessage = '';
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
+  constructor(private fb: FormBuilder, private authService: AuthService,  private router: Router) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required], // Aquí cambiamos "contrasena" por "password"
+      password: ['', Validators.required]
     });
   }
 
-  
-
-  
-  // Método de login en tu componente de login
   login() {
-    if (this.loginForm.valid) {
-      this.http.post('http://localhost:8000/api/login', this.loginForm.value)
-        .subscribe({
-          next: (res: any) => {
-            console.log('Login exitoso:', res);
-            if (res.redirect) {
-              this.router.navigate([res.redirect]);
-            }
-          },
-          error: (err) => {
-            console.error('Error al iniciar sesión:', err);
-            alert('Credenciales incorrectas');
-          }
-        });
+  if (this.loginForm.invalid) return;
+
+  this.authService.login(this.loginForm.value).subscribe({
+    next: (res) => {
+      this.successMessage = 'Login correcto';
+      this.errorMessage = '';
+      this.router.navigate(['/inicio']);  // <--- redirige a /inicio aquí
+    },
+    error: (err) => {
+      this.errorMessage = err.error.error || 'Error en login';
+      this.successMessage = '';
     }
+  });
+}
+
+  logout() {
+    this.authService.logout().subscribe(() => {
+      this.successMessage = 'Logout exitoso';
+      this.errorMessage = '';
+      // Limpia estados o redirige después de logout
+    });
   }
 }
