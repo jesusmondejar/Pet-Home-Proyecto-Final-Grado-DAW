@@ -1,84 +1,105 @@
 <?php
-
 namespace App\Controller\Api;
 
 use App\Entity\Usuario;
-use App\Repository\UsuarioRepository;
+use App\Entity\Protectora;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AuthController extends AbstractController
 {
-    private $usuarioRepository;
-    private $passwordHasher;
-
-    public function __construct(UsuarioRepository $usuarioRepository, UserPasswordHasherInterface $passwordHasher)
-    {
-        $this->usuarioRepository = $usuarioRepository;
-        $this->passwordHasher = $passwordHasher;
-    }
-
-    #[Route('/api/register', name: 'register', methods: ['POST'])]
-    public function register(Request $request): JsonResponse
-    {
+    #[Route('/api/register', name: 'api_register', methods: ['POST'])]
+    public function register(
+        Request $request,
+        EntityManagerInterface $em,
+        UserPasswordHasherInterface $passwordHasher
+    ): JsonResponse {
         $data = json_decode($request->getContent(), true);
 
-        // Creamos la entidad Usuario y asignamos los datos
-        $usuario = new Usuario();
-        $usuario->setNombre($data['nombre']);
-        $usuario->setEmail($data['email']);
-        $usuario->setTelefono($data['telefono']);
-        $usuario->setDireccion($data['direccion']);
-        $usuario->setFechaRegistro(new \DateTimeImmutable());
+        $tipo = $data['tipoUsuario'] ?? 'cliente';
 
-        // Ahora encriptamos la contraseña antes de guardarla
-        $hashedPassword = $this->passwordHasher->hashPassword($usuario, $data['contrasena']);
-        $usuario->setPassword($hashedPassword);
+        if ($tipo === 'cliente') {
+            $usuario = new Usuario();
+            $usuario->setEmail($data['email']);
+            $usuario->setNombre($data['nombre']);
+            $usuario->setTelefono($data['telefono']);
+            $usuario->setFechaRegistro(new \DateTimeImmutable());
 
-        $rol = 'ROLE_CLIENTE';
-        if (!empty($data['tipoUsuario']) && $data['tipoUsuario'] === 'protectora') {
-            $rol = 'ROLE_PROTECTORA';
+            $usuario->setPassword(
+                $passwordHasher->hashPassword($usuario, $data['contrasena'])
+            );
+            $em->persist($usuario);
+        } elseif ($tipo === 'protectora') {
+            $protectora = new Protectora();
+            $protectora->setEmail($data['email']);
+            $protectora->setNombre($data['nombre']);
+            $protectora->setTelefono($data['telefono']);
+            $protectora->setDireccion($data['direccion']);
+            $protectora->setLocalidad($data['provincia']);
+            $protectora->setDescripcion($data['descripcion']);
+            $protectora->setFechaRegistro(new \DateTimeImmutable());
+
+            $protectora->setPassword(
+                $passwordHasher->hashPassword($protectora, $data['contrasena'])
+            );
+            $em->persist($protectora);
+        } else {
+            return new JsonResponse(['error' => 'Tipo de usuario no válido'], 400);
         }
-        $usuario->setRoles([$rol]);
 
-        $this->usuarioRepository->save($usuario, true); // Guardar al final
+        $em->flush();
 
-
-        return new JsonResponse(['message' => 'Usuario registrado correctamente'], JsonResponse::HTTP_CREATED);
+        return new JsonResponse(['message' => 'Registro exitoso'], 201);
     }
 
-    #[Route('/api/login', name: 'login', methods: ['POST'])]
-    public function login(Request $request): JsonResponse
+    #[Route('/api/login', name: 'api_login', methods: ['POST'])]
+    public function login(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher, SessionInterface $session): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
+        $email = $data['email'] ?? null;
+        $password = $data['password'] ?? null;
 
-        // Verificamos que se ha recibido el email y la contraseña
-        if (empty($data['email']) || empty($data['contrasena'])) {
-            return new JsonResponse(['message' => 'Email o contraseña vacíos'], JsonResponse::HTTP_BAD_REQUEST);
+        if (!$email || !$password) {
+            return new JsonResponse(['error' => 'Email y contraseña son requeridos'], 400);
         }
 
-        // Buscamos al usuario por email
-        $usuario = $this->usuarioRepository->findOneBy(['email' => $data['email']]);
-        // Verificamos la contraseña
-        $isPasswordValid = $this->passwordHasher->isPasswordValid($usuario, $data['contrasena']);
+        // Buscar usuario en ambas tablas
+        $usuarioRepo = $em->getRepository(Usuario::class);
+        $protectoraRepo = $em->getRepository(Protectora::class);
 
+        $user = $usuarioRepo->findOneBy(['email' => $email]);
+        $tipoUsuario = 'cliente';
 
-
-        if (!$usuario) {
-            return new JsonResponse(['message' => 'Usuario no encontrado'], JsonResponse::HTTP_NOT_FOUND);
+        if (!$user) {
+            $user = $protectoraRepo->findOneBy(['email' => $email]);
+            $tipoUsuario = 'protectora';
         }
 
-        // Verificamos la contraseña
-        $isPasswordValid = $this->passwordHasher->isPasswordValid($usuario, $data['contrasena']);
-
-        if (!$isPasswordValid) {
-            return new JsonResponse(['message' => 'Contraseña incorrecta'], JsonResponse::HTTP_UNAUTHORIZED);
+        if (!$user) {
+            return new JsonResponse(['error' => 'Usuario no encontrado'], 404);
         }
 
-        // Aquí puedes generar un token JWT si lo necesitas (omitiendo en este ejemplo)
-        return new JsonResponse(['message' => 'Login exitoso', 'usuario' => $usuario->getNombre()], JsonResponse::HTTP_OK);
+        if (!$passwordHasher->isPasswordValid($user, $password)) {
+            return new JsonResponse(['error' => 'Credenciales inválidas'], 401);
+        }
+
+        // Guardar info en sesión
+        $session->set('user_id', $user->getId());
+        $session->set('user_email', $user->getEmail());
+        $session->set('user_tipo', $tipoUsuario);
+
+        return new JsonResponse(['message' => 'Login exitoso']);
+    }
+
+    #[Route('/api/logout', name: 'api_logout', methods: ['POST'])]
+    public function logout(SessionInterface $session): JsonResponse
+    {
+        $session->clear();
+        return new JsonResponse(['message' => 'Logout exitoso']);
     }
 }
