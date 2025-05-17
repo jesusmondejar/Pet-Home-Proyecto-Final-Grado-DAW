@@ -5,7 +5,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   selector: 'app-nav-menu',
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './nav-menu.component.html',
-  styles: `@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+  styles: `
   *{
     margin: 0;
     padding: 0;
@@ -42,7 +42,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     text-decoration: none;
   }
   .wrapper .nav-links{
-    display: flex;
+    display: inline-flex;
+  display: flex;
   align-items: center; /* Esto centra verticalmente todos los elementos */
   gap: 20px; /* Espacio entre elementos */
   list-style: none;
@@ -89,37 +90,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     width: 100%;
     border-radius: 50%;
   }
-  .nav-links .drop-menu{
-    position: absolute;
-    background: white;
-    width: 180px;
-    line-height: 45px;
-    top: 85px;
-    opacity: 0;
-    visibility: hidden;
-    box-shadow: 0 6px 10px rgba(0,0,0,0.5);
-  }
-  .nav-links li:hover .drop-menu,
-  .nav-links li:hover .mega-box{
-    
-    transition: all 0.3s ease;
-    top: 70px;
-    opacity: 1;
-    visibility: visible;
-  }
-  .drop-menu li a{
-    width: 100%;
-    display: block;
-    padding: 0 0 0 15px;
-    font-weight: 400;
-    border-radius: 0px;
-  }
-  
  
-  .mega-box .content .row{
-    width: calc(25% - 30px);
-    line-height: 45px;
-  }
+ 
   .content .row img{
     width: 100%;
     height: 100%;
@@ -144,11 +116,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     font-size: 17px;
     display: block;
   }
-  .row .mega-links li a:hover{
-    color: #f2f2f2;
-  }
+  
   .wrapper .btn{
-    color: #fff;
+    color: black;
     font-size: 20px;
     cursor: pointer;
     display: none;
@@ -205,22 +175,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       display: block;
       font-size: 20px;
     }
-    .nav-links .drop-menu{
-      position: static;
-      opacity: 1;
-      top: 65px;
-      visibility: visible;
-      padding-left: 20px;
-      width: 100%;
-      max-height: 0px;
-      overflow: hidden;
-      box-shadow: none;
-      transition: all 0.3s ease;
-    }
-    #showDrop:checked ~ .drop-menu,
-    #showMega:checked ~ .mega-box{
-      max-height: 100%;
-    }
+    
+   
     .nav-links .desktop-item{
       display: none;
     }
@@ -237,44 +193,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     .nav-links .mobile-item:hover{
       background: #3A3B3C;
     }
-    .drop-menu li{
-      margin: 0;
-    }
-    .drop-menu li a{
-      border-radius: 5px;
-      font-size: 18px;
-    }
-    .mega-box{
-      position: static;
-      top: 65px;
-      opacity: 1;
-      visibility: visible;
-      padding: 0 20px;
-      max-height: 0px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-    .mega-box .content{
-      box-shadow: none;
-      flex-direction: column;
-      padding: 20px 20px 0 20px;
-    }
-    .mega-box .content .row{
-      width: 100%;
-      margin-bottom: 15px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-    .mega-box .content .row:nth-child(1),
-    .mega-box .content .row:nth-child(2){
-      border-top: 0px;
-    }
-    .content .row .mega-links{
-      border-left: 0px;
-      padding-left: 15px;
-    }
-    .row .mega-links li{
-      margin: 0;
-    }
+    
+    
+   
     .content .row header{
       font-size: 19px;
     }

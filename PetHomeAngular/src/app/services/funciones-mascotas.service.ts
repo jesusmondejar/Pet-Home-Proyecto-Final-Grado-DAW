@@ -54,7 +54,18 @@ getMascotaPorEdad(rangoEdad: string): any[] {
   return resultado;
 }
 
-getMascotaPorProtectora(id: number) {
-  return this.conexionSrvc.getMascotasPorProtectora(id)
+getMascotasPorProtectoraTop3(id: number) {
+  this.conexionSrvc.getMascotasPorProtectora(id).subscribe(json => {
+    let data: any[] = json;
+
+    // Ordena por fecha de creación (de más reciente a más antigua)
+    data.sort((a, b) => new Date(b.fechaCreacion).getTime() - new Date(a.fechaCreacion).getTime());
+
+    // Toma solo las 3 primeras
+    this.mascotas = data.slice(0, 3);
+
+    console.log(this.mascotas);
+  });
 }
+
 }

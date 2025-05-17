@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MascotaService } from '../../services/conexion-db.service';
 import { FuncionesMascotasService } from '../../services/funciones-mascotas.service';
+import { MascotaCardComponent } from '../adopta/mascota-card/mascota-card.component';
 
 @Component({
   selector: 'app-mascota-detalle',
-  imports: [],
+  imports: [MascotaCardComponent],
   templateUrl: './mascota-detalle.component.html',
   styles: `
   .tarjeta-mascota {
@@ -145,9 +146,6 @@ import { FuncionesMascotasService } from '../../services/funciones-mascotas.serv
     padding-right: 15px;
   }
 }
-
-
-
 `
 })
 export class MascotaDetalleComponent implements OnInit {
@@ -155,6 +153,7 @@ export class MascotaDetalleComponent implements OnInit {
   mascotaID:any
   constructor(private router:ActivatedRoute,
               private conxionSrvc:FuncionesMascotasService,
+              private conxionSrvc2:MascotaService,
   ) {}
 
 
@@ -173,6 +172,11 @@ export class MascotaDetalleComponent implements OnInit {
 
   getMascota() {
     return this.mascota
+  }
+
+
+  getMascotaPorProtectora(id: number) {
+    return this.conxionSrvc.getMascotasPorProtectoraTop3(id)  
   }
  
   
