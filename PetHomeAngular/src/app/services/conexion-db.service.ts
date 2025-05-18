@@ -71,13 +71,13 @@ export class OrganizacionService {
 
   /** Listado completo */
   getOrganizaciones(): Observable<Organizacion[]> {
-    return this.http2.get<Organizacion[]>(`${this.apiUrl}/organizaciones`);
+    return this.http2.get<Organizacion[]>(`${this.apiUrl}/protectoras`);
   }
 
   /** Filtrar por provincia */
   getOrganizacionesPorProvincia(provincia: string): Observable<Organizacion[]> {
     return this.http2.get<Organizacion[]>(
-      `${this.apiUrl}/organizaciones/provincia/${encodeURIComponent(provincia)}`
+      `${this.apiUrl}/protectoras/provincia/${encodeURIComponent(provincia)}`
     );
   }
 }
