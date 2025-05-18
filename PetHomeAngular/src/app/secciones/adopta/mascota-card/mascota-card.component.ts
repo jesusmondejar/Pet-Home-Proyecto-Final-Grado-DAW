@@ -10,13 +10,11 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     position: relative;
     width: 300px;
     height: 200px;
-    background-color: #f2f2f2;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    perspective: 1000px;
     box-shadow: 0 0 0 5px #ffffff80;
     transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
@@ -28,9 +26,12 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   }
   
   .card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
-  }
+  transform: scale(1.05);
+  background-color: rgba(255, 255, 255, 0.1); /* Fondo casi transparente */
+  backdrop-filter: blur(8px); /* efecto de desenfoque */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* sombra más elegante */
+}
+
   
   .card__content {
     position: absolute;
