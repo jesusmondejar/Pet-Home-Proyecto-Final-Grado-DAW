@@ -2,14 +2,9 @@
   <div class="row align-items-center gx-4">
     <!-- Columna Izquierda: Info de la Protectora -->
     <div class="col-12 col-md-4 text-start mb-3 mb-md-0">
-      <img 
-        [src]="org.foto || 'assets/img/placeholder.png'" 
-        alt="{{ org.nombre }}" 
-        class="img-fluid rounded-circle mb-2"
-        style="width: 100px; height: 100px;">
+      
       <h5 class="org-title">{{ org.nombre }}</h5>
       <p class="org-text">
-        <i class="bi bi-building org-icon"></i>
         {{ org.descripcion }}
       </p>
       <button routerLink="/register" class="button">
@@ -22,7 +17,7 @@
        <div class="row g-4">
       
           <div class="pet-thumb">
-            @for (mascotas of getMascotas().slice(-3); track $index) {
+            @for (mascotas of getMascotas().slice(-2); track $index) {
             <div class="col-6 col-md-4">
               <app-mascota-card [mascota]="mascotas"/>
             </div>
