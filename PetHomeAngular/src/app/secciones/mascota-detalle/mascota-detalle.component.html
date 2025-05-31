@@ -1,7 +1,7 @@
 <div class="tarjeta-mascota">
   <div class="galeria">
     <div class="imagen-principal">
-      <img src="/assets/img/pexels-cdomingues10-731022.jpg" alt="Imagen principal">
+      <!-- <img [src]="mascota.imagenes.urlImagen || 'assets/img/pexels-cdomingues10-731022.jpg'" alt="Imagen principal"> -->
     </div>
     
   </div>
@@ -35,11 +35,26 @@
       </div>
 
       <div class="fundacion-box">
-        <p><strong>{{ mascota.protectora?.nombre }}</strong></p>
-        <p>{{ mascota.protectora?.direccion }}</p>
-        <p>{{ mascota.protectora?.email }}</p>
-        <button class="btn-naranja">Ver más mascotas →</button>
+        <p><strong>{{ mascota.protectora.nombre }}</strong></p>
+        <p>{{ mascota.protectora.direccion }}</p>
+        <p>{{ mascota.protectora.email }}</p>
+        <button [routerLink]="['/detalle-organizacion', mascota.protectora.id]" class="btn-naranja">Ver {{mascotas.length}} mascotas →</button>
       </div>
     </div>
   </div>
 </div>
+
+
+<div class="tarjeta-mascota">
+  <h4>Otras mascotas de la protectora {{ mascota.protectora.nombre }}</h4>
+  <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3">
+            @for (mascota of mascotas.slice(-3); track $index) {
+            <div class="col">
+              <app-mascota-card [mascota]="mascota"/>
+            </div>
+          
+
+          }
+         </div>
+</div>
+  

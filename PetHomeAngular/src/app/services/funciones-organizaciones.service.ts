@@ -21,11 +21,14 @@ export class FuncionesOrganizacionesService {
       console.log(this.organizaciones)
     });
   }
+getOrganizacion(){
+  return this.organizaciones
+}
 
-  /** Devuelve el array actual de organizaciones */
-  getOrganizacion() {
-    return this.organizaciones;
-  }
+getOrganizacionPorId(id: number) {
+  return this.conexionOrg.getOrganizaciones()
+}
+
 
   /**
    * Filtra organizaciones por provincia
