@@ -12,7 +12,7 @@
         <i class="bi bi-building org-icon"></i>
         {{ org.descripcion }}
       </p>
-      <button routerLink="/register" class="button">
+      <button [routerLink]="['/detalle-organizacion', org.id]" class="button">
               <p class="text">Ver mascotas</p>
             </button>
     </div>
@@ -22,9 +22,9 @@
        <div class="row g-4">
       
           <div class="pet-thumb">
-            @for (mascotas of getMascotas().slice(-3); track $index) {
+            @for (mascota of mascotas; track $index) {
             <div class="col-6 col-md-4">
-              <app-mascota-card [mascota]="mascotas"/>
+              <app-mascota-card [mascota]="mascota"/>
             </div>
           
 

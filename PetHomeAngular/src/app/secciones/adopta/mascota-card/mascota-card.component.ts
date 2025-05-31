@@ -35,6 +35,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   
   .card__content {
     position: absolute;
+    text-align: center;
     top: 0;
     left: 0;
     width: 100%;
@@ -93,7 +94,25 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 .button:hover {
   background-color: transparent;
 }
+.btn-naranja {
+  margin-top: 10px;
+  background-color: #fc713e;
+  outline: 3px #fc713e solid;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+   transition: 400ms;
+}
 
+.btn-naranja:hover {
+  background-color: transparent;
+  color: black;
+ 
+  
+}
 .button:hover .text {
   color: black;
 }

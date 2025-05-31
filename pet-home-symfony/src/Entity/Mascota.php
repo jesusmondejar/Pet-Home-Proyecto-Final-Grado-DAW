@@ -44,9 +44,9 @@ class Mascota
     #[Groups(['mascota'])]
     private string $estado = 'Disponible';
 
-    #[ORM\ManyToOne(targetEntity: Protectora::class)]
+    #[ORM\ManyToOne(targetEntity: Protectora::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(onDelete: 'SET NULL')]
-    #[Groups(['mascota'])]
+    #[Groups(['mascota', 'protectora'])]
     private ?Protectora $protectora = null;
 
     #[ORM\OneToMany(mappedBy: 'mascota', targetEntity: ImagenMascota::class, cascade: ['persist', 'remove'])  ]
@@ -144,7 +144,7 @@ public function setEstado(string $estado): self
     return $this;
 }
 
-#[Groups(['mascota'])]
+#[Groups(['mascota', 'protectora'])]
 public function getProtectora(): ?Protectora
 {
     return $this->protectora;
