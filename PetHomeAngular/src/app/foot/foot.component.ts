@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-foot',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './foot.component.html',
   styles: ``
 })

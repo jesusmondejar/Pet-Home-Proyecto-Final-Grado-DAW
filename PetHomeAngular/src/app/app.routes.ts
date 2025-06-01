@@ -8,6 +8,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { MascotaDetalleComponent } from './secciones/mascota-detalle/mascota-detalle.component';
 import { OrganizacionesDetalleComponent } from './secciones/organizaciones-detalle/organizaciones-detalle.component';
+import { AvisoLegalComponent } from './secciones/aviso-legal/aviso-legal.component';
+import { PoliticaPrivacidadComponent } from './secciones/politica-privacidad/politica-privacidad.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -18,6 +20,8 @@ export const routes: Routes = [
     { path: "sobre-nosotros", component: SobreNosotrosComponent },
     { path: "detalle-mascota/:id", component: MascotaDetalleComponent },
     { path: "detalle-organizacion/:id", component: OrganizacionesDetalleComponent },
+    { path: "aviso-legal", component: AvisoLegalComponent },
+    { path: "politica-privacidad", component: PoliticaPrivacidadComponent },
     { path: "", redirectTo: "inicio", pathMatch: "full" },
     { path: "**", component: Page404Component }
 ];
