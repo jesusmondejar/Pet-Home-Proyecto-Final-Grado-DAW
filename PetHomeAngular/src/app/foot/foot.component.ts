@@ -3,7 +3,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-foot',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './foot.component.html',
   styles: ``
 })
