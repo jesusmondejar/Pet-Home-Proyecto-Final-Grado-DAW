@@ -1,118 +1,87 @@
-/* Login Form Styles basados en el estilo register */
-
+/* Formulario de login adaptado */
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 15px;
   width: 350px;
   background-color: #fff;
-  padding: 22px 25px;
+  padding: 20px;
   border-radius: 20px;
-  position: relative;
-  margin-top: 2rem;
-  box-shadow: 0 4px 10px rgba(252, 113, 62, 0.2);
-  margin-bottom: 6rem;
+  margin: 3rem auto 4rem auto;
 }
 
-.login-form h2 {
+.login-form .title {
   font-size: 28px;
   color: #fc713e;
-  letter-spacing: -1px;
-  position: relative;
-  padding-left: 30px;
-  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+
+/* Estructura para los inputs del login */
+.login-form .form-group {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.login-form h2::before,
-.login-form h2::after {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  border-radius: 50%;
-  left: 0;
-  background-color: #fc713e;
+.login-form .form-group label {
+  font-size: 0.9em;
+  color: #333;
+  font-weight: 500;
 }
 
-.login-form h2::after {
-  animation: pulse 1s linear infinite;
-}
-
-.login-form input {
+.login-form .form-group input {
   width: 100%;
-  padding: 12px 14px 20px 14px;
+  padding: 10px;
+  border: 1px solid rgba(105, 105, 105, 0.397);
   border-radius: 10px;
-  border: 1px solid rgba(105, 105, 105, 0.4);
   outline: none;
-  font-size: 16px;
+  font-size: 0.9em;
   transition: border-color 0.3s ease;
 }
 
-.login-form input:focus {
+.login-form .form-group input:focus {
   border-color: #fc713e;
 }
 
-.login-form button {
+.login-form .form-group input:valid {
+  border-color: #fc713e;
+}
+
+/* Botón de submit del login */
+.login-form .submit {
   border: none;
   outline: none;
   background-color: #fc713e;
-  padding: 12px;
+  padding: 10px;
   border-radius: 10px;
   color: #fff;
-  font-size: 17px;
+  font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-weight: 600;
 }
 
-.login-form button:disabled {
-  background-color: #ffa17a;
-  cursor: not-allowed;
-}
-
-.login-form button:hover:not(:disabled) {
+.login-form .submit:hover {
   background-color: rgb(255, 134, 48);
 }
 
-.logout-button {
-  margin-top: 20px;
-  padding: 10px 15px;
-  background-color: #fc713e;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  max-width: 350px;
-  width: 100%;
-}
-
-.logout-button:hover {
-  background-color: rgb(255, 134, 48);
-}
-
-/* Centro el form y el botón logout juntos */
-
+/* Centrar el formulario de login */
 .center-wrapper-login {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   height: 100%;
   padding-top: 20px;
   box-sizing: border-box;
 }
 
-/* Reutilizamos la animación pulse del register */
+/* Animación del puntito del título */
 @keyframes pulse {
   from {
     transform: scale(0.9);
     opacity: 1;
   }
-
   to {
     transform: scale(1.8);
     opacity: 0;
