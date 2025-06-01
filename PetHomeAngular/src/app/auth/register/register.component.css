@@ -1,15 +1,42 @@
-/* From Uiverse.io by Yaya12085 */ 
+/* Adaptación para accesibilidad y mejor diseño */
 .form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  max-width: 350px;
+  gap: 15px;
+  max-width: 450px;
   background-color: #fff;
   padding: 20px;
   border-radius: 20px;
+  margin: 1rem auto 4rem auto;
+}
+
+.title {
+  font-size: 28px;
+  color: #fc713e;
+  font-weight: 600;
   position: relative;
-  margin-top: 1rem;
-  margin-bottom: 4rem;
+  padding-left: 30px;
+}
+
+
+.message,
+.signin {
+  color: rgba(88, 87, 87, 0.822);
+  font-size: 14px;
+}
+
+.signin {
+  text-align: center;
+}
+
+.signin a {
+  color: #fc713e;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signin a:hover {
+  text-decoration: underline;
 }
 
 .user-toggle {
@@ -35,99 +62,48 @@
   background-color: rgba(252, 113, 62, 0.15);
 }
 
-.title {
-  font-size: 28px;
-  color: #fc713e;
-  font-weight: 600;
-  letter-spacing: -1px;
-  position: relative;
+/* NUEVA ESTRUCTURA PARA LOS INPUTS */
+.form-group {
   display: flex;
-  align-items: center;
-  padding-left: 30px;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.title::before,.title::after {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  border-radius: 50%;
-  left: 0px;
-  background-color:#fc713e;
+.form-group label {
+  font-size: 0.9em;
+  color: #333;
+  font-weight: 500;
 }
 
-.title::before {
-  width: 18px;
-  height: 18px;
-  background-color:#fc713e;
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+  outline: none;
+  font-size: 0.9em;
+  transition: border-color 0.3s ease;
 }
 
-.title::after {
-  width: 18px;
-  height: 18px;
-  animation: pulse 1s linear infinite;
+.form-group input:focus {
+  border-color: #fc713e;
 }
 
-.message, .signin {
-  color: rgba(88, 87, 87, 0.822);
-  font-size: 14px;
-}
-
-.signin {
-  text-align: center;
-}
-
-.signin a {
-  color: #fc713e;
-}
-
-.signin a:hover {
-  text-decoration: underline#fc713e;
+.form-group input:valid {
+  border-color: #fc713e;
 }
 
 .flex {
   display: flex;
+  gap: 10px;
   width: 100%;
-  gap: 6px;
 }
 
-.form label {
-  position: relative;
+.flex .form-group {
+  flex: 1;
 }
 
-.form label .input {
-  width: 100%;
-  padding: 10px 10px 20px 10px;
-  outline: 0;
-  border: 1px solid rgba(105, 105, 105, 0.397);
-  border-radius: 10px;
-}
-
-.form label .input + span {
-  position: absolute;
-  left: 10px;
-  top: 15px;
-  color: grey;
-  font-size: 0.9em;
-  cursor: text;
-  transition: 0.3s ease;
-}
-
-.form label .input:placeholder-shown + span {
-  top: 15px;
-  font-size: 0.9em;
-}
-
-.form label .input:focus + span,.form label .input:valid + span {
-  top: 30px;
-  font-size: 0.7em;
-  font-weight: 600;
-}
-
-.form label .input:valid + span {
-  color: #fc713e;
-}
-
+/* Botón de submit */
 .submit {
   border: none;
   outline: none;
@@ -136,15 +112,17 @@
   border-radius: 10px;
   color: #fff;
   font-size: 16px;
-  transform: .3s ease;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .submit:hover {
-  background-color:rgb(255, 134, 48);
+  background-color: rgb(255, 134, 48);
 }
 
-/* Centrar el formulario en toda la pantalla */
-html, body {
+/* Centrar el formulario */
+html,
+body {
   height: 100%;
   margin: 0;
 }
@@ -154,21 +132,17 @@ html, body {
   justify-content: center;
   align-items: center;
   height: 100%;
-  padding-top: 20px;    /* espacio suficiente para separar del navbar */
-box-sizing: border-box;
+  padding-top: 20px;
+  box-sizing: border-box;
 }
-
-/* Asegúrate de envolver tu <form class="form"> en un <div class="center-wrapper"> */
-
 
 @keyframes pulse {
   from {
     transform: scale(0.9);
     opacity: 1;
   }
-
   to {
     transform: scale(1.8);
     opacity: 0;
   }
-}       
+}
