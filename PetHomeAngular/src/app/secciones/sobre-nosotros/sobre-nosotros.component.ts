@@ -360,6 +360,119 @@ import { Component } from '@angular/core';
     display: none;
   }
 }
+
+.iconos-sobre-nosotros {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+
+.iconos-sobre-nosotros .heart-container {
+  width: 50px;
+  height: 50px;
+}
+
+.iconos-sobre-nosotros .home-icon {
+  width: 100px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  color: rgb(235, 40, 176);
+}
+
+.about-section {
+  padding: 4rem 1rem;
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
+}
+
+.about-container {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+.about-header {
+  text-align: center;
+  background:white;
+  padding: 2rem;
+  border-radius: 20px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333333;
+}
+
+.intro {
+  color:   color: #333333;
+  font-weight: 400;
+;  
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  background:white;
+}
+
+
+
+// .join-org-card {
+//   background: #fff0f6;
+//   padding: 2rem;
+//   border-radius: 20px;
+//   text-align: center;
+//   box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+// }
+
+// .join-org-card h3 {
+//   margin-bottom: 1rem;
+//   color: #c9184a;
+// }
+
+// .join-org-card button {
+//   background-color: #c9184a;
+//   color: white;
+//   border: none;
+//   padding: 0.8rem 1.5rem;
+//   border-radius: 12px;
+//   cursor: pointer;
+//   font-weight: bold;
+//   transition: background-color 0.3s ease;
+// }
+
+// .join-org-card button:hover {
+//   background-color: #a3133a;
+// }
+
+.team-section {
+  background:white;
+  padding: 2rem;
+  border-radius: 20px;
+}
+
+.team-section h3 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333333;
+}
+
+.team-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Reutiliza tu .card de equipo tal como lo tienes */
+
+
   `
 })
 export class SobreNosotrosComponent {

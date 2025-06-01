@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MascotaService } from '../../services/conexion-db.service';
 import { FuncionesMascotasService } from '../../services/funciones-mascotas.service';
 import { MascotaCardComponent } from '../adopta/mascota-card/mascota-card.component';
 
 @Component({
   selector: 'app-mascota-detalle',
-  imports: [MascotaCardComponent],
+  imports: [MascotaCardComponent,RouterLink],
   templateUrl: './mascota-detalle.component.html',
   styles: `
   .tarjeta-mascota {
@@ -121,6 +121,12 @@ import { MascotaCardComponent } from '../adopta/mascota-card/mascota-card.compon
   
 }
 
+.pet-thumb {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Ajusta este valor según el espacio que desees */
+}
+
 
 @media (min-width: 768px) {
   .info-detalle {
@@ -151,6 +157,7 @@ import { MascotaCardComponent } from '../adopta/mascota-card/mascota-card.compon
 export class MascotaDetalleComponent implements OnInit {
   mascota:any
   mascotaID:any
+  mascotas:any[] = []
   constructor(private router:ActivatedRoute,
               private conxionSrvc:FuncionesMascotasService,
               private conxionSrvc2:MascotaService,
@@ -159,25 +166,30 @@ export class MascotaDetalleComponent implements OnInit {
 
   ngOnInit(): void {
     this.mascotaID=this.router.snapshot.paramMap.get("id") 
-    
+   
     
      this.conxionSrvc.getMascotaPorId(this.mascotaID).subscribe(
       json => {
         let data:any = json
         this.mascota = data.find((mascota: any) => mascota.id == this.mascotaID);
         console.log(this.mascota)
+        this.loadMascotas();
       }
     );  
+    
   }
 
   getMascota() {
     return this.mascota
   }
+  
 
-
-  getMascotaPorProtectora(id: number) {
-    return this.conxionSrvc.getMascotasPorProtectoraTop3(id)  
+  loadMascotas() {
+    this.conxionSrvc2.getMascotasPorProtectora(this.mascota.protectora.id).subscribe(json => {
+      this.mascotas = json;
+      console.log(this.mascotas);
+    });
   }
- 
+
   
 }

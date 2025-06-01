@@ -7,7 +7,7 @@
       <p class="org-text">
         {{ org.descripcion }}
       </p>
-      <button routerLink="/register" class="button">
+      <button [routerLink]="['/detalle-organizacion', org.id]" class="button">
               <p class="text">Ver mascotas</p>
             </button>
     </div>
@@ -17,9 +17,13 @@
        <div class="row g-4">
       
           <div class="pet-thumb">
+<<<<<<< HEAD
             @for (mascotas of getMascotas().slice(-2); track $index) {
+=======
+            @for (mascota of mascotas; track $index) {
+>>>>>>> 2eb7abda41cb90a27a53a43fd58b673920e119c1
             <div class="col-6 col-md-4">
-              <app-mascota-card [mascota]="mascotas"/>
+              <app-mascota-card [mascota]="mascota"/>
             </div>
           
 
