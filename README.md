@@ -1,7 +1,7 @@
 🐾 Plataforma de Adopción de Mascotas
 
 Descripción:
-Este proyecto es una plataforma web diseñada para facilitar la adopción de perros y otras mascotas que no tienen hogar. La aplicación permite a las perreras (o refugios) publicar anuncios de animales disponibles para adopción, y a los usuarios interesados en adoptar, registrarse, navegar entre las mascotas y gestionar solicitudes de adopción.
+Este proyecto es una plataforma web diseñada para facilitar la adopción de perros y otras mascotas que no tienen hogar. La aplicación permite a las protectoras publicar anuncios de animales disponibles para adopción, y a los usuarios interesados en adoptar, registrarse, navegar entre las mascotas y gestionar solicitudes de adopción.
 
 Tecnologías principales:
 
