@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -278,9 +279,37 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 
 .button-inicio:hover .text {
   color: black;
-}`
+}
+`
 
 })
-export class NavMenuComponent {
+export class NavMenuComponent implements OnInit {
+  
+nombreUsuario: string | null = null;
+tipoUsuario: string | null = null;
+isLoggedIn: boolean = false;
+esOrganizacion: boolean = false;
+
+  constructor(private authService: AuthService) {}
+  ngOnInit() {
+   this.authService.loggedIn$.subscribe(logged => {
+    this.isLoggedIn = logged;
+    if (logged) {
+      this.nombreUsuario = localStorage.getItem('nombre');
+      this.tipoUsuario = localStorage.getItem('tipo');
+    } else {
+      this.nombreUsuario = null;
+      this.tipoUsuario = null;
+    }
+     this.esOrganizacion = this.authService.esOrganizacion();
+  });
+}
+
+
+  logout() {
+    this.authService.logout().subscribe(() => {
+      // Puedes agregar navegación u otras cosas
+    });
+  }
 
 }

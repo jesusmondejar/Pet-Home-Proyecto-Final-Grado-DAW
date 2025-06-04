@@ -93,7 +93,13 @@ class AuthController extends AbstractController
         $session->set('user_email', $user->getEmail());
         $session->set('user_tipo', $tipoUsuario);
 
-        return new JsonResponse(['message' => 'Login exitoso']);
+          return new JsonResponse([
+        'message' => 'Login exitoso',
+        'tipo' => $tipoUsuario,
+        'email' => $user->getEmail(),
+        'nombre' => $user->getNombre(),
+        'id' => $user->getId()
+    ]);
     }
 
     #[Route('/api/logout', name: 'api_logout', methods: ['POST'])]

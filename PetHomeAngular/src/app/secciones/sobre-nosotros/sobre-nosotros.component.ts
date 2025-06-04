@@ -4,34 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-sobre-nosotros',
   imports: [],
   templateUrl: './sobre-nosotros.component.html',
-  styles: `/* Generic Card */
-  // .cardd {
-  //   background: #fff;
-  //   max-width: 800px;
-  //   margin: 2rem auto;
-  //   padding: 1.5rem;
-  //   border-radius: 10px;
-  //   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  //   text-align: center;
-  // }
-  // .cardd h2 {
-  //   margin-bottom: 1rem;
-  //   font-size: 1.75rem;
-  //   color: #333;
-  // }
-  // .cardd p, .cardd ul {
-  //   color: #555;
-  //   font-size: 1rem;
-  //   line-height: 1.6;
-  // }
-  // .cardd ul {
-  //   list-style: disc inside;
-  //   padding: 0;
-  //   margin: 0;
-  // }
-  /* From Uiverse.io by andrew-demchenk0 */ 
-/* before adding the photo to the div with the "card-photo" class, in the css clear the styles for .card-photo and remove .card-photo::before and .card-photo::after, then set the desired styles for .card- photo. */
-
+  styles: `
 .card {
   --font-color: #323232;
   --font-color-sub: #666;
@@ -420,36 +393,6 @@ import { Component } from '@angular/core';
   text-align: center;
   background:white;
 }
-
-
-
-// .join-org-card {
-//   background: #fff0f6;
-//   padding: 2rem;
-//   border-radius: 20px;
-//   text-align: center;
-//   box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-// }
-
-// .join-org-card h3 {
-//   margin-bottom: 1rem;
-//   color: #c9184a;
-// }
-
-// .join-org-card button {
-//   background-color: #c9184a;
-//   color: white;
-//   border: none;
-//   padding: 0.8rem 1.5rem;
-//   border-radius: 12px;
-//   cursor: pointer;
-//   font-weight: bold;
-//   transition: background-color 0.3s ease;
-// }
-
-// .join-org-card button:hover {
-//   background-color: #a3133a;
-// }
 
 .team-section {
   background:white;

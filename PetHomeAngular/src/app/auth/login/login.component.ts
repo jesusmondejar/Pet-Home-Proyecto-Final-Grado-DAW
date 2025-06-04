@@ -21,14 +21,24 @@ export class LoginComponent {
     });
   }
 
-  login() {
+ login() {
   if (this.loginForm.invalid) return;
 
   this.authService.login(this.loginForm.value).subscribe({
     next: (res) => {
+      // Supongamos que el backend te devuelve algo así:
+      // { id: 1, email: "usuario@mail.com", nombre: "Juan", tipo: "cliente" }
+      
+      // Guardamos datos en localStorage:
+      localStorage.setItem('id', res.id);
+      localStorage.setItem('email', res.email);
+      localStorage.setItem('nombre', res.nombre);
+      localStorage.setItem('tipo', res.tipo);  // cliente o protectora
+
       this.successMessage = 'Login correcto';
       this.errorMessage = '';
-      this.router.navigate(['/inicio']);  // <--- redirige a /inicio aquí
+      this.authService.setLoggedIn(true); // Actualiza el estado de login
+      this.router.navigate(['/inicio']);
     },
     error: (err) => {
       this.errorMessage = err.error.error || 'Error en login';
@@ -41,7 +51,12 @@ export class LoginComponent {
     this.authService.logout().subscribe(() => {
       this.successMessage = 'Logout exitoso';
       this.errorMessage = '';
+      this.authService.setLoggedIn(false); // Actualiza el estado de login
+      localStorage.removeItem('id');
       // Limpia estados o redirige después de logout
     });
   }
+
+  // login.component.ts
+
 }

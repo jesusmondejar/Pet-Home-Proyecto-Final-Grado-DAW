@@ -14,6 +14,23 @@
        
         <li><a class="nav-link" routerLink="/organizaciones" routerLinkActive="fw-bold">Organizaciones</a></li>
         <li><a class="nav-link" routerLink="/sobre-nosotros" routerLinkActive="fw-bold">Sobre Nosotros</a></li>
+        
+        @if(isLoggedIn) {
+           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+          {{ nombreUsuario }}
+        </a>
+        <ul class="dropdown-menu">
+          <li><span class="dropdown-item-text">Tipo: {{ tipoUsuario }}</span></li>
+          <li><a class="dropdown-item" routerLink="/perfil">Ver Perfil</a></li>
+          <li><hr class="dropdown-divider"></li>
+        </ul>
+         @if(tipoUsuario === 'protectora') {
+            <li><button class="button "><p class="text">Crear Mascota</p></button></li>
+          }@else {
+            <li><button class="button "><p class="text">Mis Mascotas</p></button></li>
+          }
+          <li><button  routerLink="/login" routerLinkActive="fw-bold" (click)="logout()" class="button"><p class="text">Cerrar Sesión</p></button></li>
+        }@else {
         <li><!-- From Uiverse.io by kamehame-ha --> 
           <button  routerLink="/login" routerLinkActive="fw-bold" class="button-inicio">
             <p class="text">Iniciar Sesión</p>
@@ -22,8 +39,9 @@
             <button routerLink="/register" class="button">
               <p class="text">Regístrate ya</p>
             </button></li>
+          }
+         
       </ul>
       <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
     </div>
   </nav>
-  

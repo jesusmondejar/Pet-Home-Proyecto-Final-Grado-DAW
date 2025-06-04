@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FuncionesMascotasService } from '../../services/funciones-mascotas.service';
 import { MascotaCardComponent } from "./mascota-card/mascota-card.component";
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-adopta',
@@ -210,42 +211,31 @@ option::checkmark {
   height: 100vh;
   overflow: hidden;
 }
-.button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 15px;
-  gap: 15px;
+.btn-naranja {
+  margin-top: 5px;
+  margin-bottom: 10px;
   background-color: #fc713e;
   outline: 3px #fc713e solid;
-  outline-offset: -3px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  transition: 400ms;
-  height: 60%; 
-}
-
-.button .text {
   color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
   font-weight: 600;
-  font-size: 15px;
-  transition: 400ms;
-  margin: 0;
+   transition: 400ms;
 }
 
-.button:hover {
+.btn-naranja:hover {
   background-color: transparent;
-}
-
-.button:hover .text {
   color: black;
+ 
+  
 }
   `
 })
 export class AdoptaComponent {
 
-  constructor(private funcionesMascotas: FuncionesMascotasService) {
+  constructor(private funcionesMascotas: FuncionesMascotasService,private authService: AuthService) {
     this.funcionesMascotas.getMascotas(); 
     this.mascotasFiltradas = this.funcionesMascotas.getMascota(); 
    }
@@ -262,9 +252,7 @@ export class AdoptaComponent {
 
   mascotasFiltradas: any[] = [];
 
- 
-
-
+  
   getMascotas() {
     return this.funcionesMascotas.getMascota()
   }

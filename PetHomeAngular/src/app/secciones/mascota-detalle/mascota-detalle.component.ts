@@ -183,6 +183,9 @@ export class MascotaDetalleComponent implements OnInit {
     return this.mascota
   }
   
+  estaLogueado(): boolean {
+  return !!localStorage.getItem('tipo'); // o el nombre que uses para guardar el token o datos
+}
 
   loadMascotas() {
     this.conxionSrvc2.getMascotasPorProtectora(this.mascota.protectora.id).subscribe(json => {

@@ -31,7 +31,13 @@
     <div class="info-lateral">
       <div class="adopcion-box">
         <p>¿Quieres adoptar a {{ mascota.nombre }}?</p>
+        @if(estaLogueado())
+        {
         <button class="btn-naranja">Contacto</button>
+        }@else{
+        <button class="btn-naranja" [routerLink]="['/register']">Registrarse</button>
+        }
+        
       </div>
 
       <div class="fundacion-box">
