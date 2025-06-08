@@ -36,6 +36,10 @@ class Mascota
     #[Groups(['mascota'])]
     private ?string $tamanio = null;
 
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Groups(['mascota'])]
+    private \DateTimeImmutable $created_date;
+
     #[ORM\Column(type: 'text', nullable: true)]
     #[Groups(['mascota'])]
     private ?string $descripcion = null;
@@ -43,6 +47,18 @@ class Mascota
     #[ORM\Column(type: 'string', length: 20)]
     #[Groups(['mascota'])]
     private string $estado = 'Disponible';
+
+    #[ORM\Column(type: 'string', length: 20)]
+    #[Groups(['mascota'])]
+    private ?string $localidad = null;
+
+    #[ORM\Column(type: 'string', length: 20)]
+    #[Groups(['mascota'])]
+    private ?string $salud = null;
+
+    #[ORM\Column(type: 'string', length: 20)]
+    #[Groups(['mascota'])]
+    private ?string $genero = null;
 
     #[ORM\ManyToOne(targetEntity: Protectora::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(onDelete: 'SET NULL')]
@@ -144,6 +160,54 @@ public function setEstado(string $estado): self
     return $this;
 }
 
+#[Groups(['mascota'])]
+public function getCreatedDate(): \DateTimeImmutable
+{
+    return $this->created_date;
+}
+
+public function setCreatedDate(\DateTimeImmutable $created_date): self
+{
+    $this->created_date = $created_date;
+    return $this;
+}
+
+#[Groups(['mascota'])]
+public function getLocalidad(): ?string
+{
+    return $this->localidad;
+}
+
+public function setLocalidad(?string $localidad): self
+{
+    $this->localidad = $localidad;
+    return $this;
+}
+
+#[Groups(['mascota'])]
+public function getSalud(): ?string
+{
+    return $this->salud;
+}
+
+public function setSalud(?string $salud): self
+{
+    $this->salud = $salud;
+    return $this;
+}
+
+#[Groups(['mascota'])]
+public function getGenero(): ?string
+{
+    return $this->genero;
+}
+
+public function setGenero(?string $genero): self
+{
+    $this->genero = $genero;
+    return $this;
+}
+
 #[Groups(['mascota', 'protectora'])]
 public function getProtectora(): ?Protectora
 {
@@ -156,11 +220,11 @@ public function setProtectora(?Protectora $protectora): self
     return $this;
 }
 
-#[Groups(['mascota'])]
-public function getImagenes(): iterable
-{
-    return $this->imagenes;
-}
+// #[Groups(['mascota'])]
+// public function getImagenes(): iterable
+// {
+//     return $this->imagenes;
+// }
 
 public function addImagen(ImagenMascota $imagen): self
 {

@@ -35,8 +35,8 @@ export class MascotaService {
     return this.http.get<Mascota[]>(`${this.apiUrl}/mascotas/protectora/${id}`);
   }
 
-  crearMascota(mascota: Partial<Mascota>): Observable<Mascota> {
-    return this.http.post<Mascota>(`${this.apiUrl}/mascotas`, mascota);
+  crearMascota(mascota: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/registermascotas`, mascota);
   }
 
   borrarMascota(id: number): Observable<any> {

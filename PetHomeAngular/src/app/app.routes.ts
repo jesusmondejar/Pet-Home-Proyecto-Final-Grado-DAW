@@ -10,6 +10,7 @@ import { MascotaDetalleComponent } from './secciones/mascota-detalle/mascota-det
 import { OrganizacionesDetalleComponent } from './secciones/organizaciones-detalle/organizaciones-detalle.component';
 import { AvisoLegalComponent } from './secciones/aviso-legal/aviso-legal.component';
 import { PoliticaPrivacidadComponent } from './secciones/politica-privacidad/politica-privacidad.component';
+import { CrearMascotasComponent } from './secciones/crear-mascotas/crear-mascotas.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -20,6 +21,7 @@ export const routes: Routes = [
     { path: "sobre-nosotros", component: SobreNosotrosComponent },
     { path: "detalle-mascota/:id", component: MascotaDetalleComponent },
     { path: "detalle-organizacion/:id", component: OrganizacionesDetalleComponent },
+    {path:  "crear-mascotas", component: CrearMascotasComponent },
     { path: "aviso-legal", component: AvisoLegalComponent },
     { path: "politica-privacidad", component: PoliticaPrivacidadComponent },
     { path: "", redirectTo: "inicio", pathMatch: "full" },

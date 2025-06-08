@@ -52,7 +52,7 @@
 
     <button class="submit" type="submit" [disabled]="!registerForm.valid">Registrarme</button>
     <p class="signin">
-      ¿Ya tienes una cuenta? <a href="#">Iniciar sesión</a>
+      ¿Ya tienes una cuenta? <a [routerLink]="['/login']">Iniciar sesión</a>
     </p>
   </form>
 </div>

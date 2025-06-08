@@ -61,7 +61,7 @@ class MascotaController extends AbstractController
 
     //lo he intentado porbar con CURL pero no me funciona, no se porque
 
-        #[Route('/api/mascotas', name: 'crear_mascota', methods: ['POST'])]
+        #[Route('/api/registermascotas', name: 'crear_mascota', methods: ['POST'])]
     public function crear(Request $request, EntityManagerInterface $em, SerializerInterface $serializer): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -74,6 +74,10 @@ class MascotaController extends AbstractController
         $mascota->setTamanio($data['tamanio'] ?? null);
         $mascota->setDescripcion($data['descripcion'] ?? null);
         $mascota->setEstado($data['estado'] ?? 'Disponible');
+        $mascota->setLocalidad($data['localidad'] ?? null);
+        $mascota->setGenero($data['genero'] ?? null);
+        $mascota->setSalud($data['salud'] ?? null);
+         $mascota->setCreatedDate(new \DateTimeImmutable());
 
         if (isset($data['protectora_id'])) {
             $protectora = $em->getRepository(Protectora::class)->find($data['protectora_id']);
@@ -83,9 +87,9 @@ class MascotaController extends AbstractController
         $em->persist($mascota);
         $em->flush();
 
-        $json = $serializer->serialize($mascota, 'json', ['groups' => 'mascota']);
-        return new JsonResponse($json, 201, [], true);
+        return new JsonResponse( ['message' => 'Registro exitoso'], 201, []);
     }
+
 
 
     //Este método elimina una mascota de la base de datos. Recibe el ID de la mascota como parámetro en la URL
