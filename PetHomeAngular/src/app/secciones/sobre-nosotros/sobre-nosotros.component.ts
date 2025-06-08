@@ -21,6 +21,15 @@ import { Component } from '@angular/core';
   align-items: center;
   justify-content: center;
 }
+.card img {
+  width: 100px;       /* tamaño fijo para que no sea gigante */
+  height: 100px;      /* igual alto para que sea un círculo perfecto */
+  object-fit: cover;  /* recorta la imagen para que no se deforme */
+  border-radius: 50%; /* ¡Redondea a círculo! */
+  display: block;
+  margin: 0 auto 1rem auto; /* centrado horizontal y separación abajo */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* un sombreado para que destaque */
+}
 
 .card-photo {
 /* clear and add new css */
@@ -119,53 +128,7 @@ import { Component } from '@angular/core';
   transform: scale(0.4) translate(160px, 150px);
 }
   
-  /* Hero Section */
-  .hero {
-    position: relative;
-    height: 60vh;
-    background: url('/assets/img/hero-sobre.jpg') center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-  }
-  .overlay {
-    position: relative;
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
-  }
-  .overlay .label {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    opacity: 0.8;
-  }
-  .overlay h1 {
-    font-size: 2.5rem;
-    margin: 0.5rem 0;
-  }
-  .overlay p {
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 1rem auto;
-  }
-  .btn.more {
-    margin-top: 1rem;
-    padding: 0.6rem 1.2rem;
-    background: #ff7f00;
-    border: none;
-    border-radius: 6px;
-    color: #fff;
-    cursor: pointer;
-  }
-  .btn.more:hover {
-    background: #e66e00;
-  }
+  
   
   /* Team Card */
   .team-grid {
@@ -200,11 +163,7 @@ import { Component } from '@angular/core';
     margin-bottom: 2rem;
     gap:1rem;
   }
-.sobre-nosotros {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
+
 
 .background-overlay {
   width: 100%;
@@ -247,60 +206,6 @@ import { Component } from '@angular/core';
 /* Mantén aquí tus estilos del corazón (ya existentes) */
 
 
-/* From Uiverse.io by catraco */ 
-.heart-container {
-  --heart-color: rgb(255, 91, 137);
-  position: relative;
-  width: 50px;
-  height: 50px;
-  transition: .3s;
-}
-
-.heart-container .checkbox {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  z-index: 20;
-  cursor: pointer;
-}
-
-.heart-container .svg-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.heart-container .svg-outline,
-        .heart-container .svg-filled {
-  fill: var(--heart-color);
-  position: absolute;
-}
-
-.heart-container .svg-filled {
-  animation: keyframes-svg-filled 1s;
-  display: none;
-}
-
-.heart-container .svg-celebrate {
-  position: absolute;
-  animation: keyframes-svg-celebrate .5s;
-  animation-fill-mode: forwards;
-  display: none;
-  stroke: var(--heart-color);
-  fill: var(--heart-color);
-  stroke-width: 2px;
-}
-
-.heart-container .checkbox:checked~.svg-container .svg-filled {
-  display: block
-}
-
-.heart-container .checkbox:checked~.svg-container .svg-celebrate {
-  display: block
-}
 
 @keyframes keyframes-svg-filled {
   0% {
@@ -411,6 +316,46 @@ import { Component } from '@angular/core';
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
+}
+
+
+.sobre-nosotros {
+   width: 100vw; /* Toda la anchura visible del viewport */
+  margin-left: calc(-50vw + 50%); /* Hack para salirse de contenedores centrados */
+  background-image: url('/assets/img/perro-abandonado.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  min-height: 80vh;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.overlay {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* oscuro translúcido */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  text-align: center;
+}
+
+.contenido {
+  max-width: 800px;
+}
+
+.impacto {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.mensaje {
+  font-size: 1.2rem;
+  line-height: 1.6;
 }
 
 /* Reutiliza tu .card de equipo tal como lo tienes */
