@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="left">
+    <div class="image-upload">Inserte Imágenes</div>
+
+    <div class="thumbnails">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Introduzca Nombre</label>
+        <input type="text" formControlName="nombre" placeholder="Introduzca Nombre">
+      </div>
+
+      <div class="form-group">
+        <label>Introduzca Especie</label>
+        <input type="text" formControlName="especie" placeholder="Perro, Gato...">
+      </div>
+
+      <div class="form-group">
+        <label>Introduzca Raza</label>
+        <input type="text" formControlName="raza" placeholder="Color, Edad, Raza">
+      </div>
+
+      <div class="form-group">
+        <label>Edad</label>
+        <input type="text" formControlName="edad" placeholder="Ej: 3 años">
+      </div>
+
+      <div class="form-group">
+        <label>Tamaño</label>
+        <input type="text" formControlName="tamanio" placeholder="Pequeño, mediano...">
+      </div>
+
+      <div class="form-group">
+        <label>Introduzca Detalles</label>
+        <input type="text" formControlName="descripcion" placeholder="Dinos algo más de su personalidad">
+      </div>
+
+      <div class="form-group">
+        <label>¿Cómo se encuentra de salud?</label>
+        <input type="text" formControlName="salud" placeholder="Dinos su estado de salud">
+      </div>
+
+      <div class="form-group">
+        <label>Género</label>
+        <input type="text" formControlName="genero" placeholder="Macho o Hembra">
+      </div>
+
+      <div class="form-group">
+        <label>Localidad</label>
+        <input type="text" formControlName="localidad" placeholder="Ej: Murcia">
+      </div>
+
+      <div class="form-group">
+        <button type="submit" [disabled]="registerForm.invalid">Registrar Mascota</button>
+      </div>
+    </form>
+  </div>
+</div>
