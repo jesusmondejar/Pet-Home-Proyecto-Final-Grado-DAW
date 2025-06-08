@@ -84,28 +84,25 @@
 
 
 <section class="adopcion-section">
-  <h2>Encuentra a tu compañero ideal</h2> 
-  <!-- From Uiverse.io by musashi-13 -->
-  <div class="card-container"> 
-    <!-- Carrusel 3D -->
-    <div class="card-3d">
-      <a href="#1"></a>
-      <a href="#2"></a>
-      <a href="#3"></a>
-      <a href="#4"></a>
-      <a href="#5"></a>
-      <a href="#6"></a>
-      <a href="#7"></a>
-      <a href="#8"></a>
-      <a href="#9"></a>
-      <a href="#10"></a>
+  <div class="carousel-container">
+  <div class="carousel-wrapper">
+    <div class="carousel-inner grande">
+      @for (mascotas of getMascotas(); track $index) {
+        <div class="carousel-item">
+          <app-mascota-card [mascota]="mascotas" />
+        </div>
+      }
     </div>
-    
   </div>
-  <!-- From Uiverse.io by kamehame-ha --> 
-  <button routerLink="/register" class="button">
-    <p class="text">Regístrate ya</p>
-  </button>
+
+  <div class="carousel-dots">
+  @for (mascotas of getMascotas(); let i = $index; track $index) {
+    <div class="punto" [class.activo]="i === 0"></div>
+  }
+</div>
+
+</div>
+
 </section>
 
 <section class="faq-section">
