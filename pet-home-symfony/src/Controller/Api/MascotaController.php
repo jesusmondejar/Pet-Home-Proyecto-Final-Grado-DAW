@@ -135,6 +135,11 @@ public function borrar(int $id, MascotaRepository $repo, EntityManagerInterface 
         $mascota->setTamanio($data['tamanio'] ?? $mascota->getTamanio());
         $mascota->setDescripcion($data['descripcion'] ?? $mascota->getDescripcion());
         $mascota->setEstado($data['estado'] ?? $mascota->getEstado());
+        $mascota->setLocalidad($data['localidad'] ?? $mascota->getLocalidad());
+        $mascota->setGenero($data['genero'] ?? $mascota->getGenero());
+        $mascota->setSalud($data['salud'] ?? $mascota->getSalud());
+        $mascota->setUpdatedDate(new \DateTimeImmutable());
+        
 
         if (isset($data['protectora_id'])) {
             $protectora = $em->getRepository(Protectora::class)->find($data['protectora_id']);

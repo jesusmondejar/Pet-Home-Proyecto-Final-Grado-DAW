@@ -5,6 +5,13 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './sobre-nosotros.component.html',
   styles: `
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+  
 .card {
   --font-color: #323232;
   --font-color-sub: #666;
@@ -149,6 +156,12 @@ import { Component } from '@angular/core';
     font-size: 1.125rem;
     color: #333;
   }
+
+  .member h4 {
+    margin: 0.25rem 0;
+    font-size: 1.125rem;
+    color: #333;
+  }
   .member .role {
     font-size: 0.95rem;
     color: #777;
@@ -274,6 +287,8 @@ import { Component } from '@angular/core';
   display: grid;
   gap: 2rem;
   grid-template-columns: 1fr;
+    justify-content: center;
+
 }
 
 .about-header {
@@ -311,12 +326,24 @@ import { Component } from '@angular/core';
   color: #333333;
 }
 
+.team-section h4 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333333;
+}
+
 .team-cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
 }
+// * {
+//   outline: 1px solid red; /* Solo para ver los bordes y entender qué ocupa qué */
+// }
+
+
+
 
 
 .sobre-nosotros {
@@ -326,7 +353,8 @@ import { Component } from '@angular/core';
   background-size: cover;
   background-position: center;
   position: relative;
-  min-height: 80vh;
+  min-height: 100vh;
+  height:auto;
   color: #fff;
   font-family: 'Segoe UI', sans-serif;
 }
@@ -341,7 +369,11 @@ import { Component } from '@angular/core';
   justify-content: center;
   padding: 3rem;
   text-align: center;
+  min-height: 100vh;
+  
 }
+
+
 
 .contenido {
   max-width: 800px;
