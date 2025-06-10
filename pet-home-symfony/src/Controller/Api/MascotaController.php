@@ -76,6 +76,7 @@ class MascotaController extends AbstractController
         $mascota->setEstado($data['estado'] ?? 'Disponible');
         $mascota->setLocalidad($data['localidad'] ?? null);
         $mascota->setGenero($data['genero'] ?? null);
+        $mascota->setCaracteristicas($data['setcaracteristicas'] ?? null);
         $mascota->setSalud($data['salud'] ?? null);
          $mascota->setCreatedDate(new \DateTimeImmutable());
 
@@ -96,7 +97,7 @@ class MascotaController extends AbstractController
     //y utiliza el repositorio de Mascota para buscar la mascota con ese ID. Luego, elimina la mascota de la base de datos
 
 
-    #[Route('/api/mascotas/{id}', name: 'borrar_mascota', methods: ['DELETE'])]
+    #[Route('/api/deletemascotas/{id}', name: 'borrar_mascota', methods: ['DELETE'])]
 public function borrar(int $id, MascotaRepository $repo, EntityManagerInterface $em): JsonResponse
 {
     $mascota = $repo->find($id);
@@ -112,7 +113,7 @@ public function borrar(int $id, MascotaRepository $repo, EntityManagerInterface 
 
 
 
-    #[Route('/api/mascotas/{id}', name: 'editar_mascota', methods: ['PUT'])]
+    #[Route('/api/editmascotas/{id}', name: 'editar_mascota', methods: ['PUT'])]
     public function editar(
         int $id,
         Request $request,
@@ -137,6 +138,7 @@ public function borrar(int $id, MascotaRepository $repo, EntityManagerInterface 
         $mascota->setEstado($data['estado'] ?? $mascota->getEstado());
         $mascota->setLocalidad($data['localidad'] ?? $mascota->getLocalidad());
         $mascota->setGenero($data['genero'] ?? $mascota->getGenero());
+        $mascota->setCaracteristicas($data['caracteristicas'] ?? $mascota->getCaracteristicas());
         $mascota->setSalud($data['salud'] ?? $mascota->getSalud());
         $mascota->setUpdatedDate(new \DateTimeImmutable());
         

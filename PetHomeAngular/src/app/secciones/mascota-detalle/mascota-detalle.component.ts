@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MascotaService } from '../../services/conexion-db.service';
 import { FuncionesMascotasService } from '../../services/funciones-mascotas.service';
 import { MascotaCardComponent } from '../adopta/mascota-card/mascota-card.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-mascota-detalle',
@@ -158,9 +159,11 @@ export class MascotaDetalleComponent implements OnInit {
   mascota:any
   mascotaID:any
   mascotas:any[] = []
+  esOrganizacion: boolean = false;
   constructor(private router:ActivatedRoute,
               private conxionSrvc:FuncionesMascotasService,
               private conxionSrvc2:MascotaService,
+              private authService: AuthService
   ) {}
 
 
@@ -175,8 +178,9 @@ export class MascotaDetalleComponent implements OnInit {
         console.log(this.mascota)
         this.loadMascotas();
       }
+      
     );  
-    
+     this.esOrganizacion = this.authService.esOrganizacion();
   }
 
   getMascota() {
@@ -193,6 +197,19 @@ export class MascotaDetalleComponent implements OnInit {
       console.log(this.mascotas);
     });
   }
+
+ eliminarMascota(id: number) {
+  this.conxionSrvc2.borrarMascota(id).subscribe({
+  next: (res) => {
+    console.log('Mascota eliminada con éxito', res);
+    // Aquí puedes refrescar la lista o mostrar un mensaje
+  },
+  error: (err) => {
+    console.error('Error al eliminar la mascota:', err);
+    alert('Hubo un error al eliminar la mascota.');
+  }
+});
+}
 
   
 }

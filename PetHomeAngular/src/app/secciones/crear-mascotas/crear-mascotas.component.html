@@ -1,64 +1,113 @@
-<div class="container">
-  <div class="left">
-    <div class="image-upload">Inserte Imágenes</div>
-
-    <div class="thumbnails">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+<div class="form-wrapper">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form-container">
+    <h2>Inserte Imágenes</h2>
+    
+    <!-- Nombre -->
+    <div class="form-group">
+      <label>Nombre <span class="required">*</span></label>
+      <input type="text" formControlName="nombre" placeholder="Introduzca Nombre">
+      @if (registerForm.get('nombre')?.invalid && (registerForm.get('nombre')?.dirty || registerForm.get('nombre')?.touched)) {
+        <div class="error-message">El nombre es requerido</div>
+      }
     </div>
 
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label>Introduzca Nombre</label>
-        <input type="text" formControlName="nombre" placeholder="Introduzca Nombre">
+    <!-- Especie -->
+    <div class="form-group">
+      <label>Especie <span class="required">*</span></label>
+      <div class="radio-group">
+        <label class="radio-option"><input type="radio" formControlName="especie" value="Perro"> Perro</label>
+        <label class="radio-option"><input type="radio" formControlName="especie" value="Gato"> Gato</label>
+        <label class="radio-option"><input type="radio" formControlName="especie" value="Otro"> Otro</label>
       </div>
+      @if (registerForm.get('especie')?.invalid && (registerForm.get('especie')?.dirty || registerForm.get('especie')?.touched)) {
+        <div class="error-message">Debe seleccionar una especie</div>
+      }
+    </div>
 
-      <div class="form-group">
-        <label>Introduzca Especie</label>
-        <input type="text" formControlName="especie" placeholder="Perro, Gato...">
-      </div>
+    <!-- Raza -->
+    <div class="form-group">
+      <label>Raza</label>
+      <input type="text" formControlName="raza" placeholder="Introduzca Raza">
+    </div>
 
-      <div class="form-group">
-        <label>Introduzca Raza</label>
-        <input type="text" formControlName="raza" placeholder="Color, Edad, Raza">
-      </div>
+    <!-- Edad -->
+    <div class="form-group">
+      <label>Edad</label>
+      <input type="number" formControlName="edad" placeholder="Introduce la edad">
+    </div>
 
-      <div class="form-group">
-        <label>Edad</label>
-        <input type="text" formControlName="edad" placeholder="Ej: 3 años">
+    <!-- Tamaño -->
+    <div class="form-group">
+      <label>Tamaño <span class="required">*</span></label>
+      <div class="radio-group">
+        <label class="radio-option"><input type="radio" formControlName="tamanio" value="Pequeño"> Pequeño</label>
+        <label class="radio-option"><input type="radio" formControlName="tamanio" value="Mediano"> Mediano</label>
+        <label class="radio-option"><input type="radio" formControlName="tamanio" value="Grande"> Grande</label>
       </div>
+      @if (registerForm.get('tamanio')?.invalid && (registerForm.get('tamanio')?.dirty || registerForm.get('tamanio')?.touched)) {
+        <div class="error-message">Debe seleccionar un tamaño</div>
+      }
+    </div>
 
-      <div class="form-group">
-        <label>Tamaño</label>
-        <input type="text" formControlName="tamanio" placeholder="Pequeño, mediano...">
-      </div>
+    <!-- Descripción -->
+    <div class="form-group">
+      <label>Descripción <span class="required">*</span></label>
+      <textarea formControlName="descripcion" placeholder="Dinos algo más de su personalidad" rows="3"></textarea>
+      @if (registerForm.get('descripcion')?.invalid && (registerForm.get('descripcion')?.dirty || registerForm.get('descripcion')?.touched)) {
+        <div class="error-message">La descripción es requerida</div>
+      }
+    </div>
 
-      <div class="form-group">
-        <label>Introduzca Detalles</label>
-        <input type="text" formControlName="descripcion" placeholder="Dinos algo más de su personalidad">
-      </div>
+    <!-- Salud -->
+    <div class="form-group">
+      <label>¿Cómo se encuentra de salud? <span class="required">*</span></label>
+      <textarea formControlName="salud" placeholder="Dinos su estado de salud" rows="3"></textarea>
+      @if (registerForm.get('salud')?.invalid && (registerForm.get('salud')?.dirty || registerForm.get('salud')?.touched)) {
+        <div class="error-message">El estado de salud es requerido</div>
+      }
+    </div>
 
-      <div class="form-group">
-        <label>¿Cómo se encuentra de salud?</label>
-        <input type="text" formControlName="salud" placeholder="Dinos su estado de salud">
+    <!-- Género -->
+    <div class="form-group">
+      <label>Género</label>
+      <div class="radio-group">
+        <label class="radio-option"><input type="radio" formControlName="genero" value="Macho"> Macho</label>
+        <label class="radio-option"><input type="radio" formControlName="genero" value="Hembra"> Hembra</label>
       </div>
+    </div>
 
-      <div class="form-group">
-        <label>Género</label>
-        <input type="text" formControlName="genero" placeholder="Macho o Hembra">
-      </div>
+    <!-- Información adicional -->
+    <div class="form-group">
+      <label>Información adicional</label>
+      <textarea formControlName="caracteristicas" placeholder="¿Algo más que saber?" rows="3"></textarea>
+    </div>
 
-      <div class="form-group">
-        <label>Localidad</label>
-        <input type="text" formControlName="localidad" placeholder="Ej: Murcia">
+    <!-- Estado -->
+    <div class="form-group">
+      <label>Estado</label>
+      <div class="radio-group">
+        <label class="radio-option"><input type="radio" formControlName="estado" value="Disponible"> Disponible</label>
+        <label class="radio-option"><input type="radio" formControlName="estado" value="Adoptado"> Adoptado</label>
       </div>
+    </div>
 
-      <div class="form-group">
-        <button type="submit" [disabled]="registerForm.invalid">Registrar Mascota</button>
-      </div>
-    </form>
-  </div>
+    <!-- Localidad -->
+    <div class="form-group">
+      <label>Localidad <span class="required">*</span></label>
+      <select formControlName="localidad">
+        <option value="">Elige Provincia</option>
+        @for (provincia of provincias; track $index) {
+          <option [value]="provincia">{{ provincia }}</option>
+        }
+      </select>
+      @if (registerForm.get('localidad')?.invalid && (registerForm.get('localidad')?.dirty || registerForm.get('localidad')?.touched)) {
+        <div class="error-message">Debe seleccionar una localidad</div>
+      }
+    </div>
+
+    <button type="submit" [disabled]="registerForm.invalid">Registrar Mascota</button>
+
+    <!-- Aviso campos obligatorios -->
+    <p class="required-note"><span class="required">*</span> Campos obligatorios</p>
+  </form>
 </div>

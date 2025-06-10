@@ -39,12 +39,12 @@ export class MascotaService {
     return this.http.post(`${this.apiUrl}/registermascotas`, mascota);
   }
 
-  borrarMascota(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/mascotas/${id}`);
-  }
+  borrarMascota(id: number): Observable<void> {
+  return this.http.delete<void>(`${this.apiUrl}/deletemascotas/${id}`);
+}
 
   editarMascota(id: number, mascota: Partial<Mascota>): Observable<Mascota> {
-    return this.http.put<Mascota>(`${this.apiUrl}/mascotas/${id}`, mascota);
+    return this.http.put<Mascota>(`${this.apiUrl}/editmascotas/${id}`, mascota);
   }
 }
 

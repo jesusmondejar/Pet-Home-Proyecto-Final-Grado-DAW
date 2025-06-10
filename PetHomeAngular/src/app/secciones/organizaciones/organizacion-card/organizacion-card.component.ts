@@ -25,7 +25,7 @@ export class OrganizacionCardComponent {
 
   loadMascotas() {
     this.conxionSrvc2.getMascotasPorProtectora(this.org.id).subscribe(json => {
-      this.mascotas = json.slice(0, 3);
+      this.mascotas = json;
       console.log(this.mascotas);
     });
   }

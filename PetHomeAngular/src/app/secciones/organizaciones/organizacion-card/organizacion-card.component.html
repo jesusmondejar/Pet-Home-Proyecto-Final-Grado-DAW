@@ -8,7 +8,7 @@
         {{ org.descripcion }}
       </p>
       <button [routerLink]="['/detalle-organizacion', org.id]" class="button">
-              <p class="text">Ver mascotas</p>
+              <p class="text">Ver {{mascotas.length}} mascotas →</p>
             </button>
     </div>
 
@@ -16,7 +16,7 @@
      <div class="col-12 col-md-6 pet-thumb"> 
        <div class="row g-4">
           <div class="pet-thumb">
-            @for (mascota of mascotas; track $index) {
+            @for (mascota of mascotas.slice(-3); track $index) {
             <div class="col-6 col-md-4">
               <app-mascota-card [mascota]="mascota"/>
             </div>
