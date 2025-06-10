@@ -60,6 +60,10 @@ class Mascota
     #[Groups(['mascota'])]
     private ?string $genero = null;
 
+    #[ORM\Column(type: 'string', length: 20)]
+    #[Groups(['mascota'])]
+    private ?string $caracteristicas = null;
+
     #[ORM\ManyToOne(targetEntity: Protectora::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(onDelete: 'SET NULL')]
     #[Groups(['mascota', 'protectora'])]
@@ -159,7 +163,6 @@ public function setEstado(string $estado): self
     $this->estado = $estado;
     return $this;
 }
-
 #[Groups(['mascota'])]
 public function getCreatedDate(): \DateTimeImmutable
 {
@@ -207,6 +210,19 @@ public function setGenero(?string $genero): self
     $this->genero = $genero;
     return $this;
 }
+
+#[Groups(['mascota'])]
+public function getCaracteristicas(): ?string
+{
+    return $this->genero;
+}
+
+public function setCaracteristicas(?string $caracteristicas): self
+{
+    $this->caracteristicas = $caracteristicas;
+    return $this;
+}
+
 
 #[Groups(['mascota', 'protectora'])]
 public function getProtectora(): ?Protectora

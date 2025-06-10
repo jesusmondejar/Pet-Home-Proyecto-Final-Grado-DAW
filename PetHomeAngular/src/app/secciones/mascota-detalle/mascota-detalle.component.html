@@ -9,8 +9,9 @@
   <div class="info-detalle">
     <div class="info-principal">
       <h1>{{ mascota.nombre }}</h1>
-      <p class="subtitulo">{{ mascota.especie }} | {{ mascota.edad }} años | {{ mascota.raza }}</p>
+      <p class="subtitulo">{{ mascota.especie }} | {{ mascota.edad }} años | {{ mascota.raza }} | {{mascota.genero}}</p>
       <p class="descripcion">{{ mascota.descripcion }}</p>
+      <p class="descripcion">{{ mascota.localidad }}</p>
 
       <div class="info-extra">
         <div>
@@ -22,13 +23,33 @@
           <p>{{ mascota.salud || 'No especificada.' }}</p>
         </div>
         <div>
-          <h3>Detalles</h3>
-          <p>{{ mascota.detalles || 'Sin detalles adicionales.' }}</p>
+          <h3>Localidad</h3>
+          <p>{{ mascota.localidad || 'Sin detalles adicionales.' }}</p>
         </div>
       </div>
     </div>
 
-    <div class="info-lateral">
+
+    @if (esOrganizacion) {
+
+      <div class="info-lateral">
+      <div class="adopcion-box">
+        <p>¿Quieres editar la informacion de {{ mascota.nombre }}?</p>
+        
+        
+        <button [routerLink]="['/detalle-organizacion', mascota.protectora.id]" class="btn-naranja">Editar {{ mascota.nombre }}</button>
+        
+      </div>
+
+      <div class="fundacion-box">
+        <p><strong>¿Deseas eliminar a {{ mascota.nombre }}?</strong></p>
+        <p>Recuerda que una vez eliminada no podrás recuperarla.</p>
+        <button class="btn-naranja" (click)="eliminarMascota(mascota.id)">Eliminar {{ mascota.nombre }}</button>
+      </div>
+    </div>
+
+    }@else {
+      <div class="info-lateral">
       <div class="adopcion-box">
         <p>¿Quieres adoptar a {{ mascota.nombre }}?</p>
         @if(estaLogueado())
@@ -47,6 +68,9 @@
         <button [routerLink]="['/detalle-organizacion', mascota.protectora.id]" class="btn-naranja">Ver {{mascotas.length}} mascotas →</button>
       </div>
     </div>
+    }
+
+    
   </div>
 </div>
 
