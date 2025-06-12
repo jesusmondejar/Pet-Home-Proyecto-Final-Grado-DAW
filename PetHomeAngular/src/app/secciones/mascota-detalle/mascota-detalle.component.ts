@@ -7,7 +7,7 @@ import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-mascota-detalle',
-  imports: [MascotaCardComponent,RouterLink],
+  imports: [MascotaCardComponent, RouterLink],
   templateUrl: './mascota-detalle.component.html',
   styles: `
   .tarjeta-mascota {
@@ -156,40 +156,41 @@ import { AuthService } from '../../services/auth.service';
 `
 })
 export class MascotaDetalleComponent implements OnInit {
-  mascota:any
-  mascotaID:any
-  mascotas:any[] = []
+  backendUrl = 'http://localhost:8000';
+  mascota: any
+  mascotaID: any
+  mascotas: any[] = []
   esOrganizacion: boolean = false;
-  constructor(private router:ActivatedRoute,
-              private conxionSrvc:FuncionesMascotasService,
-              private conxionSrvc2:MascotaService,
-              private authService: AuthService
-  ) {}
+  constructor(private router: ActivatedRoute,
+    private conxionSrvc: FuncionesMascotasService,
+    private conxionSrvc2: MascotaService,
+    private authService: AuthService
+  ) { }
 
 
   ngOnInit(): void {
-    this.mascotaID=this.router.snapshot.paramMap.get("id") 
-   
-    
-     this.conxionSrvc.getMascotaPorId(this.mascotaID).subscribe(
+    this.mascotaID = this.router.snapshot.paramMap.get("id")
+
+
+    this.conxionSrvc.getMascotaPorId(this.mascotaID).subscribe(
       json => {
-        let data:any = json
+        let data: any = json
         this.mascota = data.find((mascota: any) => mascota.id == this.mascotaID);
         console.log(this.mascota)
         this.loadMascotas();
       }
-      
-    );  
-     this.esOrganizacion = this.authService.esOrganizacion();
+
+    );
+    this.esOrganizacion = this.authService.esOrganizacion();
   }
 
   getMascota() {
     return this.mascota
   }
-  
+
   estaLogueado(): boolean {
-  return !!localStorage.getItem('tipo'); // o el nombre que uses para guardar el token o datos
-}
+    return !!localStorage.getItem('tipo'); // o el nombre que uses para guardar el token o datos
+  }
 
   loadMascotas() {
     this.conxionSrvc2.getMascotasPorProtectora(this.mascota.protectora.id).subscribe(json => {
@@ -198,18 +199,18 @@ export class MascotaDetalleComponent implements OnInit {
     });
   }
 
- eliminarMascota(id: number) {
-  this.conxionSrvc2.borrarMascota(id).subscribe({
-  next: (res) => {
-    console.log('Mascota eliminada con éxito', res);
-    // Aquí puedes refrescar la lista o mostrar un mensaje
-  },
-  error: (err) => {
-    console.error('Error al eliminar la mascota:', err);
-    alert('Hubo un error al eliminar la mascota.');
+  eliminarMascota(id: number) {
+    this.conxionSrvc2.borrarMascota(id).subscribe({
+      next: (res) => {
+        console.log('Mascota eliminada con éxito', res);
+        // Aquí puedes refrescar la lista o mostrar un mensaje
+      },
+      error: (err) => {
+        console.error('Error al eliminar la mascota:', err);
+        alert('Hubo un error al eliminar la mascota.');
+      }
+    });
   }
-});
-}
 
-  
+
 }

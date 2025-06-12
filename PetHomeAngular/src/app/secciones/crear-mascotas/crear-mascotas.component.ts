@@ -8,10 +8,28 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-crear-mascotas',
-  imports: [ CommonModule,
+  imports: [CommonModule,
     ReactiveFormsModule],
   templateUrl: './crear-mascotas.component.html',
   styles: `
+.preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.img-preview {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+
+
    /* Estilos generales - Añadido margen vertical */
 .form-wrapper {
   display: flex;
@@ -269,7 +287,7 @@ button[type="submit"]:disabled {
 export class CrearMascotasComponent {
   registerForm!: FormGroup;
 
-   provincias: string[] = [
+  provincias: string[] = [
     "Álava/Araba", "Albacete", "Alicante", "Almería", "Asturias", "Ávila", "Badajoz", "Baleares", "Barcelona",
     "Burgos", "Cáceres", "Cádiz", "Cantabria", "Castellón", "Ceuta", "Ciudad Real", "Córdoba", "Cuenca",
     "Gerona/Girona", "Granada", "Guadalajara", "Guipúzcoa/Gipuzkoa", "Huelva", "Huesca", "Jaén",
@@ -283,7 +301,7 @@ export class CrearMascotasComponent {
     private fb: FormBuilder,
     private mascotaService: MascotaService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const protectoraId = localStorage.getItem('id');
@@ -306,20 +324,50 @@ export class CrearMascotasComponent {
   onSubmit(): void {
     if (this.registerForm.invalid) return;
 
-    const datos = this.registerForm.value;
-
-    this.mascotaService.crearMascota(datos).subscribe({
-      next: (res) => {
-        console.log('Registro exitoso', res);
-        this.router.navigate(['/adopta']); // Redirigir a la página de detalle de la mascota creada
-        this.registerForm.reset(); // Limpiar el formulario después del registro
-        alert('Mascota registrada exitosamente');
-      },
-      error: (err) => {
-        console.error('Error en el registro', err);
+    const formData = new FormData();
+    Object.entries(this.registerForm.value).forEach(([key, value]) => {
+      if (value !== null && value !== undefined) {
+        formData.append(key, String(value));
       }
     });
+
+
+    this.imageFiles.forEach((file, index) => {
+      formData.append('imagenes[]', file, file.name);
+    });
+
+    this.mascotaService.crearMascota(formData).subscribe({
+      next: res => {
+        console.log('Mascota registrada:', res);
+        this.router.navigate(['/lista-mascotas']);
+      },
+      error: err => console.error('Error:', err)
+    });
   }
+
+
+
+  imageFiles: File[] = [];
+  imagePreviews: string[] = [];
+
+  onFileSelected(event: Event): void {
+    const target = event.target as HTMLInputElement;
+
+    if (target.files) {
+      this.imageFiles = Array.from(target.files);
+      this.imagePreviews = [];
+
+      this.imageFiles.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.imagePreviews.push(e.target.result);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  }
+
+
 }
 
 

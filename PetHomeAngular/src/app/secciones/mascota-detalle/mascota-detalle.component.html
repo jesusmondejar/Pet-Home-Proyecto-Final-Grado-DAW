@@ -1,7 +1,7 @@
 <div class="tarjeta-mascota">
   <div class="galeria">
     <div class="imagen-principal">
-      <!-- <img [src]="mascota.imagenes.urlImagen || 'assets/img/pexels-cdomingues10-731022.jpg'" alt="Imagen principal"> -->
+     <img [src]="backendUrl + (mascota.imagenes?.[0]?.urlImagen)" style="width: 100%; height: auto;">
     </div>
     
   </div>
