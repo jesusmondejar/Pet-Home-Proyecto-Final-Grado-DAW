@@ -119,7 +119,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   `
 })
 export class MascotaCardComponent {
-@Input() mascota: any
-
+  @Input() mascota: any;
+  backendUrl = 'http://localhost:8000';
 
 }
