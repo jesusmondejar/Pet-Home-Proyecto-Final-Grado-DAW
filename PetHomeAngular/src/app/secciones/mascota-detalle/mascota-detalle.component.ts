@@ -1,13 +1,14 @@
 import { Component, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Router,ActivatedRoute, RouterLink } from '@angular/router';
 import { MascotaService } from '../../services/conexion-db.service';
 import { FuncionesMascotasService } from '../../services/funciones-mascotas.service';
 import { MascotaCardComponent } from '../adopta/mascota-card/mascota-card.component';
 import { AuthService } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mascota-detalle',
-  imports: [MascotaCardComponent, RouterLink],
+  imports: [MascotaCardComponent,RouterLink],
   templateUrl: './mascota-detalle.component.html',
   styles: `
   .tarjeta-mascota {
@@ -103,16 +104,16 @@ import { AuthService } from '../../services/auth.service';
 
 
 .btn-naranja {
-  margin-top: 10px;
+   margin: 10px 10px 0 0;
   background-color: #fc713e;
-  outline: 3px #fc713e solid;
+  border: 3px solid #fc713e; /* Mejor usar border que outline */
   color: white;
-  border: none;
   padding: 10px 16px;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
-   transition: 400ms;
+  transition: 400ms;
+  box-sizing: border-box;
 }
 
 .btn-naranja:hover {
@@ -162,6 +163,7 @@ export class MascotaDetalleComponent implements OnInit {
   mascotas: any[] = []
   esOrganizacion: boolean = false;
   constructor(private router: ActivatedRoute,
+    private route: Router,
     private conxionSrvc: FuncionesMascotasService,
     private conxionSrvc2: MascotaService,
     private authService: AuthService
@@ -199,18 +201,56 @@ export class MascotaDetalleComponent implements OnInit {
     });
   }
 
-  eliminarMascota(id: number) {
-    this.conxionSrvc2.borrarMascota(id).subscribe({
-      next: (res) => {
-        console.log('Mascota eliminada con éxito', res);
-        // Aquí puedes refrescar la lista o mostrar un mensaje
-      },
-      error: (err) => {
-        console.error('Error al eliminar la mascota:', err);
-        alert('Hubo un error al eliminar la mascota.');
-      }
-    });
-  }
+ eliminarMascota(id: number) {
+  Swal.fire({
+    icon: "warning",
+    title: "¿Estás seguro?",
+    text: "Esta acción no se puede deshacer",
+    showCancelButton: true,
+    confirmButtonText: "Eliminar",
+    cancelButtonText: "Cancelar",
+    customClass: {
+      confirmButton: 'btn-naranja-swal',
+      cancelButton: 'btn-cancel',
+      popup: 'swal2-button-margin'
+    },
+    buttonsStyling: false
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Si confirma, llamamos al servicio para eliminar
+      this.conxionSrvc2.borrarMascota(id).subscribe({
+        next: (res) => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Eliminada',
+            text: 'La mascota ha sido eliminada correctamente',
+            confirmButtonText: 'Aceptar',
+            customClass: {
+              confirmButton: 'btn-naranja-swal'
+            },
+            buttonsStyling: false
+          }).then(() => {
+            this.route.navigate(['/adopta']);
+          });
+        },
+        error: (err) => {
+          console.error('Error al eliminar la mascota:', err);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Hubo un error al eliminar la mascota.',
+            confirmButtonText: 'Cerrar',
+            customClass: {
+              confirmButton: 'btn-naranja-swal'
+            },
+            buttonsStyling: false
+          });
+        }
+      });
+    }
+  });
+}
+
 
 
 }

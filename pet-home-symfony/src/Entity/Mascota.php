@@ -233,7 +233,7 @@ class Mascota
     #[Groups(['mascota'])]
     public function getCaracteristicas(): ?string
     {
-        return $this->genero;
+        return $this->caracteristicas;
     }
 
     public function setCaracteristicas(?string $caracteristicas): self

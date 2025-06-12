@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { MascotaService } from '../../services/conexion-db.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import Swal from 'sweetalert2';
+import { FuncionesMascotasService } from '../../services/funciones-mascotas.service';
 
 @Component({
   selector: 'app-crear-mascotas',
@@ -286,6 +286,10 @@ button[type="submit"]:disabled {
 })
 export class CrearMascotasComponent {
   registerForm!: FormGroup;
+  isEditMode = false;
+  mascotaId: any;
+  mascota: any;
+  oldImageUrls: string[] = []; // Para almacenar las URLs de las imágenes antiguas
 
   provincias: string[] = [
     "Álava/Araba", "Albacete", "Alicante", "Almería", "Asturias", "Ávila", "Badajoz", "Baleares", "Barcelona",
@@ -300,7 +304,9 @@ export class CrearMascotasComponent {
   constructor(
     private fb: FormBuilder,
     private mascotaService: MascotaService,
-    private router: Router
+    private mascotafuncionesService: FuncionesMascotasService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -319,6 +325,27 @@ export class CrearMascotasComponent {
       salud: ['', Validators.required],
       protectora_id: [protectoraId] // si es requerido
     });
+
+     this.mascotaId = this.route.snapshot.paramMap.get("id")
+      if (this.mascotaId) {
+        this.isEditMode = true;
+        this.cargarDatosMascota(this.mascotaId);
+      }
+    
+  }
+
+  cargarDatosMascota(id: number): void {
+    this.mascotafuncionesService.getMascotaPorId(id).subscribe( json => {
+        let data: any = json
+        this.mascota = data.find((mascota: any) => mascota.id == this.mascotaId);
+        console.log(this.mascota)
+      this.registerForm.patchValue(this.mascota);
+
+      // Cargar imágenes antiguas (URLs)
+      if (this.mascota.imagenes && Array.isArray(this.mascota.imagenes)) {
+        this.oldImageUrls = this.mascota.imagenes;
+      }
+    });
   }
 
   onSubmit(): void {
@@ -336,13 +363,74 @@ export class CrearMascotasComponent {
       formData.append('imagenes[]', file, file.name);
     });
 
-    this.mascotaService.crearMascota(formData).subscribe({
-      next: res => {
-        console.log('Mascota registrada:', res);
-        this.router.navigate(['/lista-mascotas']);
-      },
-      error: err => console.error('Error:', err)
+    
+
+    if (this.isEditMode) {
+      this.oldImageUrls.forEach(url => {
+      formData.append('imagenes[]', url); // ajusta este nombre según tu backend
     });
+      this.mascotaService.editarMascota(this.mascotaId, formData).subscribe({
+       next: res => {
+       Swal.fire({
+                   icon: 'success',
+                   title: 'Edición exitosa',
+                   text: 'La mascota ha sido editada correctamente',
+                   confirmButtonText: 'Aceptar',
+                   customClass: {
+                     confirmButton: 'btn-naranja-swal'
+                   },
+                   buttonsStyling: false
+                 }).then(() => {
+                   this.router.navigate(['/adopta']);
+                 });
+               },
+               error: (err) => {
+                 console.error('Error al editar la mascota:', err);
+                 Swal.fire({
+                   icon: 'error',
+                   title: 'Error',
+                   text: 'Hubo un error al editar la mascota.',
+                   confirmButtonText: 'Cerrar',
+                   customClass: {
+                     confirmButton: 'btn-naranja-swal'
+                   },
+                   buttonsStyling: false
+                 });
+               }
+             });
+    } else
+    {
+      this.mascotaService.crearMascota(formData).subscribe({
+      next: res => {
+       Swal.fire({
+                   icon: 'success',
+                   title: 'Creación exitosa',
+                   text: 'La mascota ha sido creada correctamente',
+                   confirmButtonText: 'Aceptar',
+                   customClass: {
+                     confirmButton: 'btn-naranja-swal'
+                   },
+                   buttonsStyling: false
+                 }).then(() => {
+                   this.router.navigate(['/adopta']);
+                 });
+               },
+               error: (err) => {
+                 console.error('Error al crear la mascota:', err);
+                 Swal.fire({
+                   icon: 'error',
+                   title: 'Error',
+                   text: 'Hubo un error al crear la mascota.',
+                   confirmButtonText: 'Cerrar',
+                   customClass: {
+                     confirmButton: 'btn-naranja-swal'
+                   },
+                   buttonsStyling: false
+                 });
+               }
+             });
+    }
+    
   }
 
 

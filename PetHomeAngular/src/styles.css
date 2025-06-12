@@ -135,3 +135,41 @@ div.icon-2 {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.btn-naranja-swal {
+  margin: 10px 10px 0 0;
+  background-color: #fc713e;
+  border: 3px solid #fc713e; /* Mejor usar border que outline */
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 400ms;
+  box-sizing: border-box; /* 🔑 Esto evita que se desborde por padding o borde */
+}
+
+.btn-naranja-swal:hover {
+  background-color: transparent;
+  color: black;
+}
+
+.btn-cancel {
+  
+ margin: 10px 10px 0 0;
+  background-color: #575756;
+  border: 3px solid #575756; /* Mejor usar border que outline */
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 400ms;
+  box-sizing: border-box; 
+}
+
+.btn-cancel:hover {
+  background-color: transparent !important;
+  color: black !important;
+}
