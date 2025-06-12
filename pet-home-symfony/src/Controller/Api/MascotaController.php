@@ -3,6 +3,7 @@
 
 namespace App\Controller\Api;
 
+use App\Entity\ImagenMascota;
 use App\Repository\MascotaRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +14,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Mascota;
 use App\Entity\Protectora;
-
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class MascotaController extends AbstractController
 {
@@ -33,7 +35,7 @@ class MascotaController extends AbstractController
     //y utiliza el repositorio de Mascota para buscar las mascotas que coinciden con esa especie.
     //Luego, convierte los resultados a JSON y los devuelve en la respuesta.
 
-        #[Route('/api/mascotas/especie/{especie}', name: 'mascotas_por_especie', methods: ['GET'])]
+    #[Route('/api/mascotas/especie/{especie}', name: 'mascotas_por_especie', methods: ['GET'])]
     public function mascotasPorEspecie(string $especie, MascotaRepository $repo, SerializerInterface $serializer): JsonResponse
     {
         $mascotas = $repo->findByEspecie($especie);
@@ -45,7 +47,7 @@ class MascotaController extends AbstractController
     //Este método busca mascotas por protectora. Recibe el ID de la protectora como parámetro en la URL
     //y utiliza el repositorio de Mascota para buscar las mascotas que pertenecen a esa protectora.
 
-        #[Route('/api/mascotas/protectora/{id}', name: 'mascotas_por_protectora', methods: ['GET'])]
+    #[Route('/api/mascotas/protectora/{id}', name: 'mascotas_por_protectora', methods: ['GET'])]
     public function mascotasPorProtectora(
         int $id,
         MascotaRepository $repo,
@@ -61,35 +63,79 @@ class MascotaController extends AbstractController
 
     //lo he intentado porbar con CURL pero no me funciona, no se porque
 
-        #[Route('/api/registermascotas', name: 'crear_mascota', methods: ['POST'])]
-    public function crear(Request $request, EntityManagerInterface $em, SerializerInterface $serializer): JsonResponse
-    {
-        $data = json_decode($request->getContent(), true);
-
+    #[Route('/api/registermascotas', name: 'crear_mascota', methods: ['POST'])]
+    public function crear(
+        Request $request,
+        EntityManagerInterface $em,
+        SluggerInterface $slugger
+    ): JsonResponse {
+        // Datos en texto
         $mascota = new Mascota();
-        $mascota->setNombre($data['nombre']);
-        $mascota->setEspecie($data['especie']);
-        $mascota->setRaza($data['raza'] ?? null);
-        $mascota->setEdad($data['edad'] ?? null);
-        $mascota->setTamanio($data['tamanio'] ?? null);
-        $mascota->setDescripcion($data['descripcion'] ?? null);
-        $mascota->setEstado($data['estado'] ?? 'Disponible');
-        $mascota->setLocalidad($data['localidad'] ?? null);
-        $mascota->setGenero($data['genero'] ?? null);
-        $mascota->setCaracteristicas($data['setcaracteristicas'] ?? null);
-        $mascota->setSalud($data['salud'] ?? null);
-         $mascota->setCreatedDate(new \DateTimeImmutable());
+        $mascota->setNombre($request->request->get('nombre'));
+        $mascota->setEspecie($request->request->get('especie'));
+        $mascota->setRaza($request->request->get('raza'));
+        $mascota->setEdad($request->request->get('edad'));
+        $mascota->setTamanio($request->request->get('tamanio'));
+        $mascota->setDescripcion($request->request->get('descripcion'));
+        $mascota->setEstado($request->request->get('estado', 'Disponible'));
+        $mascota->setLocalidad($request->request->get('localidad'));
+        $mascota->setGenero($request->request->get('genero'));
+        $mascota->setCaracteristicas($request->request->get('caracteristicas'));
+        $mascota->setSalud($request->request->get('salud'));
+        $mascota->setCreatedDate(new \DateTimeImmutable());
 
-        if (isset($data['protectora_id'])) {
-            $protectora = $em->getRepository(Protectora::class)->find($data['protectora_id']);
+        // Relación con protectora
+        if ($request->request->get('protectora_id')) {
+            $protectora = $em->getRepository(Protectora::class)->find($request->request->get('protectora_id'));
+            if (!$protectora) {
+                return new JsonResponse(['error' => 'Protectora no encontrada'], 404);
+            }
             $mascota->setProtectora($protectora);
         }
 
+
+        // Guardamos mascota primero (porque imagen necesita mascota_id)
         $em->persist($mascota);
         $em->flush();
 
-        return new JsonResponse( ['message' => 'Registro exitoso'], 201, []);
+        /** @var UploadedFile[] $imagenes */
+        $imagenes = $request->files->all()['imagenes'] ?? [];
+
+
+
+        foreach ($imagenes as $imagenFile) {
+            if ($imagenFile) {
+                $originalFilename = pathinfo($imagenFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imagenFile->guessExtension();
+
+                $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/webp'];
+                if (!in_array($imagenFile->getMimeType(), $allowedMimeTypes)) {
+                    return new JsonResponse(['error' => 'Formato de imagen no permitido'], 400);
+                }
+
+                try {
+                    $imagenFile->move(
+                        $this->getParameter('kernel.project_dir') . '/public/uploads/mascotas',
+                        $newFilename
+                    );
+
+                    $imagen = new ImagenMascota();
+                    $imagen->setUrlImagen('/uploads/mascotas/' . $newFilename);
+                    $imagen->setMascota($mascota);
+
+                    $em->persist($imagen);
+                } catch (FileException $e) {
+                    return new JsonResponse(['error' => 'Error al subir una imagen'], 500);
+                }
+            }
+        }
+
+        $em->flush();
+
+        return new JsonResponse(['message' => 'Mascota registrada con éxito'], 201);
     }
+
 
 
 
@@ -98,18 +144,18 @@ class MascotaController extends AbstractController
 
 
     #[Route('/api/deletemascotas/{id}', name: 'borrar_mascota', methods: ['DELETE'])]
-public function borrar(int $id, MascotaRepository $repo, EntityManagerInterface $em): JsonResponse
-{
-    $mascota = $repo->find($id);
-    if (!$mascota) {
-        return new JsonResponse(['error' => 'Mascota no encontrada'], 404);
+    public function borrar(int $id, MascotaRepository $repo, EntityManagerInterface $em): JsonResponse
+    {
+        $mascota = $repo->find($id);
+        if (!$mascota) {
+            return new JsonResponse(['error' => 'Mascota no encontrada'], 404);
+        }
+
+        $em->remove($mascota);
+        $em->flush();
+
+        return new JsonResponse(['message' => 'Mascota eliminada'], 200);
     }
-
-    $em->remove($mascota);
-    $em->flush();
-
-    return new JsonResponse(['message' => 'Mascota eliminada'], 200);
-}
 
 
 
@@ -122,7 +168,7 @@ public function borrar(int $id, MascotaRepository $repo, EntityManagerInterface 
         SerializerInterface $serializer
     ): JsonResponse {
         $mascota = $repo->find($id);
-        
+
         if (!$mascota) {
             return new JsonResponse(['error' => 'Mascota no encontrada'], 404);
         }
@@ -141,7 +187,7 @@ public function borrar(int $id, MascotaRepository $repo, EntityManagerInterface 
         $mascota->setCaracteristicas($data['caracteristicas'] ?? $mascota->getCaracteristicas());
         $mascota->setSalud($data['salud'] ?? $mascota->getSalud());
         $mascota->setUpdatedDate(new \DateTimeImmutable());
-        
+
 
         if (isset($data['protectora_id'])) {
             $protectora = $em->getRepository(Protectora::class)->find($data['protectora_id']);
@@ -155,9 +201,4 @@ public function borrar(int $id, MascotaRepository $repo, EntityManagerInterface 
         $json = $serializer->serialize($mascota, 'json', ['groups' => 'mascota']);
         return new JsonResponse($json, 200, [], true);
     }
-
-
-
-
-
 }
