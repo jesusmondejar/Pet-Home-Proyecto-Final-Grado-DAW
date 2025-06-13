@@ -10,5 +10,5 @@ nelmio_cors:
             allow_origin: ['http://localhost:4200']  # URL de tu Angular dev server
             allow_credentials: true
             allow_headers: ['Content-Type', 'Authorization']
-            allow_methods: ['POST', 'GET', 'OPTIONS']
+            allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
             max_age: 3600

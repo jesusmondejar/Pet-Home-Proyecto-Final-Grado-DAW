@@ -123,8 +123,15 @@
       }
     </div>
 
+    @if(isEditMode) {
+      <button type="submit" [disabled]="registerForm.invalid">Editar Mascota</button>
+
+    }@else {
     <button type="submit" [disabled]="registerForm.invalid">Registrar Mascota</button>
 
+    }
+
+    
     <!-- Aviso campos obligatorios -->
     <p class="required-note"><span class="required">*</span> Campos obligatorios</p>
   </form>
