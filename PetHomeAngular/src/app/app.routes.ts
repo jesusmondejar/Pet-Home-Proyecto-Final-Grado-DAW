@@ -22,6 +22,7 @@ export const routes: Routes = [
     { path: "detalle-mascota/:id", component: MascotaDetalleComponent },
     { path: "detalle-organizacion/:id", component: OrganizacionesDetalleComponent },
     {path:  "crear-mascotas", component: CrearMascotasComponent },
+    {path:  "editar-mascotas/:id", component: CrearMascotasComponent },
     { path: "aviso-legal", component: AvisoLegalComponent },
     { path: "politica-privacidad", component: PoliticaPrivacidadComponent },
     { path: "", redirectTo: "inicio", pathMatch: "full" },

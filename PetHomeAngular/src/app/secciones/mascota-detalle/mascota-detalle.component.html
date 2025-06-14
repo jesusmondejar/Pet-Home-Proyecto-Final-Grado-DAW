@@ -1,7 +1,7 @@
 <div class="tarjeta-mascota">
   <div class="galeria">
     <div class="imagen-principal">
-      <!-- <img [src]="mascota.imagenes.urlImagen || 'assets/img/pexels-cdomingues10-731022.jpg'" alt="Imagen principal"> -->
+     <img [src]="backendUrl + (mascota.imagenes?.[0]?.urlImagen)" style="width: 100%; height: auto;">
     </div>
     
   </div>
@@ -37,7 +37,7 @@
         <p>¿Quieres editar la informacion de {{ mascota.nombre }}?</p>
         
         
-        <button [routerLink]="['/detalle-organizacion', mascota.protectora.id]" class="btn-naranja">Editar {{ mascota.nombre }}</button>
+        <button [routerLink]="['/editar-mascotas', mascota.id]" class="btn-naranja">Editar {{ mascota.nombre }}</button>
         
       </div>
 

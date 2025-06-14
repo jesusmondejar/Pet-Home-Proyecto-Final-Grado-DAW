@@ -1,17 +1,35 @@
 import { Component } from '@angular/core';
 import { MascotaService } from '../../services/conexion-db.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import Swal from 'sweetalert2';
+import { FuncionesMascotasService } from '../../services/funciones-mascotas.service';
 
 @Component({
   selector: 'app-crear-mascotas',
-  imports: [ CommonModule,
+  imports: [CommonModule,
     ReactiveFormsModule],
   templateUrl: './crear-mascotas.component.html',
   styles: `
+.preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.img-preview {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+
+
    /* Estilos generales - Añadido margen vertical */
 .form-wrapper {
   display: flex;
@@ -268,8 +286,12 @@ button[type="submit"]:disabled {
 })
 export class CrearMascotasComponent {
   registerForm!: FormGroup;
+  isEditMode = false;
+  mascotaId: any;
+  mascota: any;
+  oldImageUrls: string[] = []; // Para almacenar las URLs de las imágenes antiguas
 
-   provincias: string[] = [
+  provincias: string[] = [
     "Álava/Araba", "Albacete", "Alicante", "Almería", "Asturias", "Ávila", "Badajoz", "Baleares", "Barcelona",
     "Burgos", "Cáceres", "Cádiz", "Cantabria", "Castellón", "Ceuta", "Ciudad Real", "Córdoba", "Cuenca",
     "Gerona/Girona", "Granada", "Guadalajara", "Guipúzcoa/Gipuzkoa", "Huelva", "Huesca", "Jaén",
@@ -282,8 +304,10 @@ export class CrearMascotasComponent {
   constructor(
     private fb: FormBuilder,
     private mascotaService: MascotaService,
-    private router: Router
-  ) {}
+    private mascotafuncionesService: FuncionesMascotasService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     const protectoraId = localStorage.getItem('id');
@@ -301,25 +325,137 @@ export class CrearMascotasComponent {
       salud: ['', Validators.required],
       protectora_id: [protectoraId] // si es requerido
     });
+
+     this.mascotaId = this.route.snapshot.paramMap.get("id")
+      if (this.mascotaId) {
+        this.isEditMode = true;
+        this.cargarDatosMascota(this.mascotaId);
+      }
+    
+  }
+
+  cargarDatosMascota(id: number): void {
+    this.mascotafuncionesService.getMascotaPorId(id).subscribe( json => {
+        let data: any = json
+        this.mascota = data.find((mascota: any) => mascota.id == this.mascotaId);
+        console.log(this.mascota)
+      this.registerForm.patchValue(this.mascota);
+
+      // Cargar imágenes antiguas (URLs)
+      if (this.mascota.imagenes && Array.isArray(this.mascota.imagenes)) {
+        this.oldImageUrls = this.mascota.imagenes;
+      }
+    });
   }
 
   onSubmit(): void {
     if (this.registerForm.invalid) return;
 
-    const datos = this.registerForm.value;
-
-    this.mascotaService.crearMascota(datos).subscribe({
-      next: (res) => {
-        console.log('Registro exitoso', res);
-        this.router.navigate(['/adopta']); // Redirigir a la página de detalle de la mascota creada
-        this.registerForm.reset(); // Limpiar el formulario después del registro
-        alert('Mascota registrada exitosamente');
-      },
-      error: (err) => {
-        console.error('Error en el registro', err);
+    const formData = new FormData();
+    Object.entries(this.registerForm.value).forEach(([key, value]) => {
+      if (value !== null && value !== undefined) {
+        formData.append(key, String(value));
       }
     });
+
+
+    this.imageFiles.forEach((file, index) => {
+      formData.append('imagenes[]', file, file.name);
+    });
+
+    
+
+    if (this.isEditMode) {
+      this.oldImageUrls.forEach(url => {
+      formData.append('imagenes[]', url); // ajusta este nombre según tu backend
+    });
+      this.mascotaService.editarMascota(this.mascotaId, formData).subscribe({
+       next: res => {
+       Swal.fire({
+                   icon: 'success',
+                   title: 'Edición exitosa',
+                   text: 'La mascota ha sido editada correctamente',
+                   confirmButtonText: 'Aceptar',
+                   customClass: {
+                     confirmButton: 'btn-naranja-swal'
+                   },
+                   buttonsStyling: false
+                 }).then(() => {
+                   this.router.navigate(['/adopta']);
+                 });
+               },
+               error: (err) => {
+                 console.error('Error al editar la mascota:', err);
+                 Swal.fire({
+                   icon: 'error',
+                   title: 'Error',
+                   text: 'Hubo un error al editar la mascota.',
+                   confirmButtonText: 'Cerrar',
+                   customClass: {
+                     confirmButton: 'btn-naranja-swal'
+                   },
+                   buttonsStyling: false
+                 });
+               }
+             });
+    } else
+    {
+      this.mascotaService.crearMascota(formData).subscribe({
+      next: res => {
+       Swal.fire({
+                   icon: 'success',
+                   title: 'Creación exitosa',
+                   text: 'La mascota ha sido creada correctamente',
+                   confirmButtonText: 'Aceptar',
+                   customClass: {
+                     confirmButton: 'btn-naranja-swal'
+                   },
+                   buttonsStyling: false
+                 }).then(() => {
+                   this.router.navigate(['/adopta']);
+                 });
+               },
+               error: (err) => {
+                 console.error('Error al crear la mascota:', err);
+                 Swal.fire({
+                   icon: 'error',
+                   title: 'Error',
+                   text: 'Hubo un error al crear la mascota.',
+                   confirmButtonText: 'Cerrar',
+                   customClass: {
+                     confirmButton: 'btn-naranja-swal'
+                   },
+                   buttonsStyling: false
+                 });
+               }
+             });
+    }
+    
   }
+
+
+
+  imageFiles: File[] = [];
+  imagePreviews: string[] = [];
+
+  onFileSelected(event: Event): void {
+    const target = event.target as HTMLInputElement;
+
+    if (target.files) {
+      this.imageFiles = Array.from(target.files);
+      this.imagePreviews = [];
+
+      this.imageFiles.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.imagePreviews.push(e.target.result);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  }
+
+
 }
 
 

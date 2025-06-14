@@ -69,42 +69,18 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     color: #777;
     line-height: 1.4;
   }
-  .button {
-  display: flex;
-  justify-content: center;
-  
-  padding: 10px 15px;
-  gap: 15px;
-  background-color: #fc713e;
-  outline: 3px #fc713e solid;
-  outline-offset: -3px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  transition: 400ms;
-  height: 20%; 
-}
 
-.button .text {
-  color: white;
-  transition: 400ms;
-  
-}
-
-.button:hover {
-  background-color: transparent;
-}
 .btn-naranja {
-  margin-top: 10px;
+   margin: 10px 10px 0 0;
   background-color: #fc713e;
-  outline: 3px #fc713e solid;
+  border: 3px solid #fc713e; /* Mejor usar border que outline */
   color: white;
-  border: none;
   padding: 10px 16px;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
-   transition: 400ms;
+  transition: 400ms;
+  box-sizing: border-box;
 }
 
 .btn-naranja:hover {
@@ -119,7 +95,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   `
 })
 export class MascotaCardComponent {
-@Input() mascota: any
-
+  @Input() mascota: any;
+  backendUrl = 'http://localhost:8000';
 
 }
