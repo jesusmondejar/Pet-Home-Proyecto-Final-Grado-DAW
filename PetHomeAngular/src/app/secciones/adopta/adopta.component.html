@@ -150,7 +150,45 @@
           </div>
         </div>
       </div>
+
+
+
+         <div class="radio-tamano">
+  <h4 class="section-title mb-4">Tamaño</h4>
+  <div class="radio-container">
+    <div class="radio-wrapper">
+      <label class="radio-button">
+        <input name="radio-tamano" type="radio" value="Pequeño"
+               (change)="getMascotasPorTamano('Pequeño')">
+        <span class="radio-checkmark"></span>
+        <span class="radio-label">Pequeño</span>
+      </label>
+    </div>
+
+    <div class="radio-wrapper">
+      <label class="radio-button">
+        <input name="radio-tamano" type="radio" value="Mediano"
+               (change)="getMascotasPorTamano('Mediano')">
+        <span class="radio-checkmark"></span>
+        <span class="radio-label">Mediano</span>
+      </label>
+    </div>
+
+    <div class="radio-wrapper">
+      <label class="radio-button">
+        <input name="radio-tamano" type="radio" value="Grande"
+               (change)="getMascotasPorTamano('Grande')">
+        <span class="radio-checkmark"></span>
+        <span class="radio-label">Grande</span>
+      </label>
+    </div>
+  </div>
+</div>
       </div>
+
+
+
+      
 
       
       <div class="col-md-9">
@@ -161,5 +199,10 @@
         </div>
       </div>
     </div>
+
+
+    
+ 
+
   </div>
 </div>

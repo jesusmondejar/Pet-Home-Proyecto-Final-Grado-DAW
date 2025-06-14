@@ -250,6 +250,8 @@ export class AdoptaComponent {
   edadSeleccionada4_6: string = '4-6';
   edadSeleccionada6_10: string = '6-10';
 
+  tamanoSeleccionado: string = '';
+
   mascotasFiltradas: any[] = [];
 
   
@@ -271,4 +273,9 @@ export class AdoptaComponent {
   getMascotasPorEdad(rangoEdad: string) {
     this.mascotasFiltradas = this.funcionesMascotas.getMascotaPorEdad(rangoEdad)
   }
+
+  getMascotasPorTamano(tamano: string) {
+  this.tamanoSeleccionado = tamano;
+  this.mascotasFiltradas = this.funcionesMascotas.getMascotaPorTamano(tamano);
+}
 }
