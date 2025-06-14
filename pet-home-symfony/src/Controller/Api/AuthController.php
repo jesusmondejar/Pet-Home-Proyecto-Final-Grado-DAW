@@ -17,11 +17,23 @@ class AuthController extends AbstractController
     public function register(
         Request $request,
         EntityManagerInterface $em,
-        UserPasswordHasherInterface $passwordHasher
+        UserPasswordHasherInterface $passwordHasher,
+        UsuarioRepository $usuarioRepo,
+        ProtectoraRepository $protectoraRepo
     ): JsonResponse {
         $data = json_decode($request->getContent(), true);
 
         $tipo = $data['tipoUsuario'] ?? 'cliente';
+
+        $email = $data['email'];
+
+        $existeUsuario = $usuarioRepo->findOneBy(['email' => $email]);
+        $existeProtectora = $protectoraRepo->findOneBy(['email' => $email]);
+
+        if ($existeUsuario || $existeProtectora) {
+            return new JsonResponse(['error' => 'El correo electrónico ya está registrado'], 409);
+        }
+
 
         if ($tipo === 'cliente') {
             $usuario = new Usuario();
