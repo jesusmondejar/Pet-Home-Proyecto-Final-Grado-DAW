@@ -240,17 +240,24 @@ export class AdoptaComponent {
     this.mascotasFiltradas = this.funcionesMascotas.getMascota(); 
    }
 
-  especieSeleccionadaPerro: string = 'Perro';
-  especieSeleccionadaGato: string = 'Gato';
-  especieSeleccionadaOtro: string = 'Otro';
+  // especieSeleccionadaPerro: string = 'Perro';
+  // especieSeleccionadaGato: string = 'Gato';
+  // especieSeleccionadaOtro: string = 'Otro';
 
-  edadSeleccionada0_1: string = '0-1';
-  edadSeleccionada1_2: string = '1-2';
-  edadSeleccionada2_4: string = '2-4';
-  edadSeleccionada4_6: string = '4-6';
-  edadSeleccionada6_10: string = '6-10';
+  // edadSeleccionada0_1: string = '0-1';
+  // edadSeleccionada1_2: string = '1-2';
+  // edadSeleccionada2_4: string = '2-4';
+  // edadSeleccionada4_6: string = '4-6';
+  // edadSeleccionada6_10: string = '6-10';
 
-  tamanoSeleccionado: string = '';
+  // tamanoSeleccionado: string = '';
+
+ especieSeleccionada: string[] = [];
+tamanoSeleccionado: string[] = [];
+generoSeleccionado: string[] = [];
+provinciaSeleccionada: string = '';
+
+
 
   mascotasFiltradas: any[] = [];
 
@@ -264,18 +271,73 @@ export class AdoptaComponent {
     
   }
   
-  filtrarMascotas(especie: string, edad: string) {
+  filtrarMascotas(especie: string, edad: string, tamano: string) {
     const especieFiltrada = this.funcionesMascotas.getMascotaPorEspecie(especie);
     this.mascotasFiltradas = this.funcionesMascotas.getMascotaPorEdad(edad);
+    this.mascotasFiltradas = this.funcionesMascotas.getMascotaPorTamano(tamano);
   }
 
 
-  getMascotasPorEdad(rangoEdad: string) {
-    this.mascotasFiltradas = this.funcionesMascotas.getMascotaPorEdad(rangoEdad)
+//    getMascotasPorGenero(genero: string) {
+//     this.generoSeleccionado = genero;
+//     this.mascotasFiltradas = this.funcionesMascotas.getMascotaPorGenero(genero)
+//   }
+
+//   getMascotasPorTamano(tamano: string) {
+//   this.tamanoSeleccionado = tamano;
+//   this.mascotasFiltradas = this.funcionesMascotas.getMascotaPorTamano(tamano);
+// }
+
+aplicarFiltros() {
+  let resultado = this.funcionesMascotas.getMascota();
+
+  if (this.especieSeleccionada.length > 0) {
+    resultado = resultado.filter(m => this.especieSeleccionada.includes(m.especie));
   }
 
-  getMascotasPorTamano(tamano: string) {
-  this.tamanoSeleccionado = tamano;
-  this.mascotasFiltradas = this.funcionesMascotas.getMascotaPorTamano(tamano);
+  if (this.tamanoSeleccionado.length > 0) {
+    resultado = resultado.filter(m => this.tamanoSeleccionado.includes(m.tamanio));
+  }
+
+  if (this.generoSeleccionado.length > 0) {
+    resultado = resultado.filter(m => this.generoSeleccionado.includes(m.genero));
+  }
+
+  if (this.provinciaSeleccionada) {
+    resultado = resultado.filter(m => m.localidad === this.provinciaSeleccionada);
+  }
+
+  this.mascotasFiltradas = resultado;
 }
+
+
+onCheckboxChange(event: any, filtro: string) {
+  const value = event.target.value;
+  const checked = event.target.checked;
+
+  switch (filtro) {
+    case 'especie':
+      this.updateFiltroArray(this.especieSeleccionada, value, checked);
+      break;
+    case 'tamano':
+      this.updateFiltroArray(this.tamanoSeleccionado, value, checked);
+      break;
+    case 'genero':
+      this.updateFiltroArray(this.generoSeleccionado, value, checked);
+      break;
+  }
+
+  this.aplicarFiltros();
+}
+
+updateFiltroArray(array: string[], value: string, checked: boolean) {
+  const index = array.indexOf(value);
+  if (checked && index === -1) {
+    array.push(value);
+  } else if (!checked && index > -1) {
+    array.splice(index, 1);
+  }
+}
+
+
 }

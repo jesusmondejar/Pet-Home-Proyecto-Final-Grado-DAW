@@ -83,27 +83,26 @@
 
 
 
-<section class="adopcion-section">
-  <div class="carousel-container">
-  <div class="carousel-wrapper">
-    <div class="carousel-inner grande">
-      @for (mascotas of getMascotas(); track $index) {
-        <div class="carousel-item">
-          <app-mascota-card [mascota]="mascotas" />
+<section class="adopcion-section carrusel"> 
+
+  <div class="galeria">
+        <div class="imagen-principal">
+            <img src="/assets/img/huella.png" alt="Imagen principal">
         </div>
-      }
+        <div class="lista-imagenes">
+@for (mascota of getMascotas(); track mascota.id) {
+      <img [src]="mascota.imagenes[0]" alt="{{ mascota.nombre }}" class="carousel-image" />
+    }
+        </div>
     </div>
-  </div>
 
-  <div class="carousel-dots">
-  @for (mascotas of getMascotas(); let i = $index; track $index) {
-    <div class="punto" [class.activo]="i === 0"></div>
-  }
-</div>
+    
 
-</div>
+
 
 </section>
+
+
 
 <section class="faq-section">
   <div class="faq-card">

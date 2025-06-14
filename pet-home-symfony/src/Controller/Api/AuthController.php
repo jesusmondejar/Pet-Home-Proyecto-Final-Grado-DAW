@@ -18,8 +18,8 @@ class AuthController extends AbstractController
         Request $request,
         EntityManagerInterface $em,
         UserPasswordHasherInterface $passwordHasher,
-        UsuarioRepository $usuarioRepo,
-        ProtectoraRepository $protectoraRepo
+        // UsuarioRepository $usuarioRepo,
+        // ProtectoraRepository $protectoraRepo
     ): JsonResponse {
         $data = json_decode($request->getContent(), true);
 
@@ -27,12 +27,12 @@ class AuthController extends AbstractController
 
         $email = $data['email'];
 
-        $existeUsuario = $usuarioRepo->findOneBy(['email' => $email]);
-        $existeProtectora = $protectoraRepo->findOneBy(['email' => $email]);
+        // $existeUsuario = $usuarioRepo->findOneBy(['email' => $email]);
+        // $existeProtectora = $protectoraRepo->findOneBy(['email' => $email]);
 
-        if ($existeUsuario || $existeProtectora) {
-            return new JsonResponse(['error' => 'El correo electrónico ya está registrado'], 409);
-        }
+        // if ($existeUsuario || $existeProtectora) {
+        //     return new JsonResponse(['error' => 'El correo electrónico ya está registrado'], 409);
+        // }
 
 
         if ($tipo === 'cliente') {

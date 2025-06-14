@@ -292,14 +292,15 @@ export class CrearMascotasComponent {
   oldImageUrls: string[] = []; // Para almacenar las URLs de las imágenes antiguas
 
   provincias: string[] = [
-    "Álava/Araba", "Albacete", "Alicante", "Almería", "Asturias", "Ávila", "Badajoz", "Baleares", "Barcelona",
-    "Burgos", "Cáceres", "Cádiz", "Cantabria", "Castellón", "Ceuta", "Ciudad Real", "Córdoba", "Cuenca",
-    "Gerona/Girona", "Granada", "Guadalajara", "Guipúzcoa/Gipuzkoa", "Huelva", "Huesca", "Jaén",
-    "La Coruña/A Coruña", "La Rioja", "Las Palmas", "León", "Lérida/Lleida", "Lugo", "Madrid", "Málaga",
-    "Melilla", "Murcia", "Navarra", "Orense/Ourense", "Palencia", "Pontevedra", "Salamanca", "Segovia",
-    "Sevilla", "Soria", "Tarragona", "Tenerife", "Teruel", "Toledo", "Valencia", "Valladolid", "Vizcaya/Bizkaia",
-    "Zamora", "Zaragoza"
-  ];
+  "Abanilla", "Abarán", "Águilas", "Albudeite", "Alcantarilla", "Alguazas", "Alhama de Murcia",
+  "Archena", "Beniel", "Blanca", "Bullas", "Calasparra", "Campos del Río", "Caravaca de la Cruz",
+  "Cartagena", "Cehegín", "Ceutí", "Cieza", "Fortuna", "Fuente Álamo de Murcia", "Jumilla",
+  "La Unión", "Las Torres de Cotillas", "Librilla", "Lorca", "Lorquí", "Los Alcázares",
+  "Mazarrón", "Molina de Segura", "Moratalla", "Mula", "Murcia", "Ojós", "Pliego",
+  "Puerto Lumbreras", "Ricote", "San Javier", "San Pedro del Pinatar", "Santomera",
+  "Torre-Pacheco", "Ulea", "Villanueva del Río Segura", "Yecla"
+];
+
 
   constructor(
     private fb: FormBuilder,

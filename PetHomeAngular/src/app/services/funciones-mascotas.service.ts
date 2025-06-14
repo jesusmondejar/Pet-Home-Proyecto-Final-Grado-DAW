@@ -68,12 +68,23 @@ getMascotaPorEdad(rangoEdad: string): any[] {
 
 
 getMascotaPorTamano(tamano: string): any[] {
-  const resultado = this.mascotas.filter(m => m.tamaño === tamano);
+  const resultado = this.mascotas.filter(m => m.tamanio == tamano);
 
   console.log(`Mascotas filtradas por tamaño "${tamano}":`, resultado);
 
   return resultado;
 }
+
+
+getMascotaPorGenero(genero: string): any[] {
+  const resultado = this.mascotas.filter(m => m.genero == genero);
+
+  console.log(`Mascotas filtradas por género "${genero}":`, resultado);
+
+  return resultado;
+}
+
+
 
 
 
