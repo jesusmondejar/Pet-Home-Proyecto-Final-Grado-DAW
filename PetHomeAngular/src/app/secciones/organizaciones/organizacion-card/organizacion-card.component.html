@@ -12,11 +12,28 @@
             </button>
     </div>
 
-    <!-- Columna Derecha: Últimas 3 Mascotas -->
-     <div class="col-12 col-md-6 pet-thumb"> 
+    <!-- Columna Derecha: Últimas 2 Mascotas -->
+     <!-- Mostrar solo en desktop -->
+
+     <div class="col-12 col-md-6 pet-thumb d-none d-md-block"> 
        <div class="row g-4">
           <div class="pet-thumb">
-            @for (mascota of mascotas.slice(-3); track $index) {
+            @for (mascota of mascotas.slice(-2); track $index) {
+            <div class="col-6 col-md-4">
+              <app-mascota-card [mascota]="mascota"/>
+            </div>
+          }
+      </div> 
+    </div> 
+  </div>
+  
+
+            <!-- Mostrar solo en móviles -->
+
+  <div class="col-12 col-md-6 pet-thumb d-none d-md-block d-md-none pet-thumb"> 
+       <div class="row g-4">
+          <div class="pet-thumb">
+            @for (mascota of mascotas.slice(-1); track $index) {
             <div class="col-6 col-md-4">
               <app-mascota-card [mascota]="mascota"/>
             </div>

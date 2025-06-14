@@ -500,48 +500,26 @@
 // .carrousel .punto.activo {
 //   background-color: lightblue;
 // }
+.galeria {
+            padding: 16px;
+        }
 
-.carousel-container {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  padding: 1rem 0;
-}
+        .imagen-principal img {
+            width: 100%;
+            height: 400px; /* Altura fija para la imagen principal */
+            object-fit: cover;
+            margin-bottom: 16px;
+        }
 
-.carousel-wrapper {
-  width: 100%;
-  overflow: hidden;
-}
+        .lista-imagenes {
+            display: flex;
+            overflow-y: auto;
+        }
 
-.carousel-inner {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  width: max-content;
-}
-
-.carousel-item {
-  flex: 0 0 100%;
-  padding: 1rem;
-  box-sizing: border-box;
-}
-
-/* Dots */
-.carousel-dots {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-  gap: 0.5rem;
-}
-
-.punto {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: #ccc;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.punto.activo {
-  background-color: #007bff;
-}
+        .lista-imagenes img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
