@@ -77,21 +77,38 @@ nav .wrapper {
   transition: all 0.3s ease;
 }
 
-.nav-links li a::before {
-  content: '';
+a {
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  transform: translateY(-3px);
+}
+
+a::before {
+  content: "";
   position: absolute;
-  bottom: 25px;
+  z-index: -1;
+  bottom: -1px;
   left: 0;
-  width: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #F1C40F, #E74C3C);
-  border-radius: 0;
-  transition: all 0.5s ease-in-out;
+  right: 0;
+  height: 5px;
+  background-color: #A6A6A6;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.3s ease;
+}
+
+a:hover::before {
+  transform: scaleY(1);
 }
 
 .nav-links li a:hover::before {
   width: 100%;
-  border-radius: 50%;
+  background-color: #fc713e;
+  
 }
 
 .nav-links .mobile-item {
