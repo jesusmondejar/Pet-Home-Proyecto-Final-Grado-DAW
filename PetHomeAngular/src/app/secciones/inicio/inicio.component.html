@@ -83,24 +83,21 @@
 
 
 
-<section class="adopcion-section carrusel"> 
-
-  <div class="galeria">
-        <div class="imagen-principal">
-            <img src="/assets/img/huella.png" alt="Imagen principal">
+<section class="adopcion-section d-flex flex-wrap justify-content-center" >
+  <h2>Descubre las mascotas que más tiempo están con nosotros</h2>
+  <div class="container">
+    <div class="d-flex flex-wrap justify-content-center gap-4">
+      @for (mascota of mascotas.slice(-6); track mascota.id) {
+        <div style="flex: 0 0 30%; max-width: 30%;">
+          <app-mascota-card [mascota]="mascota" />
         </div>
-        <div class="lista-imagenes">
-@for (mascota of getMascotas(); track mascota.id) {
-      <img [src]="mascota.imagenes[0]" alt="{{ mascota.nombre }}" class="carousel-image" />
-    }
-        </div>
+      }
     </div>
-
-    
-
-
-
+  </div>
 </section>
+
+
+
 
 
 
