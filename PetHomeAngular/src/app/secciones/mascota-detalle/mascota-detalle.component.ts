@@ -194,6 +194,13 @@ export class MascotaDetalleComponent implements OnInit {
     return !!localStorage.getItem('tipo'); // o el nombre que uses para guardar el token o datos
   }
 
+  esTuMascota(): string | null {
+  return localStorage.getItem('id'); // asegúrate de que este valor sea el ID de la protectora logueada
+}
+
+  
+
+
   loadMascotas() {
     this.conxionSrvc2.getMascotasPorProtectora(this.mascota.protectora.id).subscribe(json => {
       this.mascotas = json;

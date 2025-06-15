@@ -72,26 +72,43 @@ nav .wrapper {
   text-decoration: none;
   font-size: 15px;
   font-weight: 500;
-  padding: 9px 15px;
+  padding: 9px 10px;
   border-radius: 5px;
   transition: all 0.3s ease;
 }
 
-.nav-links li a::before {
-  content: '';
+a {
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  transform: translateY(-3px);
+}
+
+a::before {
+  content: "";
   position: absolute;
-  bottom: 25px;
+  z-index: -1;
+  bottom: 20px;
   left: 0;
-  width: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #F1C40F, #E74C3C);
-  border-radius: 0;
-  transition: all 0.5s ease-in-out;
+  right: 0;
+  height: 5px;
+  background-color:rgb(250, 158, 125);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.3s ease;
+}
+
+a:hover::before {
+  transform: scaleY(1);
 }
 
 .nav-links li a:hover::before {
   width: 100%;
-  border-radius: 50%;
+  background-color: #fc713e;
+  
 }
 
 .nav-links .mobile-item {
