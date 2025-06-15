@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -26,8 +27,6 @@ export class LoginComponent {
 
   this.authService.login(this.loginForm.value).subscribe({
     next: (res) => {
-      // Supongamos que el backend te devuelve algo así:
-      // { id: 1, email: "usuario@mail.com", nombre: "Juan", tipo: "cliente" }
       
       // Guardamos datos en localStorage:
       localStorage.setItem('id', res.id);
@@ -37,7 +36,7 @@ export class LoginComponent {
 
       this.successMessage = 'Login correcto';
       this.errorMessage = '';
-      this.authService.setLoggedIn(true); // Actualiza el estado de login
+      this.authService.setLoggedIn(true);
       this.router.navigate(['/inicio']);
     },
     error: (err) => {
@@ -51,12 +50,9 @@ export class LoginComponent {
     this.authService.logout().subscribe(() => {
       this.successMessage = 'Logout exitoso';
       this.errorMessage = '';
-      this.authService.setLoggedIn(false); // Actualiza el estado de login
+      this.authService.setLoggedIn(false);
       localStorage.removeItem('id');
-      // Limpia estados o redirige después de logout
     });
   }
-
-  // login.component.ts
 
 }

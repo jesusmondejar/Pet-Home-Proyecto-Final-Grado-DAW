@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private AuthService: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -54,6 +54,11 @@ export class RegisterComponent implements OnInit {
         console.error('Error en el registro', err);
       }
     });
+  }
 
+  isInvalid(controlName: string): boolean {
+  const control = this.registerForm.get(controlName);
+  return !!(control && control.invalid && control.touched);
 }
+
 }

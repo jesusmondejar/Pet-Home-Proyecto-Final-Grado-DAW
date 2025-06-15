@@ -136,13 +136,19 @@ body {
   box-sizing: border-box;
 }
 
-@keyframes pulse {
-  from {
-    transform: scale(0.9);
-    opacity: 1;
-  }
-  to {
-    transform: scale(1.8);
-    opacity: 0;
-  }
+label::after {
+  content: ' *';
+  color: #d32f2f;
+}
+
+.error {
+  color: #d32f2f;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+.obligatorios {
+  color: #d32f2f;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
 }
