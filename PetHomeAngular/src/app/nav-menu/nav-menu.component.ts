@@ -72,7 +72,7 @@ nav .wrapper {
   text-decoration: none;
   font-size: 15px;
   font-weight: 500;
-  padding: 9px 15px;
+  padding: 9px 10px;
   border-radius: 5px;
   transition: all 0.3s ease;
 }
@@ -91,11 +91,11 @@ a::before {
   content: "";
   position: absolute;
   z-index: -1;
-  bottom: -1px;
+  bottom: 20px;
   left: 0;
   right: 0;
   height: 5px;
-  background-color: #A6A6A6;
+  background-color:rgb(250, 158, 125);
   transform: scaleY(0);
   transform-origin: bottom;
   transition: transform 0.3s ease;

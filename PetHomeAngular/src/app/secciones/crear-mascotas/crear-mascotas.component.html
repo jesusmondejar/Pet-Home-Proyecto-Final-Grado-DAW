@@ -110,16 +110,16 @@
 
     <!-- Localidad -->
     <div class="form-group">
-      <label>Localidad <span class="required">*</span></label>
+      <label>Municipio <span class="required">*</span></label>
       <select formControlName="localidad">
-        <option value="">Elige Provincia</option>
+        <option value="Localidad">Elige Municipio</option>
         @for (provincia of provincias; track $index) {
         <option [value]="provincia">{{ provincia }}</option>
         }
       </select>
       @if (registerForm.get('localidad')?.invalid && (registerForm.get('localidad')?.dirty ||
       registerForm.get('localidad')?.touched)) {
-      <div class="error-message">Debe seleccionar una localidad</div>
+      <div class="error-message">Debe seleccionar una Municipio</div>
       }
     </div>
 
