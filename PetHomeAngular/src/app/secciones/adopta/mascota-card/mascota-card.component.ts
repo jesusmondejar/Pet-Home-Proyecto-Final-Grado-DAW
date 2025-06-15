@@ -8,7 +8,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styles: `
   .card {
     position: relative;
-    width: 300px;
+    width: 250px;
     height: 200px;
     border-radius: 10px;
     display: flex;
