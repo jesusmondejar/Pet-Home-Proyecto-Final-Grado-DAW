@@ -8,9 +8,11 @@ export class FuncionesMascotasService {
 
   constructor(private conexionSrvc:MascotaService) {
     this.getMascotas()
+    this.mascotasFavoritas = JSON.parse(localStorage.getItem("mascotasFavoritas") || "[]")
    }
 
   mascotas: any[] = [];
+  mascotasFavoritas: any[] = [];
 
 
 getMascotas() {
@@ -84,6 +86,25 @@ getMascotaPorGenero(genero: string): any[] {
   return resultado;
 }
 
+
+addPet(newPet:any) {
+    if ( !this.isAlreadyInMyPets(newPet) ) {
+      this.mascotasFavoritas.push(newPet)
+      this.saveAll()
+    }
+  }
+
+
+  isAlreadyInMyPets(aPet:any) {
+    return this.mascotasFavoritas.find( c => c.id == aPet.id )
+  }
+  
+
+saveAll() {
+
+      localStorage.setItem("mascotasFavoritas", JSON.stringify(this.mascotasFavoritas));
+
+    }
 
 
 

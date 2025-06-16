@@ -19,7 +19,7 @@
          @if(tipoUsuario === 'protectora') {
             <li><button class="button " routerLink="/crear-mascotas"><p class="text">Nueva Mascota</p></button></li>
           }@else {
-            <li><button class="button "><p class="text">Mis Mascotas</p></button></li>
+            <li><button class="button" routerLink="/favoritos"><p class="text">Mis Mascotas</p></button></li>
           }
           <li><button  routerLink="/login" routerLinkActive="fw-bold" (click)="logout()" class="button"><p class="text">Cerrar Sesión</p></button></li>
         }@else {

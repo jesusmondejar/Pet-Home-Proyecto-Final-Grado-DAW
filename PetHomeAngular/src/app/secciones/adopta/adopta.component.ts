@@ -340,4 +340,10 @@ updateFiltroArray(array: string[], value: string, checked: boolean) {
 }
 
 
+addPet(aPet:any) {
+  if ( !this.funcionesMascotas.isAlreadyInMyPets(aPet) ) {
+    this.funcionesMascotas.addPet(aPet);
+  }
+}
+
 }
