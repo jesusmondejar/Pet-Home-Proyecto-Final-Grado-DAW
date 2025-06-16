@@ -8,29 +8,12 @@
   <div class="overlay">
 
     <div class="hero-content">
-      <h1>Adopta <span>•</span> Difunde <span>•</span> Involúcrate</h1>
-      <div class="search-panel">
-        <div class="form-group">
-          <label>Tipo de animal</label>
-          <select>
-            <option>Perros</option>
-            <option>Gatos</option>
-            <option>Otros</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Organización</label>
-          <select>
-            <option>Selecciona una organización</option>
-            <option>Protectora A</option>
-            <option>Protectora B</option>
-            <option>Protectora C</option>
-            <option>Protectora D</option>
-            <option>Protectora E</option>
-          </select>
-        </div>
-        <button class="search-btn">Buscar</button>
-      </div>
+<div class="hero-text-blur">
+  <h1 class="hero-title">Ellos te esperan.
+    <hr>Tú puedes ser su hogar.</h1>
+        <a routerLink="/adopta" class="cta-button">Adopta ya</a>
+
+</div>
     </div>
   </div>
 </section>
@@ -83,18 +66,20 @@
 
 
 
-<section class="adopcion-section d-flex flex-wrap justify-content-center" >
-  <h2>Descubre las mascotas que más tiempo están con nosotros</h2>
+<section class="adopcion-section py-5">
   <div class="container">
-    <div class="d-flex flex-wrap justify-content-center gap-4">
+    <h2 class="text-center mb-5">Descubre las mascotas que más tiempo están con nosotros</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
       @for (mascota of mascotas.slice(-6); track mascota.id) {
-        <div style="flex: 0 0 30%; max-width: 30%;">
+        <div class="col d-flex justify-content-center">
           <app-mascota-card [mascota]="mascota" />
         </div>
       }
     </div>
   </div>
 </section>
+
+
 
 
 

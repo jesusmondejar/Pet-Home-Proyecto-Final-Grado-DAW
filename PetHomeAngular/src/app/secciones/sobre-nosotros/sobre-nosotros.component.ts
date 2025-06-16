@@ -390,7 +390,14 @@ import { Component } from '@angular/core';
   line-height: 1.6;
 }
 
-/* Reutiliza tu .card de equipo tal como lo tienes */
+.hero-text-blur {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  display: inline-block;
+}
 
 
   `

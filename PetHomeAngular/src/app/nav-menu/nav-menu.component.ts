@@ -68,7 +68,7 @@ nav .wrapper {
 }
 
 .nav-links li a {
-  color: #fc713e;
+  color: #fc763f;
   text-decoration: none;
   font-size: 15px;
   font-weight: 500;
