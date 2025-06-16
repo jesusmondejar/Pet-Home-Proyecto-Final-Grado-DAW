@@ -1,6 +1,10 @@
 <div class="card">
+  
   <img [src]="backendUrl + (mascota.imagenes?.[0]?.urlImagen)" style="width: 100%">
   <div class="card__content">
+    <div class="container">
+      
+    </div>
     <p class="card__title">
       {{mascota.nombre}}
       @if (mascota.genero == 'Hembra') {
@@ -12,6 +16,17 @@
     </p>
     <p class="card__description">{{mascota.edad}} años</p>
     <p class="card__description">{{mascota.descripcion}}</p>
-    <button [routerLink]="['/detalle-mascota', mascota.id]" type="button" class="btn-naranja">¡Adóptame!</button>
+    <!-- <button [routerLink]="['/detalle-mascota', mascota.id]" type="button" class="btn-naranja">¡Adóptame!</button> -->
+
+    <div class="favorite-buttons">
+  <button class="favorite-btn" >
+    Adóptame
+  </button>
+  <button class="favorite-btn">
+    ❤️ Añadir a Favoritos
+  </button>
+</div>
+
+
   </div>
 </div>

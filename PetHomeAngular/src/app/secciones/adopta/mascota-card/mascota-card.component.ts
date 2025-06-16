@@ -92,6 +92,35 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 .button:hover .text {
   color: black;
 }
+.favorite-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.favorite-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.favorite-btn:hover {
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+
+
+
   `
 })
 export class MascotaCardComponent {

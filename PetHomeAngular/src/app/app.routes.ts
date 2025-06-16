@@ -11,6 +11,7 @@ import { OrganizacionesDetalleComponent } from './secciones/organizaciones-detal
 import { AvisoLegalComponent } from './secciones/aviso-legal/aviso-legal.component';
 import { PoliticaPrivacidadComponent } from './secciones/politica-privacidad/politica-privacidad.component';
 import { CrearMascotasComponent } from './secciones/crear-mascotas/crear-mascotas.component';
+import { FavoritosComponent } from './secciones/favoritos/favoritos.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -25,6 +26,7 @@ export const routes: Routes = [
     {path:  "editar-mascotas/:id", component: CrearMascotasComponent },
     { path: "aviso-legal", component: AvisoLegalComponent },
     { path: "politica-privacidad", component: PoliticaPrivacidadComponent },
+    { path: "favoritos", component: FavoritosComponent },
     { path: "", redirectTo: "inicio", pathMatch: "full" },
     { path: "**", component: Page404Component }
 ];
