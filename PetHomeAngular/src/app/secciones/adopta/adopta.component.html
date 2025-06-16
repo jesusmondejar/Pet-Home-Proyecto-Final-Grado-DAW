@@ -149,10 +149,13 @@
 
 
       
-      <div class="col-md-9">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <div class="col-md-9 ">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 ">
           @for (mascotas of mascotasFiltradas; track $index) {
-            <app-mascota-card [mascota]="mascotas"/>
+            <div class="col d-flex justify-content-center">
+              <app-mascota-card [mascota]="mascotas"/>
+            </div>
+            
           }
         </div>
       </div>
