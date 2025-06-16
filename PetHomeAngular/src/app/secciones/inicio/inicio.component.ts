@@ -5,7 +5,7 @@ import { FuncionesMascotasService } from '../../services/funciones-mascotas.serv
 
 @Component({
   selector: 'app-inicio',
-  imports: [RouterLink, MascotaCardComponent],
+  imports: [ MascotaCardComponent],
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.scss'] // Aquí se enlaza automáticamente
 })

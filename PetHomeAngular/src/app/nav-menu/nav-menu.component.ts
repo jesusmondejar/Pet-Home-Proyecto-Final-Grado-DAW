@@ -148,7 +148,7 @@ a {
   display: block;
 }
 
-.wrapper .btn {
+.wrapper .menu-toggle {
   color: black;
   font-size: 20px;
   cursor: pointer;
@@ -162,7 +162,7 @@ a {
 }
 
 @media screen and (max-width: 970px) {
-  .wrapper .btn {
+  .wrapper .menu-toggle {
     display: block;
   }
 
@@ -213,8 +213,7 @@ a {
     width: 100%;
   }
 
-  .nav-links li a,
-  .nav-links li button {
+  .nav-links li a{
     width: 100%;
     padding: 12px 20px;
     font-size: 18px;
@@ -224,11 +223,41 @@ a {
     background: none;
     color: #f2f2f2;
   }
-
-  .nav-links li a:hover,
-  .nav-links li button:hover {
-    background: #3A3B3C;
+  .nav-links li button {
+  margin: 10px 10px 0 0;
+  background-color: #fc713e;
+  border: 3px solid #fc713e; /* Mejor usar border que outline */
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  width: 100%;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 400ms;
+  box-sizing: border-box;
   }
+
+  .nav-links li .button-inicio {
+  margin: 10px 10px 0 0;
+  background-color: transparent;
+  border: 3px solid #fc713e; /* Mejor usar border que outline */
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 400ms;
+  box-sizing: border-box;
+}
+
+.nav-links li .button-inicio:hover {
+  background-color: #fc713e;
+}
+
+.nav-links li .button:hover {
+  background-color: transparent;
+}
+
 
   .nav-links .desktop-item {
     display: none;
@@ -280,6 +309,9 @@ nav input {
   gap: 15px;
   background-color: #fc713e;
   outline: 3px #fc713e solid;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
   outline-offset: -3px;
   border-radius: 5px;
   border: none;
@@ -288,19 +320,9 @@ nav input {
   height: 60%;
 }
 
-.button .text {
-  color: white;
-  font-weight: 600;
-  font-size: 15px;
-  transition: 400ms;
-  margin: 0;
-}
 
 .button:hover {
   background-color: transparent;
-}
-
-.button:hover .text {
   color: black;
 }
 
@@ -309,30 +331,37 @@ nav input {
   justify-content: center;
   align-items: center;
   padding: 10px 15px;
+  color: #fc713e;
   gap: 15px;
   background-color: #f2f2f2;
-  outline-offset: -3px;
+  border: 3px solid transparent;
+  outline: none;
   border-radius: 5px;
-  border: none;
   cursor: pointer;
-  transition: 400ms;
   height: 60%;
-}
-
-.button-inicio .text {
-  font-weight: 600;
-  font-size: 15px;
-  transition: 400ms;
-  margin: 0;
+  color: #000;
+  transition: border 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .button-inicio:hover {
-  background-color: transparent;
+  background-color: #fff;
+  border: 3px solid #fc713e;
+
 }
 
-.button-inicio:hover .text {
-  color: black;
+.menu-toggle img {
+  width: 30px;         /* Tamaño del ícono */
+  height: 30px;
+  object-fit: contain; /* Mantiene proporciones */
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
+
+.menu-toggle img:hover {
+  transform: scale(1.1); /* Efecto de zoom al pasar el ratón */
+}
+
+
 
 `
 

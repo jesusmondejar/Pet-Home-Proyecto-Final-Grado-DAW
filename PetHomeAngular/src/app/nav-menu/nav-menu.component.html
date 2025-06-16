@@ -4,40 +4,39 @@
       <input type="radio" name="slider" id="menu-btn">
       <input type="radio" name="slider" id="close-btn">
       <ul class="nav-links">
-        <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+        <label for="close-btn" class="menu-toggle"><img src="assets/img/close-btn.png" alt=""></label>
         <li><a class="nav-link active" aria-current="page" routerLink="/inicio" routerLinkActive="fw-bold">Inicio</a></li>
         <li><a class="nav-link" routerLink="/adopta" routerLinkActive="fw-bold">Adopta</a></li>
         <li><a class="nav-link" routerLink="/organizaciones" routerLinkActive="fw-bold">Organizaciones</a></li>
         <li><a class="nav-link" routerLink="/sobre-nosotros" routerLinkActive="fw-bold">Sobre Nosotros</a></li>
         
         @if(isLoggedIn) {
-           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
-          {{ nombreUsuario }}
-        </a>
-        <ul class="dropdown-menu">
-          <li><span class="dropdown-item-text">Tipo: {{ tipoUsuario }}</span></li>
-          <li><a class="dropdown-item" routerLink="/perfil">Ver Perfil</a></li>
-          <li><hr class="dropdown-divider"></li>
-        </ul>
+         
+          <a class="nav-link">
+              {{ tipoUsuario }}: {{ nombreUsuario }}
+          </a>
+         
          @if(tipoUsuario === 'protectora') {
-            <li><button class="button " routerLink="/crear-mascotas"><p class="text">Crear Mascota</p></button></li>
+            <li><button class="button " routerLink="/crear-mascotas"><p class="text">Nueva Mascota</p></button></li>
           }@else {
             <li><button class="button "><p class="text">Mis Mascotas</p></button></li>
           }
           <li><button  routerLink="/login" routerLinkActive="fw-bold" (click)="logout()" class="button"><p class="text">Cerrar Sesión</p></button></li>
         }@else {
-        <li>
-          <button  routerLink="/login" routerLinkActive="fw-bold" class="button-inicio">
-            <p class="text">Iniciar Sesión</p>
-          </button></li>
+          <li>
+            <button  routerLink="/login" routerLinkActive="fw-bold" class="button-inicio">
+              <p>Iniciar Sesión</p>
+            </button>
+          </li>
           <li>
             <button routerLink="/register" class="button">
-              <p class="text">Regístrate ya</p>
-            </button></li>
+              <p>Regístrate ya</p>
+            </button>
+          </li>
           }
          
       </ul>
-      <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+      <label for="menu-btn" class="menu-toggle"><img src="assets/img/menuHamburguesa.jpg" alt=""></label>
     </div>
   </nav>
 
