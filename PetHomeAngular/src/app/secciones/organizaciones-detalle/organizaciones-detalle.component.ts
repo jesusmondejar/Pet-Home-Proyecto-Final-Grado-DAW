@@ -12,29 +12,28 @@ import { FuncionesOrganizacionesService } from '../../services/funciones-organiz
   styles: ``
 })
 export class OrganizacionesDetalleComponent {
-
-  org:any
-  mascotaID:any
-  protectoraID:any
-  mascotas:any[] = []
-  constructor(private router:ActivatedRoute,
-              private conxionSrvc:FuncionesMascotasService,
-              private conxionSrvc2:MascotaService,
-              private funcionesOrganizaciones: FuncionesOrganizacionesService
-  ) {}
+  backendUrl = 'http://localhost:8000/';
+  org: any
+  mascotaID: any
+  protectoraID: any
+  mascotas: any[] = []
+  constructor(private router: ActivatedRoute,
+    private conxionSrvc: FuncionesMascotasService,
+    private conxionSrvc2: MascotaService,
+    private funcionesOrganizaciones: FuncionesOrganizacionesService
+  ) { }
 
 
   ngOnInit(): void {
-    this.protectoraID=this.router.snapshot.paramMap.get("id") 
+    this.protectoraID = this.router.snapshot.paramMap.get("id")
 
     this.funcionesOrganizaciones.getOrganizacionPorId(this.protectoraID).subscribe(
-    json => {
-    let data:any = json
-    this.org = data.find((organizacion: any) => organizacion.id == this.protectoraID);
-    console.log(this.org)
-     this.loadMascotas();
-    }
-  );
+      json => {
+        let data: any = json
+        this.org = data.find((organizacion: any) => organizacion.id == this.protectoraID);
+        this.loadMascotas();
+      }
+    );
   }
 
   getOrg() {
@@ -44,7 +43,6 @@ export class OrganizacionesDetalleComponent {
   loadMascotas() {
     this.conxionSrvc2.getMascotasPorProtectora(this.org.id).subscribe(json => {
       this.mascotas = json;
-      console.log(this.mascotas);
     });
   }
 

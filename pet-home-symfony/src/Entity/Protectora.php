@@ -49,6 +49,22 @@ class Protectora implements UserInterface, PasswordAuthenticatedUserInterface
     private \DateTimeImmutable $fechaRegistro;
 
     #[Groups(['mascota', 'protectora'])]
+#[ORM\Column(length: 255, nullable: true)]
+private ?string $imagen = null;
+
+public function getImagen(): ?string
+{
+    return $this->imagen;
+}
+
+public function setImagen(?string $imagen): self
+{
+    $this->imagen = $imagen;
+    return $this;
+}
+
+
+    #[Groups(['mascota', 'protectora'])]
     public function getId(): ?int
     {
         return $this->id;

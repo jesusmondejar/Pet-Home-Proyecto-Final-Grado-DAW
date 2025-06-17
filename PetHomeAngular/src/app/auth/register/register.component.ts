@@ -41,24 +41,59 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.registerForm.invalid) return;
+  if (this.registerForm.invalid) return;
 
-    const datos = this.registerForm.value;
+  const formData = new FormData();
 
-    this.AuthService.register(datos).subscribe({
-      next: (res) => {
-        console.log('Registro exitoso', res);
-        this.router.navigate(['/inicio']);
-      },
-      error: (err) => {
-        console.error('Error en el registro', err);
-      }
-    });
+  // Añadimos todos los campos del formulario
+  Object.entries(this.registerForm.value).forEach(([key, value]) => {
+    formData.append(key, value as string);
+  });
+
+  // Si el usuario seleccionó imagen, la añadimos
+  if (this.imagenFile) {
+    formData.append('imagen', this.imagenFile);
   }
 
-  isInvalid(controlName: string): boolean {
-  const control = this.registerForm.get(controlName);
-  return !!(control && control.invalid && control.touched);
+  this.AuthService.register(formData).subscribe({
+    next: (res) => {
+      console.log('Registro exitoso', res);
+      this.router.navigate(['/inicio']);
+    },
+    error: (err) => {
+      console.error('Error en el registro', err);
+    }
+  });
 }
+
+
+  isInvalid(controlName: string): boolean {
+    const control = this.registerForm.get(controlName);
+    return !!(control && control.invalid && control.touched);
+  }
+
+
+  imagenFile: File | null = null;
+  imagenError: boolean = false;
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) {
+      this.imagenFile = null;
+      return;
+    }
+
+    const file = input.files[0];
+    const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'];
+
+    if (!allowedTypes.includes(file.type)) {
+      this.imagenError = true;
+      this.imagenFile = null;
+    } else {
+      this.imagenError = false;
+      this.imagenFile = file;
+    }
+  }
+
 
 }

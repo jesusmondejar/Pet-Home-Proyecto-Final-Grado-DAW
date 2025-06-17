@@ -13,6 +13,7 @@ import { RouterLink } from '@angular/router';
 export class OrganizacionCardComponent {
   @Input() org: any
   mascotas:any[] = []
+  backendUrl = 'http://localhost:8000/';
  
   constructor(private funcionesMascotas: FuncionesMascotasService, private conxionSrvc2:MascotaService) {
      }

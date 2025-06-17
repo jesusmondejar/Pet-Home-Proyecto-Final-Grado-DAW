@@ -3,6 +3,7 @@
     <!-- Columna Izquierda: Info de la Protectora -->
     <div class="col-12 col-md-4 text-start mb-3 mb-md-0">
       
+      <img [src]="backendUrl + org?.imagen" alt="Foto organización" class="img-fluid rounded-circle mb-4" style="width: 100px; height: 100px;">
       <h5 class="org-title">{{ org.nombre }}</h5>
       <p class="org-text">
         {{ org.descripcion }}
