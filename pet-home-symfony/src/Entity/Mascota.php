@@ -12,9 +12,6 @@ use Doctrine\Common\Collections\Collection;
 #[ORM\Entity(repositoryClass: MascotaRepository::class)]
 class Mascota
 {
-
-
-
     public function __construct()
     {
         $this->imagenes = new ArrayCollection();
@@ -25,10 +22,7 @@ class Mascota
     {
         return $this->imagenes;
     }
-
-   
-
-
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
