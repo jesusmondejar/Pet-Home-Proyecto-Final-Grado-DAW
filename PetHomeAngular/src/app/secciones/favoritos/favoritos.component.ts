@@ -21,16 +21,17 @@ export class FavoritosComponent {
 
   
    constructor(private funcionesMascotas: FuncionesMascotasService) {
-        this.funcionesMascotas.getMascotas(); 
-        this.mascotas = this.getMascotas();
+        this.funcionesMascotas.getMascotasFavoritas();
+        this.mascotas = this.getMascotasFavoritas();
        }
 
 
   mascotas: any[] = [];
 
 
-  getMascotas() {
-    return this.funcionesMascotas.getMascota()
+  getMascotasFavoritas() {
+    return this.funcionesMascotas.getMascotasFavoritas()
   }
+
 
 }
