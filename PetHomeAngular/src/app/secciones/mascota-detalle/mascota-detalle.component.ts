@@ -1,5 +1,5 @@
 import { Component, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
-import { Router,ActivatedRoute, RouterLink } from '@angular/router';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { MascotaService } from '../../services/conexion-db.service';
 import { FuncionesMascotasService } from '../../services/funciones-mascotas.service';
 import { MascotaCardComponent } from '../adopta/mascota-card/mascota-card.component';
@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mascota-detalle',
-  imports: [MascotaCardComponent,RouterLink],
+  imports: [MascotaCardComponent, RouterLink],
   templateUrl: './mascota-detalle.component.html',
   styles: `
   .tarjeta-mascota {
@@ -129,6 +129,31 @@ import Swal from 'sweetalert2';
   gap: 20px; /* Ajusta este valor según el espacio que desees */
 }
 
+/* Estilos para el botón de WhatsApp */
+.button-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: #25D366;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button-whatsapp:hover {
+    background-color: #1EBE56;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.button-whatsapp:active {
+    background-color: #169E49;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 
 @media (min-width: 768px) {
   .info-detalle {
@@ -195,10 +220,10 @@ export class MascotaDetalleComponent implements OnInit {
   }
 
   esTuMascota(): string | null {
-  return localStorage.getItem('id'); // asegúrate de que este valor sea el ID de la protectora logueada
-}
+    return localStorage.getItem('id'); // asegúrate de que este valor sea el ID de la protectora logueada
+  }
 
-  
+
 
 
   loadMascotas() {
@@ -208,55 +233,55 @@ export class MascotaDetalleComponent implements OnInit {
     });
   }
 
- eliminarMascota(id: number) {
-  Swal.fire({
-    icon: "warning",
-    title: "¿Estás seguro?",
-    text: "Esta acción no se puede deshacer",
-    showCancelButton: true,
-    confirmButtonText: "Eliminar",
-    cancelButtonText: "Cancelar",
-    customClass: {
-      confirmButton: 'btn-naranja-swal',
-      cancelButton: 'btn-cancel',
-      popup: 'swal2-button-margin'
-    },
-    buttonsStyling: false
-  }).then((result) => {
-    if (result.isConfirmed) {
-      // Si confirma, llamamos al servicio para eliminar
-      this.conxionSrvc2.borrarMascota(id).subscribe({
-        next: (res) => {
-          Swal.fire({
-            icon: 'success',
-            title: 'Eliminada',
-            text: 'La mascota ha sido eliminada correctamente',
-            confirmButtonText: 'Aceptar',
-            customClass: {
-              confirmButton: 'btn-naranja-swal'
-            },
-            buttonsStyling: false
-          }).then(() => {
-            this.route.navigate(['/adopta']);
-          });
-        },
-        error: (err) => {
-          console.error('Error al eliminar la mascota:', err);
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Hubo un error al eliminar la mascota.',
-            confirmButtonText: 'Cerrar',
-            customClass: {
-              confirmButton: 'btn-naranja-swal'
-            },
-            buttonsStyling: false
-          });
-        }
-      });
-    }
-  });
-}
+  eliminarMascota(id: number) {
+    Swal.fire({
+      icon: "warning",
+      title: "¿Estás seguro?",
+      text: "Esta acción no se puede deshacer",
+      showCancelButton: true,
+      confirmButtonText: "Eliminar",
+      cancelButtonText: "Cancelar",
+      customClass: {
+        confirmButton: 'btn-naranja-swal',
+        cancelButton: 'btn-cancel',
+        popup: 'swal2-button-margin'
+      },
+      buttonsStyling: false
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Si confirma, llamamos al servicio para eliminar
+        this.conxionSrvc2.borrarMascota(id).subscribe({
+          next: (res) => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Eliminada',
+              text: 'La mascota ha sido eliminada correctamente',
+              confirmButtonText: 'Aceptar',
+              customClass: {
+                confirmButton: 'btn-naranja-swal'
+              },
+              buttonsStyling: false
+            }).then(() => {
+              this.route.navigate(['/adopta']);
+            });
+          },
+          error: (err) => {
+            console.error('Error al eliminar la mascota:', err);
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Hubo un error al eliminar la mascota.',
+              confirmButtonText: 'Cerrar',
+              customClass: {
+                confirmButton: 'btn-naranja-swal'
+              },
+              buttonsStyling: false
+            });
+          }
+        });
+      }
+    });
+  }
 
 
 
