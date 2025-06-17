@@ -30,6 +30,10 @@ getMascota(){
   return this.mascotas
 }
 
+getMascotasFavoritas() {
+  return this.mascotasFavoritas
+}
+
 getMascotaPorId(id: number) {
   return this.conexionSrvc.getMascotas()
 }

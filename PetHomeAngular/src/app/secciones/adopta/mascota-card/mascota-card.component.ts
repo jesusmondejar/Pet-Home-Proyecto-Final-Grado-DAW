@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { FuncionesMascotasService } from '../../../services/funciones-mascotas.service';
 
 @Component({
   selector: 'app-mascota-card',
@@ -97,6 +98,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   flex-direction: column;
   gap: 8px;
   margin-top: 10px;
+
+  
 }
 
 .favorite-btn {
@@ -112,10 +115,38 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
+  color:white;
+  background-color: #fc713e;
+  border: 3px solid #fc713e; 
+}
+
+.favorite-btnn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color:black;
+
 }
 
 .favorite-btn:hover {
   box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+
+.container {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -126,5 +157,21 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 export class MascotaCardComponent {
   @Input() mascota: any;
   backendUrl = 'http://localhost:8000';
+
+  mascotasFavoritas: any[] = [];
+
+
+  constructor(private funcionesMascotas: FuncionesMascotasService) {
+    // Aquí podrías inicializar algo si es necesario
+    this.funcionesMascotas.getMascotasFavoritas(); 
+    this.mascotasFavoritas = JSON.parse(localStorage.getItem("mascotasFavoritas") || "[]");
+  }
+
+
+  addPet(mascota: any) {
+
+    return this.funcionesMascotas.addPet(this.mascota)
+
+  }
 
 }
