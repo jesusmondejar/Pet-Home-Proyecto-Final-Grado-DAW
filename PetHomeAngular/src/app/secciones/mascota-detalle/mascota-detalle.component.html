@@ -73,7 +73,7 @@
         <p>¿Quieres adoptar a <strong>{{ mascota.nombre }}</strong>?</p>
         @if(estaLogueado())
         {
-        <button class="btn-naranja">Contacto</button>
+        <a href="https://wa.me/+34632204470?text=¡Hola!%20Me%20gustaría%20solicitar%20más%20información%20detallada%20sobre%20{{ mascota.nombre }}.%20Muchas%20gracias." class="button-whatsapp" target="_blank">Enviar Mensaje</a> 
         }@else{
         <button class="btn-naranja" [routerLink]="['/register']">Registrarse</button>
         }
