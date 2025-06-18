@@ -201,6 +201,10 @@ option::checkmark {
   transform: translate(-50%, -50%) scale(1);
 }
 
+.radio-input {
+  margin-right: 8px;
+}
+
 .radio-label {
   font-size: 16px;
   font-weight: 600;
