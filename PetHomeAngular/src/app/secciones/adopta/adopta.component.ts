@@ -232,7 +232,11 @@ option::checkmark {
 .btn-naranja:hover {
   background-color: transparent;
   color: black;
- 
+  
+ .radio-button input[type="checkbox"] {
+  margin-right: 8px; /* O el espacio que prefieras */
+}
+
   
 }
   `
