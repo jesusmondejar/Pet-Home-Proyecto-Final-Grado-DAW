@@ -24,12 +24,24 @@ import Swal from 'sweetalert2';
   text-align: center;
 }
 
+.imagen-principal {
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+  height: 400px;           
+  width: 400px;           
+  margin: 0 auto;          
+  border-radius: 12px;
+  overflow: hidden;        
+}
+
 .imagen-principal img {
   width: 100%;
-  max-height: 400px;
+  height: 100%;
   object-fit: cover;
   border-radius: 12px;
 }
+
 
 .miniaturas {
   display: flex;
