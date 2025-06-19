@@ -12,11 +12,10 @@ import { FuncionesMascotasService } from '../../services/funciones-mascotas.serv
 export class InicioComponent  {
 
   constructor(private funcionesMascotas: FuncionesMascotasService) {
-      this.funcionesMascotas.getMascotas(); 
-      this.mascotas = this.getMascotas();
+      this.getMascotas();
      }
 
-       mascotas: any[] = [];
+       
 
 
    getMascotas() {
