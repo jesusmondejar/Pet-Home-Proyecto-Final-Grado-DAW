@@ -4,7 +4,7 @@ import { FuncionesMascotasService } from '../../../services/funciones-mascotas.s
 
 @Component({
   selector: 'app-mascota-card',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './mascota-card.component.html',
   styles: `
   .card {
