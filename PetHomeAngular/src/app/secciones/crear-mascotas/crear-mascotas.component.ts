@@ -389,7 +389,7 @@ export class CrearMascotasComponent {
                       this.router.navigate([`/detalle-organizacion/${protectoraId}`]);
                     } else {
                       console.warn('No se encontró el ID de la protectora en localStorage');
-                      this.router.navigate(['/organizaciones']); // fallback
+                      this.router.navigate(['/organizaciones']);
                     }
                  });
                },
@@ -421,7 +421,15 @@ export class CrearMascotasComponent {
                    },
                    buttonsStyling: false
                  }).then(() => {
-                   this.router.navigate(['/adopta']);
+                   const protectoraId = localStorage.getItem('id');
+
+                    // Redirigir a la página de la protectora
+                    if (protectoraId) {
+                      this.router.navigate([`/detalle-organizacion/${protectoraId}`]);
+                    } else {
+                      console.warn('No se encontró el ID de la protectora en localStorage');
+                      this.router.navigate(['/organizaciones']);
+                    }
                  });
                },
                error: (err) => {
