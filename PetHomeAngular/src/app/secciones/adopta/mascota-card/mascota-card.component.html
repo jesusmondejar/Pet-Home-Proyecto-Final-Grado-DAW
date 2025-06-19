@@ -19,7 +19,7 @@
     <!-- <button [routerLink]="['/detalle-mascota', mascota.id]" type="button" class="btn-naranja">¡Adóptame!</button> -->
 
     <div class="favorite-buttons">
-  <button [routerLink]="['/detalle-mascota', mascota.id]" type="button" class="favorite-btn">¡Adóptame!</button>
+  <a href="/detalle-mascota/{{mascota.id}}" class="favorite-btn" style="text-decoration: none;">¡Adóptame!</a>
   <!-- <button class="favorite-btnn" (click)="addPet(mascota)">
     ❤️ Añadir a Mis Mascotas
   </button> -->
