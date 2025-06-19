@@ -1,7 +1,15 @@
 <div class="form-wrapper">
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form-container">
-    <h2>Inserte Imágenes</h2>
+    
+    @if (isEditMode) {
+    <h2>Editar Mascota</h2>
+    }
+    @else {
+    <h2>Registrar Nueva Mascota</h2>
+    }
+    
 
+    
     <!-- Imágenes -->
     <!-- Subir imágenes -->
     <div class="form-group">
