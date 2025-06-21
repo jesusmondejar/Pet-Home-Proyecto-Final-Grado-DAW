@@ -47,7 +47,6 @@ import { FuncionesMascotasService } from '../../services/funciones-mascotas.serv
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Título del formulario */

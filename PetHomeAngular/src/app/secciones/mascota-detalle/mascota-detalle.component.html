@@ -1,29 +1,29 @@
 <div class="tarjeta-mascota">
   <div class="galeria">
     <div class="imagen-principal">
-     <img [src]="backendUrl + (mascota.imagenes?.[0]?.urlImagen)" style="width: 100%; height: auto;">
+     <img [src]="backendUrl + (mascota?.imagenes?.[0]?.urlImagen)" style="width: 100%; height: auto;">
     </div>
     
   </div>
 
   <div class="info-detalle">
     <div class="info-principal">
-      <h1>{{ mascota.nombre }}</h1>
-      <p class="subtitulo">{{ mascota.especie }} | {{ mascota.edad }} años | {{ mascota.raza }} | {{mascota.genero}}</p>
-      <p class="descripcion">{{ mascota.descripcion }}</p>
+      <h1>{{ mascota?.nombre }}</h1>
+      <p class="subtitulo">{{ mascota?.especie }} | {{ mascota?.edad }} años | {{ mascota?.raza }} | {{mascota?.genero}}</p>
+      <p class="descripcion">{{ mascota?.descripcion }}</p>
 
       <div class="info-extra">
         <div>
           <h3>Características</h3>
-          <p>{{ mascota.caracteristicas || 'No especificadas.' }}</p>
+          <p>{{ mascota?.caracteristicas || 'No especificadas.' }}</p>
         </div>
         <div>
           <h3>Salud</h3>
-          <p>{{ mascota.salud || 'No especificada.' }}</p>
+          <p>{{ mascota?.salud || 'No especificada.' }}</p>
         </div>
         <div>
           <h3>Municipio</h3>
-          <p>{{ mascota.localidad || 'Sin detalles adicionales.' }}</p>
+          <p>{{ mascota?.localidad || 'Sin detalles adicionales.' }}</p>
         </div>
       </div>
     </div>
@@ -31,27 +31,27 @@
 
     @if (esOrganizacion) {
 
-      @if((esTuMascota()) == mascota.protectora.id){
+      @if((esTuMascota()) == mascota?.protectora.id){
 
         <div class="info-lateral">
       <div class="adopcion-box">
-        <p>¿Quieres editar la informacion de <strong>{{ mascota.nombre }}</strong>?</p>
+        <p>¿Quieres editar la informacion de <strong>{{ mascota?.nombre }}</strong>?</p>
         
         
-        <button [routerLink]="['/editar-mascotas', mascota.id]" class="btn-naranja">Editar {{ mascota.nombre }}</button>
+        <button [routerLink]="['/editar-mascotas', mascota?.id]" class="btn-naranja">Editar {{ mascota?.nombre }}</button>
         
       </div>
 
       <div class="fundacion-box">
-        <p><strong>¿Deseas eliminar a {{ mascota.nombre }}?</strong></p>
+        <p><strong>¿Deseas eliminar a {{ mascota?.nombre }}?</strong></p>
         <p>Recuerda que una vez eliminada no podrás recuperarla.</p>
-        <button class="btn-naranja" (click)="eliminarMascota(mascota.id)">Eliminar {{ mascota.nombre }}</button>
+        <button class="btn-naranja" (click)="eliminarMascota(mascota?.id)">Eliminar {{ mascota?.nombre }}</button>
       </div>
     </div>
       }@else {
         <div class="info-lateral">
       <div class="adopcion-box">
-        <p><strong>No puedes editar la información de {{ mascota.nombre }} ya que no pertenece a tu protectora</strong></p>
+        <p><strong>No puedes editar la información de {{ mascota?.nombre }} ya que no pertenece a tu protectora</strong></p>
         
         
         <button [routerLink]="['/adopta']" class="btn-naranja">Busca tus macotas </button>
@@ -59,7 +59,7 @@
       </div>
 
       <div class="fundacion-box">
-       <p><strong>No puedes eliminar a {{ mascota.nombre }} ya que no pertenece a tu protectora</strong></p>
+       <p><strong>No puedes eliminar a {{ mascota?.nombre }} ya que no pertenece a tu protectora</strong></p>
         <button [routerLink]="['/adopta']" class="btn-naranja">Busca tus macotas </button>
       </div>
     </div>
@@ -70,10 +70,10 @@
     }@else {
       <div class="info-lateral">
       <div class="adopcion-box">
-        <p>¿Quieres adoptar a <strong>{{ mascota.nombre }}</strong>?</p>
+        <p>¿Quieres adoptar a <strong>{{ mascota?.nombre }}</strong>?</p>
         @if(estaLogueado())
         {
-        <a href="https://wa.me/+34632204470?text=¡Hola!%20Me%20gustaría%20solicitar%20más%20información%20detallada%20sobre%20{{ mascota.nombre }}.%20Muchas%20gracias." class="button-whatsapp" target="_blank">Enviar Mensaje</a> 
+        <a href="https://wa.me/+34632204470?text=¡Hola!%20Me%20gustaría%20solicitar%20más%20información%20detallada%20sobre%20{{ mascota?.nombre }}.%20Muchas%20gracias." class="button-whatsapp" target="_blank">Enviar Mensaje</a> 
         }@else{
         <button class="btn-naranja" [routerLink]="['/register']">Registrarse</button>
         }
@@ -81,10 +81,10 @@
       </div>
 
       <div class="fundacion-box">
-        <p><strong>{{ mascota.protectora.nombre }}</strong></p>
-        <p>{{ mascota.protectora.direccion }}</p>
-        <p>{{ mascota.protectora.email }}</p>
-        <button [routerLink]="['/detalle-organizacion', mascota.protectora.id]" class="btn-naranja">Ver {{mascotas.length}} mascotas →</button>
+        <p><strong>{{ mascota?.protectora.nombre }}</strong></p>
+        <p>{{ mascota?.protectora.direccion }}</p>
+        <p>{{ mascota?.protectora.email }}</p>
+        <button [routerLink]="['/detalle-organizacion', mascota?.protectora.id]" class="btn-naranja">Ver {{mascotas.length}} mascotas →</button>
       </div>
     </div>
     }
@@ -95,7 +95,7 @@
 
 
 <div class="tarjeta-mascota d-flex flex-column align-items-center">
-  <h4>Otras mascotas de la protectora {{ mascota.protectora.nombre }}</h4>
+  <h4>Otras mascotas de la protectora {{ mascota?.protectora.nombre }}</h4>
   <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3">
             @for (mascota of mascotas.slice(-3); track $index) {
             <div class="col">

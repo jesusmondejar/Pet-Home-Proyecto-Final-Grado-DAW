@@ -26,14 +26,17 @@ import Swal from 'sweetalert2';
 
 .imagen-principal {
   display: flex;
-  justify-content: center; 
-  align-items: center;     
-  height: 400px;           
-  width: 400px;           
-  margin: 0 auto;          
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  aspect-ratio: 1 / 1; /* cuadrada */
+  margin: 0 auto;
   border-radius: 12px;
-  overflow: hidden;        
+  overflow: hidden;
 }
+
 
 .imagen-principal img {
   width: 100%;
@@ -168,6 +171,8 @@ import Swal from 'sweetalert2';
 
 
 @media (min-width: 768px) {
+
+
   .info-detalle {
     flex-direction: row;
     gap: 40px;
@@ -190,8 +195,9 @@ import Swal from 'sweetalert2';
     flex: 1;
     padding-right: 15px;
   }
-}
-`
+
+
+}`
 })
 export class MascotaDetalleComponent implements OnInit {
   backendUrl = 'http://localhost:8000';

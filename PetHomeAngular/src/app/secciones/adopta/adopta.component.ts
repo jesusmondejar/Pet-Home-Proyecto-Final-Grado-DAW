@@ -39,10 +39,6 @@ import { AuthService } from '../../services/auth.service';
   box-sizing: border-box;
 }
 
-html {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 body {
   width: 100%;
   padding: 0 10px;
