@@ -1,7 +1,8 @@
 <div class="tarjeta-mascota">
   <div class="galeria">
     <div class="imagen-principal">
-      <img [src]="backendUrl + (mascota?.imagenes?.[0]?.urlImagen)" style="width: 100%; height: auto;">
+      <img [src]="backendUrl + (mascota?.imagenes?.[0]?.urlImagen)" style="width: 100%; height: auto;" alt="Imagen de {{ mascota?.nombre }}"
+        class="img-fluid" />
     </div>
 
   </div>
