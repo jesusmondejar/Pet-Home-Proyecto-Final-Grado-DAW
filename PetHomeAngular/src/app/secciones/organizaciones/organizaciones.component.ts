@@ -6,15 +6,8 @@ import { OrganizacionCardComponent } from './organizacion-card/organizacion-card
   selector: 'app-organizaciones',
   imports: [OrganizacionCardComponent],
   templateUrl: './organizaciones.component.html',
-  styles: `.hero {
-    position: relative;
-    width: 100%;
-    height: 70vh; /* Alto de la sección héroe */
-    background: url('/assets/img/perros.jpg') no-repeat center center;
-    background-size: cover;
-  }
+  styles: `
   .organizacion-card-section {
-    
     padding: 2rem;
     border-radius: 10px;
     text-align: center;
@@ -24,12 +17,12 @@ import { OrganizacionCardComponent } from './organizacion-card/organizacion-card
 export class OrganizacionesComponent {
 
   constructor(private funcionesOrganizaciones: FuncionesOrganizacionesService) {
-      this.funcionesOrganizaciones.getOrganizaciones(); // carga datos al inicio
-      // this.organizacionesFiltradas = this.funcionesOrganizaciones.getOrganizacion();  muestra todos por defecto
-     }
+    this.funcionesOrganizaciones.getOrganizaciones(); // carga datos al inicio
+    // this.organizacionesFiltradas = this.funcionesOrganizaciones.getOrganizacion();  muestra todos por defecto
+  }
 
 
-     getOrganizaciones() {
-      return this.funcionesOrganizaciones.getOrganizacion()
-    }
+  getOrganizaciones() {
+    return this.funcionesOrganizaciones.getOrganizacion()
+  }
 }

@@ -9,7 +9,20 @@ import { FuncionesOrganizacionesService } from '../../services/funciones-organiz
   selector: 'app-organizaciones-detalle',
   imports: [MascotaCardComponent],
   templateUrl: './organizaciones-detalle.component.html',
-  styles: ``
+  styles: `
+  .org-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .org-text {
+    color: #555;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+  }
+  `
 })
 export class OrganizacionesDetalleComponent {
   backendUrl = 'http://localhost:8000/';

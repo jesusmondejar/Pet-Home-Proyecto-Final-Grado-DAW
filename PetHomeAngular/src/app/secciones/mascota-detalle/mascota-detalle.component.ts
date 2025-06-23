@@ -30,42 +30,17 @@ import Swal from 'sweetalert2';
   align-items: center;
   width: 100%;
   max-width: 400px;
-  height: auto;
-  aspect-ratio: 1 / 1; /* cuadrada */
+  aspect-ratio: 1 / 1;
   margin: 0 auto;
   border-radius: 12px;
   overflow: hidden;
 }
-
 
 .imagen-principal img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 12px;
-}
-
-
-.miniaturas {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 10px;
-  flex-wrap: wrap;
-}
-
-.miniaturas img {
-  width: 70px;
-  height: 70px;
-  object-fit: cover;
-  border-radius: 8px;
-  cursor: pointer;
-  border: 2px solid transparent;
-  transition: border 0.2s;
-}
-
-.miniaturas img.activa {
-  border-color: #ff5722;
 }
 
 .info-detalle {
@@ -76,18 +51,18 @@ import Swal from 'sweetalert2';
 }
 
 .info-principal h1 {
-  font-size: 2rem;
+  font-size: 3rem;
   margin-bottom: 5px;
 }
 
 .subtitulo {
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: #666;
 }
 
 .descripcion {
   margin: 15px 0;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   color: #333;
 }
 
@@ -98,8 +73,13 @@ import Swal from 'sweetalert2';
 }
 
 .info-extra h3 {
+  font-size: 1.9rem;
   margin-bottom: 5px;
   font-weight: 600;
+}
+
+.info-extra p {
+  font-size: 1.3rem;
 }
 
 .info-lateral {
@@ -108,7 +88,16 @@ import Swal from 'sweetalert2';
   gap: 20px;
 }
 
-.adopcion-box, .fundacion-box {
+.info-lateral p{
+  font-size: 1.1rem;
+}
+
+.info-lateral button{
+  font-size: 1.1rem;
+}
+
+.adopcion-box,
+.fundacion-box {
   padding: 15px;
   border: 1px solid #ddd;
   border-radius: 12px;
@@ -116,12 +105,10 @@ import Swal from 'sweetalert2';
   text-align: center;
 }
 
-
-
 .btn-naranja {
-   margin: 10px 10px 0 0;
+  margin: 10px 10px 0 0;
   background-color: #fc713e;
-  border: 3px solid #fc713e; /* Mejor usar border que outline */
+  border: 3px solid #fc713e;
   color: white;
   padding: 10px 16px;
   border-radius: 6px;
@@ -134,45 +121,33 @@ import Swal from 'sweetalert2';
 .btn-naranja:hover {
   background-color: transparent;
   color: black;
- 
-  
 }
 
-.pet-thumb {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px; /* Ajusta este valor según el espacio que desees */
-}
-
-/* Estilos para el botón de WhatsApp */
 .button-whatsapp {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
-    background-color: #25D366;
-    color: white;
-    font-size: 16px;
-    text-decoration: none;
-    border-radius: 50px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: #25D366;
+  color: white;
+  font-size: 1.1rem;
+  text-decoration: none;
+  border-radius: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .button-whatsapp:hover {
-    background-color: #1EBE56;
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  background-color: #1EBE56;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 .button-whatsapp:active {
-    background-color: #169E49;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: #169E49;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-
 @media (min-width: 768px) {
-
-
   .info-detalle {
     flex-direction: row;
     gap: 40px;
@@ -195,9 +170,8 @@ import Swal from 'sweetalert2';
     flex: 1;
     padding-right: 15px;
   }
-
-
-}`
+}
+`
 })
 export class MascotaDetalleComponent implements OnInit {
   backendUrl = 'http://localhost:8000';

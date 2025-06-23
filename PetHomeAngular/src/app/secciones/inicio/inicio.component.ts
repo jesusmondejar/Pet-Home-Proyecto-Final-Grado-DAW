@@ -7,7 +7,7 @@ import { FuncionesMascotasService } from '../../services/funciones-mascotas.serv
   selector: 'app-inicio',
   imports: [ MascotaCardComponent, RouterLink],
   templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.scss'] // Aquí se enlaza automáticamente
+  styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent  {
 
