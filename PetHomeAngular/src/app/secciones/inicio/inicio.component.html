@@ -11,7 +11,7 @@
 <div class="hero-text-blur">
   <h1 class="hero-title">Ellos te esperan.
     <hr>Tú puedes ser su hogar.</h1>
-        <a routerLink="/adopta" class="cta-button">Adopta ya</a>
+        <a routerLink="/adopta" class="cta-button" aria-label="Botón para adoptar ya">Adopta ya</a>
 
 </div>
     </div>
@@ -54,36 +54,47 @@
   </div>
 </section>
 
-<section class="faq-section">
+<section class="faq-section" aria-labelledby="faq-heading">
   <div class="faq-card">
-    <h2>Preguntas</h2>
-    <p>Aquí encontrarás respuestas a tus dudas sobre la adopción y el cuidado de mascotas.</p>
+    <h2 id="faq-heading" alt="Preguntas frecuentes">Preguntas frecuentes</h2>
+    <p id="faq-description" alt="Preguntas frecuentes">Aquí encontrarás respuestas a tus dudas sobre la adopción y el cuidado de mascotas.</p>
 
-    <div class="faq-list">
-      <details>
-        <summary>¿Cómo adopto una mascota?</summary>
-        <p>El proceso de adopción comienza con la selección de una mascota. Luego, debes completar un formulario y asistir a una entrevista. Finalmente, si todo está en orden, podrás llevarte a tu nuevo amigo a casa.</p>
+    <div class="faq-list" role="list" aria-describedby="faq-description">
+      <details role="listitem">
+        <summary id="q1">¿Cómo adopto una mascota?</summary>
+        <p aria-labelledby="¿Cómo adopto una mascota?">
+          El proceso de adopción comienza con la selección de una mascota. Luego, debes completar un formulario y asistir a una entrevista. Finalmente, si todo está en orden, podrás llevarte a tu nuevo amigo a casa.
+        </p>
       </details>
 
-      <details>
-        <summary>¿Qué cuidados necesitan?</summary>
-        <p>Las mascotas requieren atención diaria, incluyendo alimentación, ejercicio y visitas al veterinario. Es importante proporcionarles un ambiente seguro y estimulante. Además, el cariño y la compañía son esenciales para su bienestar.</p>
+      <details role="listitem">
+        <summary id="q2">¿Qué cuidados necesitan?</summary>
+        <p aria-labelledby="¿Qué cuidados necesitan?">
+          Las mascotas requieren atención diaria, incluyendo alimentación, ejercicio y visitas al veterinario. Es importante proporcionarles un ambiente seguro y estimulante. Además, el cariño y la compañía son esenciales para su bienestar.
+        </p>
       </details>
 
-      <details>
-        <summary>¿Qué documentos necesito?</summary>
-        <p>Generalmente, necesitarás una identificación válida y, en algunos casos, un comprobante de domicilio. También puede ser útil tener referencias que avalen tu capacidad para cuidar de una mascota. Consulta con la organización de adopción para más detalles.</p>
+      <details role="listitem">
+        <summary id="q3">¿Qué documentos necesito?</summary>
+        <p aria-labelledby="¿Qué documentos necesito?">
+          Generalmente, necesitarás una identificación válida y, en algunos casos, un comprobante de domicilio. También puede ser útil tener referencias que avalen tu capacidad para cuidar de una mascota. Consulta con la organización de adopción para más detalles.
+        </p>
       </details>
 
-      <details>
-        <summary>¿Puedo adoptar varias?</summary>
-        <p>Sí, es posible adoptar más de una mascota, siempre y cuando puedas garantizar su bienestar. Es recomendable que las mascotas sean compatibles entre sí. Asegúrate de tener suficiente espacio y recursos para cuidarlas adecuadamente.</p>
+      <details role="listitem">
+        <summary id="q4">¿Puedo adoptar varias?</summary>
+        <p aria-labelledby="¿Puedo adoptar varias?">
+          Sí, es posible adoptar más de una mascota, siempre y cuando puedas garantizar su bienestar. Es recomendable que las mascotas sean compatibles entre sí. Asegúrate de tener suficiente espacio y recursos para cuidarlas adecuadamente.
+        </p>
       </details>
 
-      <details>
-        <summary>¿Qué pasa si no puedo?</summary>
-        <p>Si en algún momento no puedes cuidar de tu mascota, es importante buscar ayuda. Puedes contactar a la organización donde adoptaste o a refugios locales. Ellos te orientarán sobre las mejores opciones para garantizar el bienestar de tu mascota.</p>
+      <details role="listitem">
+        <summary id="q5">¿Qué pasa si no puedo?</summary>
+        <p aria-labelledby="¿Qué pasa si no puedo?">
+          Si en algún momento no puedes cuidar de tu mascota, es importante buscar ayuda. Puedes contactar a la organización donde adoptaste o a refugios locales. Ellos te orientarán sobre las mejores opciones para garantizar el bienestar de tu mascota.
+        </p>
       </details>
     </div>
   </div>
 </section>
+
