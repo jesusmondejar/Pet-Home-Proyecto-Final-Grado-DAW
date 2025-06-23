@@ -1,4 +1,3 @@
-/* Adaptación para accesibilidad y mejor diseño */
 .form {
   display: flex;
   flex-direction: column;
@@ -11,18 +10,18 @@
 }
 
 .title {
-  font-size: 28px;
+  font-size: 2rem;
+  text-align: center;
   color: #fc713e;
   font-weight: 600;
   position: relative;
-  padding-left: 30px;
 }
 
 
 .message,
 .signin {
   color: rgba(88, 87, 87, 0.822);
-  font-size: 14px;
+  font-size: 1.2rem;
 }
 
 .signin {
@@ -70,7 +69,7 @@
 }
 
 .form-group label {
-  font-size: 0.9em;
+  font-size: 1.2rem;
   color: #333;
   font-weight: 500;
 }
@@ -81,7 +80,7 @@
   border: 1px solid rgba(105, 105, 105, 0.397);
   border-radius: 10px;
   outline: none;
-  font-size: 0.9em;
+  font-size: 1.2rem;
   transition: border-color 0.3s ease;
 }
 
@@ -91,6 +90,22 @@
 
 .form-group input:valid {
   border-color: #fc713e;
+}
+
+.form-group-img {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-group-img label {
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.form-group-img input {
+  font-size: 1.2rem;
 }
 
 .flex {
@@ -111,7 +126,7 @@
   padding: 10px;
   border-radius: 10px;
   color: #fff;
-  font-size: 16px;
+  font-size: 1.3rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -145,10 +160,4 @@ label::after {
   color: #d32f2f;
   font-size: 0.8rem;
   margin-top: 4px;
-}
-
-.obligatorios {
-  color: #d32f2f;
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
 }

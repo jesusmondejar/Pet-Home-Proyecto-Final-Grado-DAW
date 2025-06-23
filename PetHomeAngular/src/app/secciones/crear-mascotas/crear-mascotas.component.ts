@@ -11,8 +11,7 @@ import { FuncionesMascotasService } from '../../services/funciones-mascotas.serv
   imports: [CommonModule,
     ReactiveFormsModule],
   templateUrl: './crear-mascotas.component.html',
-  styles: `
-.preview-container {
+  styles: `.preview-container {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -28,17 +27,13 @@ import { FuncionesMascotasService } from '../../services/funciones-mascotas.serv
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-
-
-   /* Estilos generales - Añadido margen vertical */
 .form-wrapper {
   display: flex;
   justify-content: center;
   padding: 2rem 1rem;
-  margin: 3rem 0; /* Separación añadida arriba y abajo */
+  margin: 3rem 0;
 }
 
-/* Contenedor del formulario */
 .form-container {
   width: 100%;
   max-width: 850px;
@@ -49,32 +44,28 @@ import { FuncionesMascotasService } from '../../services/funciones-mascotas.serv
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 }
 
-/* Título del formulario */
 .form-container h2 {
   color: #2c3e50;
   margin-bottom: 1.8rem;
   padding-bottom: 1rem;
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   font-weight: 600;
-  border-bottom: 1px solid #eee; /* Línea decorativa bajo el título */
+  border-bottom: 1px solid #eee;
 }
 
-/* Grupos de formulario */
 .form-group {
   margin-bottom: 1.8rem;
 }
 
-/* Labels */
 .form-group label {
   display: block;
   margin-bottom: 0.8rem;
   font-weight: 600;
   color: #34495e;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
 }
 
-/* Campos de entrada */
 .form-group input[type="text"],
 .form-group input[type="number"],
 .form-group select,
@@ -83,7 +74,7 @@ import { FuncionesMascotasService } from '../../services/funciones-mascotas.serv
   padding: 1rem;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.4rem;
   transition: all 0.3s ease;
   background-color: #fafafa;
 }
@@ -93,7 +84,6 @@ import { FuncionesMascotasService } from '../../services/funciones-mascotas.serv
   resize: vertical;
 }
 
-/* Efectos focus */
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
@@ -103,7 +93,6 @@ import { FuncionesMascotasService } from '../../services/funciones-mascotas.serv
   outline: none;
 }
 
-/* Radio buttons */
 .radio-group {
   display: flex;
   gap: 1.5rem;
@@ -124,51 +113,6 @@ import { FuncionesMascotasService } from '../../services/funciones-mascotas.serv
   accent-color: #fc713e;
 }
 
-/* Pie del formulario */
-.form-footer {
-  margin-top: 2.5rem;
-  border-top: 1px solid #eee;
-  padding-top: 1.8rem;
-}
-
-/* Pregunta de adopción */
-.adoption-question {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #fc713e;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-/* Info de contacto */
-.contact-info {
-  background-color: #f8f9fa;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 1.8rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
-
-.contact-info div {
-  margin-bottom: 0;
-  color: #34495e;
-  font-size: 1rem;
-}
-
-/* Enlace "Ver más" */
-.view-more {
-  color: #fc713e;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: underline;
-  grid-column: span 2;
-  text-align: center;
-  margin-top: 0.5rem;
-}
-
-/* Botón de submit */
 button[type="submit"] {
   width: 100%;
   padding: 1.2rem;
@@ -176,7 +120,7 @@ button[type="submit"] {
   color: white;
   border: none;
   border-radius: 8px;
-  font-size: 1.1rem;
+  font-size: 1.8rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -190,23 +134,52 @@ button[type="submit"]:hover {
 }
 
 button[type="submit"]:disabled {
-  background-color:rgb(255, 132, 87);
+  background-color: rgb(255, 132, 87);
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
 }
 
-/* Placeholders */
 ::placeholder {
   color: #95a5a6;
   opacity: 1;
 }
 
-/* Responsive Design */
+.required {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.ng-invalid.ng-touched:not(form) {
+  border-color: #e74c3c !important;
+}
+
+.ng-invalid.ng-touched:not(form):focus {
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2) !important;
+}
+
+.required-note {
+  font-size: 1em;
+  color: #555;
+  margin-top: 10px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @media (max-width: 768px) {
   .form-wrapper {
     padding: 1.5rem 1rem;
-    margin: 2rem 0; /* Ajuste para móviles */
+    margin: 2rem 0;
   }
   
   .form-container {
@@ -217,19 +190,11 @@ button[type="submit"]:disabled {
     flex-direction: column;
     gap: 0.8rem;
   }
-  
-  .contact-info {
-    grid-template-columns: 1fr;
-  }
-  
-  .view-more {
-    grid-column: span 1;
-  }
 }
 
 @media (max-width: 480px) {
   .form-wrapper {
-    margin: 1.5rem 0; /* Menor separación en móviles pequeños */
+    margin: 1.5rem 0;
     padding: 1rem 0.5rem;
   }
   
@@ -246,41 +211,7 @@ button[type="submit"]:disabled {
     padding: 1rem;
   }
 
-  .required {
-  color: #e74c3c;
-}
 
-.error-message {
-  color: #e74c3c;
-  font-size: 0.85rem;
-  margin-top: 0.5rem;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-/* Campos inválidos */
-.ng-invalid.ng-touched:not(form) {
-  border-color: #e74c3c !important;
-}
-
-.ng-invalid.ng-touched:not(form):focus {
-  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2) !important;
-}
-
-.required-note {
-  font-size: 0.9em;
-  color: #555;
-  margin-top: 10px;
-}
-
-.required {
-  color: red;
-  font-weight: bold;
-}
-/* Animación para mensajes de error */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
-}
 }`
 })
 export class CrearMascotasComponent {

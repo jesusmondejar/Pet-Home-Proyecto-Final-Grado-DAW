@@ -1,35 +1,35 @@
 .organizacion-card-section {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 10px;
-    text-align: center;
-    margin: 2rem;
-    box-shadow: 0 0 10px rgba(0,0,0,0.15);
-  }
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  margin: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
 
-
-  .org-card {
+.org-card {
   background: #fff;
   border: 1px solid #eee;
 }
 
 .org-title {
-  font-size: 1.25rem;
+  font-size: 1.6rem;
   font-weight: 600;
   color: #333;
 }
 
 .org-text {
   color: #555;
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.org-icon {
-  font-size: 1.2rem;
-  color: #fc713e;
+.pet-thumb {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .pet-thumb img {
@@ -39,19 +39,6 @@
   border-radius: 5px;
 }
 
-.pet-name {
-  font-weight: 500;
-  font-size: 0.9rem;
-  color: #333;
-}
-
-
-/* Dentro de organizacion-card.component.css */
-.pet-thumb {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px; /* Ajusta este valor según el espacio que desees */
-}
 
 .button {
   display: flex;
@@ -66,13 +53,13 @@
   border: none;
   cursor: pointer;
   transition: 400ms;
-  height: 60%; /* Ajusta según necesites */
+  height: 60%;
 }
 
 .button .text {
   color: white;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 1.2rem;
   transition: 400ms;
   margin: 0;
 }
@@ -84,8 +71,3 @@
 .button:hover .text {
   color: black;
 }
-
-
-
-
-

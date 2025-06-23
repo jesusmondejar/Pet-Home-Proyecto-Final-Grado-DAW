@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-aviso-legal',
   imports: [],
   templateUrl: './aviso-legal.component.html',
-  styleUrl: './aviso-legal.component.css'
+  styles: `  `
 })
 export class AvisoLegalComponent {
 

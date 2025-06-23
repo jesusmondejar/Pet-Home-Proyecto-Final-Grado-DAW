@@ -8,10 +8,6 @@
     <h2>Registrar Nueva Mascota</h2>
     }
     
-
-    
-    <!-- Imágenes -->
-    <!-- Subir imágenes -->
     <div class="form-group">
       <label>Imágenes <span class="required">*</span></label>
       <input type="file" (change)="onFileSelected($event)" multiple>
@@ -20,9 +16,6 @@
       </div>
     </div>
 
-
-
-    <!-- Nombre -->
     <div class="form-group">
       <label>Nombre <span class="required">*</span></label>
       <input type="text" formControlName="nombre" placeholder="Introduzca Nombre">
@@ -32,7 +25,6 @@
       }
     </div>
 
-    <!-- Especie -->
     <div class="form-group">
       <label>Especie <span class="required">*</span></label>
       <div class="radio-group">
@@ -46,19 +38,16 @@
       }
     </div>
 
-    <!-- Raza -->
     <div class="form-group">
       <label>Raza</label>
       <input type="text" formControlName="raza" placeholder="Introduzca Raza">
     </div>
 
-    <!-- Edad -->
     <div class="form-group">
       <label>Edad</label>
       <input type="number" formControlName="edad" placeholder="Introduce la edad">
     </div>
 
-    <!-- Tamaño -->
     <div class="form-group">
       <label>Tamaño <span class="required">*</span></label>
       <div class="radio-group">
@@ -72,7 +61,6 @@
       }
     </div>
 
-    <!-- Descripción -->
     <div class="form-group">
       <label>Descripción <span class="required">*</span></label>
       <textarea formControlName="descripcion" placeholder="Dinos algo más de su personalidad" rows="3"></textarea>
@@ -82,7 +70,6 @@
       }
     </div>
 
-    <!-- Salud -->
     <div class="form-group">
       <label>¿Cómo se encuentra de salud? <span class="required">*</span></label>
       <textarea formControlName="salud" placeholder="Dinos su estado de salud" rows="3"></textarea>
@@ -92,7 +79,6 @@
       }
     </div>
 
-    <!-- Género -->
     <div class="form-group">
       <label>Género</label>
       <div class="radio-group">
@@ -101,13 +87,11 @@
       </div>
     </div>
 
-    <!-- Información adicional -->
     <div class="form-group">
       <label>Información adicional</label>
       <textarea formControlName="caracteristicas" placeholder="¿Algo más que saber?" rows="3"></textarea>
     </div>
 
-    <!-- Estado -->
     <div class="form-group">
       <label>Estado</label>
       <div class="radio-group">
@@ -116,7 +100,6 @@
       </div>
     </div>
 
-    <!-- Localidad -->
     <div class="form-group">
       <label>Municipio <span class="required">*</span></label>
       <select formControlName="localidad">
@@ -138,9 +121,6 @@
     <button type="submit" [disabled]="registerForm.invalid">Registrar Mascota</button>
 
     }
-
-    
-    <!-- Aviso campos obligatorios -->
     <p class="required-note"><span class="required">*</span> Campos obligatorios</p>
   </form>
 </div>

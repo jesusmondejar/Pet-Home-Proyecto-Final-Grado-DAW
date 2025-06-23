@@ -1,4 +1,3 @@
-/* Formulario de login adaptado */
 .login-form {
   display: flex;
   flex-direction: column;
@@ -11,14 +10,12 @@
 }
 
 .login-form .title {
-  font-size: 28px;
+  font-size: 2rem;
   color: #fc713e;
   font-weight: 600;
   text-align: center;
 }
 
-
-/* Estructura para los inputs del login */
 .login-form .form-group {
   display: flex;
   flex-direction: column;
@@ -26,7 +23,7 @@
 }
 
 .login-form .form-group label {
-  font-size: 0.9em;
+  font-size: 1.2rem;
   color: #333;
   font-weight: 500;
 }
@@ -37,7 +34,7 @@
   border: 1px solid rgba(105, 105, 105, 0.397);
   border-radius: 10px;
   outline: none;
-  font-size: 0.9em;
+  font-size: 1.2em;
   transition: border-color 0.3s ease;
 }
 
@@ -49,7 +46,6 @@
   border-color: #fc713e;
 }
 
-/* Botón de submit del login */
 .login-form .submit {
   border: none;
   outline: none;
@@ -57,7 +53,7 @@
   padding: 10px;
   border-radius: 10px;
   color: #fff;
-  font-size: 16px;
+  font-size: 1.3rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -66,7 +62,6 @@
   background-color: rgb(255, 134, 48);
 }
 
-/* Centrar el formulario de login */
 .center-wrapper-login {
   display: flex;
   justify-content: center;

@@ -1,169 +1,147 @@
-
 <div class="container mt-5 mb-5 adopta-container">
   <div class="card p-4 shadow-lg">
-   
-
     <div class="row">
-     
-      
       <div class="col-md-3">
         <img src="/assets/img/pethome1.svg" alt="logo" class="logo">
         <h3 class="text-center section-title mb-4">¡Encuentra a tu compañero ideal!</h3>
-        
-      
-        
-        <select required name="municipio" id="municipio-select" class="form-select mb-4" (change)="provinciaSeleccionada = $any($event.target).value; aplicarFiltros()">
-  <option value="">Elige Municipio</option>
-  <option value="Abanilla">Abanilla</option>
-  <option value="Abarán">Abarán</option>
-  <option value="Águilas">Águilas</option>
-  <option value="Albudeite">Albudeite</option>
-  <option value="Alcantarilla">Alcantarilla</option>
-  <option value="Alguazas">Alguazas</option>
-  <option value="Alhama de Murcia">Alhama de Murcia</option>
-  <option value="Archena">Archena</option>
-  <option value="Beniel">Beniel</option>
-  <option value="Blanca">Blanca</option>
-  <option value="Bullas">Bullas</option>
-  <option value="Calasparra">Calasparra</option>
-  <option value="Campos del Río">Campos del Río</option>
-  <option value="Caravaca de la Cruz">Caravaca de la Cruz</option>
-  <option value="Cartagena">Cartagena</option>
-  <option value="Cehegín">Cehegín</option>
-  <option value="Ceutí">Ceutí</option>
-  <option value="Cieza">Cieza</option>
-  <option value="Fortuna">Fortuna</option>
-  <option value="Fuente Álamo de Murcia">Fuente Álamo de Murcia</option>
-  <option value="Jumilla">Jumilla</option>
-  <option value="La Unión">La Unión</option>
-  <option value="Las Torres de Cotillas">Las Torres de Cotillas</option>
-  <option value="Librilla">Librilla</option>
-  <option value="Lorca">Lorca</option>
-  <option value="Lorquí">Lorquí</option>
-  <option value="Los Alcázares">Los Alcázares</option>
-  <option value="Mazarrón">Mazarrón</option>
-  <option value="Molina de Segura">Molina de Segura</option>
-  <option value="Moratalla">Moratalla</option>
-  <option value="Mula">Mula</option>
-  <option value="Murcia">Murcia</option>
-  <option value="Ojós">Ojós</option>
-  <option value="Pliego">Pliego</option>
-  <option value="Puerto Lumbreras">Puerto Lumbreras</option>
-  <option value="Ricote">Ricote</option>
-  <option value="San Javier">San Javier</option>
-  <option value="San Pedro del Pinatar">San Pedro del Pinatar</option>
-  <option value="Santomera">Santomera</option>
-  <option value="Torre-Pacheco">Torre-Pacheco</option>
-  <option value="Ulea">Ulea</option>
-  <option value="Villanueva del Río Segura">Villanueva del Río Segura</option>
-  <option value="Yecla">Yecla</option>
-</select>
 
+        <select required name="municipio" id="municipio-select" class="form-select mb-4 select-municipio"
+          (change)="provinciaSeleccionada = $any($event.target).value; aplicarFiltros()">
+          <option value="">Elige Municipio</option>
+          <option value="Abanilla">Abanilla</option>
+          <option value="Abarán">Abarán</option>
+          <option value="Águilas">Águilas</option>
+          <option value="Albudeite">Albudeite</option>
+          <option value="Alcantarilla">Alcantarilla</option>
+          <option value="Alguazas">Alguazas</option>
+          <option value="Alhama de Murcia">Alhama de Murcia</option>
+          <option value="Archena">Archena</option>
+          <option value="Beniel">Beniel</option>
+          <option value="Blanca">Blanca</option>
+          <option value="Bullas">Bullas</option>
+          <option value="Calasparra">Calasparra</option>
+          <option value="Campos del Río">Campos del Río</option>
+          <option value="Caravaca de la Cruz">Caravaca de la Cruz</option>
+          <option value="Cartagena">Cartagena</option>
+          <option value="Cehegín">Cehegín</option>
+          <option value="Ceutí">Ceutí</option>
+          <option value="Cieza">Cieza</option>
+          <option value="Fortuna">Fortuna</option>
+          <option value="Fuente Álamo de Murcia">Fuente Álamo de Murcia</option>
+          <option value="Jumilla">Jumilla</option>
+          <option value="La Unión">La Unión</option>
+          <option value="Las Torres de Cotillas">Las Torres de Cotillas</option>
+          <option value="Librilla">Librilla</option>
+          <option value="Lorca">Lorca</option>
+          <option value="Lorquí">Lorquí</option>
+          <option value="Los Alcázares">Los Alcázares</option>
+          <option value="Mazarrón">Mazarrón</option>
+          <option value="Molina de Segura">Molina de Segura</option>
+          <option value="Moratalla">Moratalla</option>
+          <option value="Mula">Mula</option>
+          <option value="Murcia">Murcia</option>
+          <option value="Ojós">Ojós</option>
+          <option value="Pliego">Pliego</option>
+          <option value="Puerto Lumbreras">Puerto Lumbreras</option>
+          <option value="Ricote">Ricote</option>
+          <option value="San Javier">San Javier</option>
+          <option value="San Pedro del Pinatar">San Pedro del Pinatar</option>
+          <option value="Santomera">Santomera</option>
+          <option value="Torre-Pacheco">Torre-Pacheco</option>
+          <option value="Ulea">Ulea</option>
+          <option value="Villanueva del Río Segura">Villanueva del Río Segura</option>
+          <option value="Yecla">Yecla</option>
+        </select>
 
         <div class="radio-especie">
-        <h4 class="section-title mb-4">Especie</h4>
-        <div class="radio-container">
-          <div class="radio-wrapper">
-            <label class="radio-button">
-              <input  class ="radio-input" name="radio-especie" type="checkbox" value="Perro"
-                     (change)="onCheckboxChange($event, 'especie')">
-              <span class="radio-label">Perro</span>
-            </label>
+          <h4 class="section-title mb-4">Especie</h4>
+          <div class="radio-container">
+            <div class="radio-wrapper">
+              <label class="radio-button">
+                <input class="radio-input" name="radio-especie" type="checkbox" value="Perro"
+                  (change)="onCheckboxChange($event, 'especie')">
+                <span class="radio-label">Perro</span>
+              </label>
+            </div>
+
+            <div class="radio-wrapper">
+              <label class="radio-button">
+                <input class="radio-input" id="option2" name="radio-especie" type="checkbox" value="Gato"
+                  (change)="onCheckboxChange($event, 'especie')">
+                <span class="radio-label">Gato</span>
+              </label>
+            </div>
+
+            <div class="radio-wrapper">
+              <label class="radio-button">
+                <input class="radio-input" id="option3" name="radio-especie" type="checkbox" value="Otro"
+                  (change)="onCheckboxChange($event, 'especie')">
+                <span class="radio-label">Otro</span>
+              </label>
+            </div>
           </div>
-          
-          <div class="radio-wrapper">
-            <label class="radio-button">
-              <input class ="radio-input" id="option2" name="radio-especie" type="checkbox" value="Gato"
-                     (change)="onCheckboxChange($event, 'especie')">
-              <span class="radio-label">Gato</span>
-            </label>
+        </div>
+
+        <div class="radio-tamano">
+          <h4 class="section-title mb-4">Tamaño</h4>
+          <div class="radio-container">
+            <div class="radio-wrapper">
+              <label class="radio-button">
+                <input class="radio-input" name="radio-tamano" type="checkbox" value="Pequeño"
+                  (change)="onCheckboxChange($event, 'tamano')">
+                <span class="radio-label">Pequeño</span>
+              </label>
+            </div>
+
+            <div class="radio-wrapper">
+              <label class="radio-button">
+                <input class="radio-input" name="radio-tamano" type="checkbox" value="Mediano"
+                  (change)="onCheckboxChange($event, 'tamano')">
+                <span class="radio-label">Mediano</span>
+              </label>
+            </div>
+
+            <div class="radio-wrapper">
+              <label class="radio-button">
+                <input class="radio-input" name="radio-tamano" type="checkbox" value="Grande"
+                  (change)="onCheckboxChange($event, 'tamano')">
+                <span class="radio-label">Grande</span>
+              </label>
+            </div>
           </div>
-          
-          <div class="radio-wrapper">
-            <label class="radio-button">
-              <input class ="radio-input" id="option3" name="radio-especie" type="checkbox" value="Otro"
-                     (change)="onCheckboxChange($event, 'especie')">
-              <span class="radio-label">Otro</span>
-            </label>
+        </div>
+
+        <div class="radio-genero">
+          <h4 class="section-title mb-4">Género</h4>
+          <div class="radio-container">
+            <div class="radio-wrapper">
+              <label class="radio-button">
+                <input class="radio-input" name="radio-tamano" type="checkbox" value="Macho"
+                  (change)="onCheckboxChange($event, 'genero')">
+                <span class="radio-label">Macho</span>
+              </label>
+            </div>
+
+            <div class="radio-wrapper">
+              <label class="radio-button">
+                <input class="radio-input" name="radio-tamano" type="checkbox" value="Hembra"
+                  (change)="onCheckboxChange($event, 'genero')">
+                <span class="radio-label">Hembra</span>
+              </label>
+            </div>
           </div>
-          
         </div>
       </div>
 
-
-
-
-         <div class="radio-tamano">
-  <h4 class="section-title mb-4">Tamaño</h4>
-  <div class="radio-container">
-    <div class="radio-wrapper">
-      <label class="radio-button">
-        <input class ="radio-input" name="radio-tamano" type="checkbox" value="Pequeño"
-               (change)="onCheckboxChange($event, 'tamano')">
-        <span class="radio-label">Pequeño</span>
-      </label>
-    </div>
-
-    <div class="radio-wrapper">
-      <label class="radio-button">
-        <input class ="radio-input" name="radio-tamano" type="checkbox" value="Mediano"
-               (change)="onCheckboxChange($event, 'tamano')">
-        <span class="radio-label">Mediano</span>
-      </label>
-    </div>
-
-    <div class="radio-wrapper">
-      <label class="radio-button">
-        <input class ="radio-input" name="radio-tamano" type="checkbox" value="Grande"
-               (change)="onCheckboxChange($event, 'tamano')">
-        <span class="radio-label">Grande</span>
-      </label>
-    </div>
-  </div>
-</div>
-
-
-<div class="radio-genero">
-  <h4 class="section-title mb-4">Género</h4>
-  <div class="radio-container">
-    <div class="radio-wrapper">
-      <label class="radio-button">
-        <input class ="radio-input" name="radio-tamano" type="checkbox" value="Macho"
-               (change)="onCheckboxChange($event, 'genero')">
-        <span class="radio-label">Macho</span>
-      </label>
-    </div>
-
-    <div class="radio-wrapper">
-      <label class="radio-button">
-        <input  class ="radio-input"name="radio-tamano" type="checkbox" value="Hembra"
-               (change)="onCheckboxChange($event, 'genero')">
-        <span class="radio-label">Hembra</span>
-      </label>
-    </div>
-</div>
-  
-</div>
-</div>
-      
-
-
-      
       <div class="col-md-9 ">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 ">
           @for (mascotas of mascotasFiltradas; track $index) {
-            <div class="col d-flex justify-content-center">
-              <app-mascota-card [mascota]="mascotas"/>
-            </div>
-            
+          <div class="col d-flex justify-content-center">
+            <app-mascota-card [mascota]="mascotas" />
+          </div>
           }
         </div>
       </div>
     </div>
-
-
-    
- 
-
   </div>
 </div>

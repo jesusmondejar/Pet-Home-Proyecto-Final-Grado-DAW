@@ -1,0 +1,215 @@
+/* Hero con video de fondo */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.background-video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.overlay {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.hero-content {
+  text-align: center;
+  color: white;
+  max-width: 900px;
+}
+
+.hero-title {
+  font-size: 3.7rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.hero-tagline {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: #fc763f;
+  color: white;
+  text-decoration: none;
+  font-size: 1.8rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #dd693c;
+}
+
+.hero-text-blur {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+/* Sección adopción */
+.adopcion-section {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  margin: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.adopcion-section h2 {
+  font-size: 3.2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.step-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 250px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.step-card:hover {
+  transform: translateY(-5px);
+}
+
+.step-card img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 1rem;
+}
+
+.step-card h3 {
+  font-size: 1.7rem;
+  color: #fc713e;
+  margin-bottom: 0.5rem;
+}
+
+.step-card p {
+  font-size: 1.2rem;
+  color: #444;
+}
+
+/* FAQ */
+.faq-section {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.faq-card {
+  width: 100%;
+  max-width: 800px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.faq-card h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.faq-card p {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.faq-list details {
+  border-bottom: 1px solid #ddd;
+  padding: 0.75rem 0;
+}
+
+.faq-list summary {
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  padding-right: 1.5rem;
+  list-style: none;
+}
+
+.faq-list summary::marker {
+  display: none;
+}
+
+.faq-list summary::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  transition: transform 0.2s ease;
+}
+
+.faq-list details[open] summary::after {
+  content: '–';
+}
+
+.faq-list details p {
+  font-size: 1.25rem;
+  margin-top: 0.75rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.galeria {
+  padding: 16px;
+}
+
+.imagen-principal img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+
+.lista-imagenes {
+  display: flex;
+  overflow-y: auto;
+}
+
+.lista-imagenes img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.container-mascotas {
+  display: flex;
+  justify-content: center;
+}

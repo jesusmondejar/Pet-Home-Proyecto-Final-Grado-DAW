@@ -7,21 +7,10 @@ import { AuthService } from '../services/auth.service';
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './nav-menu.component.html',
   styles: `
-  * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-.logo {
-  height: 90%;
-  display: flex;
-  align-items: center;
-  
-}
-
-.logo:hover {
-  cursor: pointer;
 }
 
 nav {
@@ -34,7 +23,7 @@ nav {
 nav .wrapper {
   position: relative;
   max-width: 1300px;
-  padding: 0px 30px;
+  padding: 0 30px;
   height: 70px;
   line-height: 70px;
   margin: auto;
@@ -43,11 +32,14 @@ nav .wrapper {
   justify-content: space-between;
 }
 
-.wrapper .logo a {
-  color: rgb(255, 134, 48);
-  font-size: 30px;
-  font-weight: 600;
-  text-decoration: none;
+.logo {
+  height: 90%;
+  display: flex;
+  align-items: center;
+}
+
+.logo:hover {
+  cursor: pointer;
 }
 
 .wrapper .nav-links {
@@ -69,24 +61,25 @@ nav .wrapper {
 .nav-links li a {
   color: #fc763f;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 500;
   padding: 9px 10px;
   border-radius: 5px;
   transition: all 0.3s ease;
-}
-
-a {
-  text-decoration: none;
   position: relative;
-  transition: all 0.3s ease;
 }
 
-a:hover {
+.nav-link-usuario {
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+  }
+
+.nav-links li a:hover {
   transform: translateY(-3px);
 }
 
-a::before {
+.nav-links li a::before {
   content: "";
   position: absolute;
   z-index: -1;
@@ -94,57 +87,15 @@ a::before {
   left: 0;
   right: 0;
   height: 5px;
-  background-color:rgb(250, 158, 125);
+  background-color: rgb(250, 158, 125);
   transform: scaleY(0);
   transform-origin: bottom;
   transition: transform 0.3s ease;
 }
 
-a:hover::before {
-  transform: scaleY(1);
-}
-
 .nav-links li a:hover::before {
-  width: 100%;
+  transform: scaleY(1);
   background-color: #fc713e;
-  
-}
-
-.nav-links .mobile-item {
-  display: none;
-}
-
-a {
-  position: relative;
-}
-
-.content .row img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.content .row header {
-  color: #f2f2f2;
-  font-size: 20px;
-  font-weight: 500;
-}
-
-.content .row .mega-links {
-  margin-left: -40px;
-  border-left: 1px solid rgba(255, 255, 255, 0.09);
-}
-
-.row .mega-links li {
-  padding: 0 20px;
-}
-
-.row .mega-links li a {
-  padding: 0px;
-  padding: 0 20px;
-  color: #d9d9d9;
-  font-size: 17px;
-  display: block;
 }
 
 .wrapper .menu-toggle {
@@ -154,10 +105,60 @@ a {
   display: none;
 }
 
-.wrapper .btn.close-btn {
-  position: absolute;
-  right: 30px;
-  top: 10px;
+.menu-toggle img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.menu-toggle img:hover {
+  transform: scale(1.1);
+}
+
+nav input {
+  display: none;
+}
+
+.button,
+.button-inicio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 15px;
+  font-weight: 600;
+  font-size: 20px;
+  border-radius: 5px;
+  height: 60%;
+  cursor: pointer;
+  transition: 400ms;
+  box-sizing: border-box;
+}
+
+.button {
+  background-color: #fc713e;
+  outline: 3px #fc713e solid;
+  color: white;
+  border: none;
+  outline-offset: -3px;
+}
+
+.button:hover {
+  background-color: transparent;
+  color: black;
+}
+
+.button-inicio {
+  background-color: #f2f2f2;
+  border: 3px solid transparent;
+  color: #000;
+}
+
+.button-inicio:hover {
+  background-color: #fff;
+  border: 3px solid #fc713e;
 }
 
 @media screen and (max-width: 970px) {
@@ -178,9 +179,56 @@ a {
     align-items: stretch;
     padding: 20px;
     overflow-y: auto;
-    box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.18);
     transition: all 0.3s ease;
     gap: 10px;
+  }
+
+  #menu-btn:checked ~ .menu-toggle {
+  display: none;
+}
+
+  #menu-btn:checked ~ .nav-links {
+    left: 0%;
+  }
+
+  .nav-links li a {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 18px;
+    text-align: left;
+    color: #f2f2f2;
+    background: none;
+  }
+
+   
+
+  .nav-links li button,
+  .nav-links li .button-inicio {
+    margin: 10px 10px 0 0;
+    padding: 10px 16px;
+    border-radius: 6px;
+    width: 100%;
+  }
+
+  .nav-links li button {
+    background-color: #fc713e;
+    border: 3px solid #fc713e;
+    color: white;
+  }
+
+  .nav-links li button:hover {
+    background-color: transparent;
+  }
+
+  .nav-links li .button-inicio {
+    background-color: transparent;
+    border: 3px solid #fc713e;
+    color: white;
+  }
+
+  .nav-links li .button-inicio:hover {
+    background-color: #fc713e;
   }
 
   ::-webkit-scrollbar {
@@ -194,204 +242,48 @@ a {
   ::-webkit-scrollbar-thumb {
     background: #3A3B3C;
   }
-
-  #menu-btn:checked ~ .nav-links {
-    left: 0%;
-  }
-
-  #menu-btn:checked ~ .btn.menu-btn {
-    display: none;
-  }
-
-  #close-btn:checked ~ .btn.menu-btn {
-    display: block;
-  }
-
-  .nav-links li {
-    margin: 0;
-    width: 100%;
-  }
-
-  .nav-links li a{
-    width: 100%;
-    padding: 12px 20px;
-    font-size: 18px;
-    display: block;
-    text-align: left;
-    border-radius: 5px;
-    background: none;
-    color: #f2f2f2;
-  }
-  .nav-links li button {
-  margin: 10px 10px 0 0;
-  background-color: #fc713e;
-  border: 3px solid #fc713e; /* Mejor usar border que outline */
-  color: white;
-  padding: 10px 16px;
-  border-radius: 6px;
-  width: 100%;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 400ms;
-  box-sizing: border-box;
-  }
-
-  .nav-links li .button-inicio {
-  margin: 10px 10px 0 0;
-  background-color: transparent;
-  border: 3px solid #fc713e; /* Mejor usar border que outline */
-  color: white;
-  padding: 10px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 400ms;
-  box-sizing: border-box;
 }
-
-.nav-links li .button-inicio:hover {
-  background-color: #fc713e;
-}
-
-.nav-links li .button:hover {
-  background-color: transparent;
-}
-
-
-  .nav-links .desktop-item {
-    display: none;
-  }
-
-  .nav-links .mobile-item {
-    display: block;
-    font-size: 18px;
-    padding: 12px 20px;
-    color: #f2f2f2;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .nav-links .mobile-item:hover {
-    background: #3A3B3C;
-  }
-
-  .content .row header {
-    font-size: 19px;
-  }
-}
-
-nav input {
-  display: none;
-}
-
-.body-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  text-align: center;
-  padding: 0 30px;
-}
-
-.body-text div {
-  font-size: 45px;
-  font-weight: 600;
-}
-
-.button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 15px;
-  gap: 15px;
-  background-color: #fc713e;
-  outline: 3px #fc713e solid;
-  color: white;
-  font-weight: 600;
-  font-size: 15px;
-  outline-offset: -3px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  transition: 400ms;
-  height: 60%;
-}
-
-
-.button:hover {
-  background-color: transparent;
-  color: black;
-}
-
-.button-inicio {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 15px;
-  color: #fc713e;
-  gap: 15px;
-  background-color: #f2f2f2;
-  border: 3px solid transparent;
-  outline: none;
-  border-radius: 5px;
-  cursor: pointer;
-  height: 60%;
-  color: #000;
-  transition: border 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.button-inicio:hover {
-  background-color: #fff;
-  border: 3px solid #fc713e;
-
-}
-
-.menu-toggle img {
-  width: 30px;         /* Tamaño del ícono */
-  height: 30px;
-  object-fit: contain; /* Mantiene proporciones */
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.menu-toggle img:hover {
-  transform: scale(1.1); /* Efecto de zoom al pasar el ratón */
-}
-
 
 
 `
 
 })
 export class NavMenuComponent implements OnInit {
-  
-nombreUsuario: string | null = null;
-tipoUsuario: string | null = null;
-isLoggedIn: boolean = false;
-esOrganizacion: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  nombreUsuario: string | null = null;
+  tipoUsuario: string | null = null;
+  isLoggedIn: boolean = false;
+  esOrganizacion: boolean = false;
+
+  constructor(private authService: AuthService) { }
   ngOnInit() {
-   this.authService.loggedIn$.subscribe(logged => {
-    this.isLoggedIn = logged;
-    if (logged) {
-      this.nombreUsuario = localStorage.getItem('nombre');
-      this.tipoUsuario = localStorage.getItem('tipo');
-    } else {
-      this.nombreUsuario = null;
-      this.tipoUsuario = null;
-    }
-     this.esOrganizacion = this.authService.esOrganizacion();
-  });
-}
-
+    this.authService.loggedIn$.subscribe(logged => {
+      this.isLoggedIn = logged;
+      if (logged) {
+        this.nombreUsuario = localStorage.getItem('nombre');
+        this.tipoUsuario = localStorage.getItem('tipo');
+      } else {
+        this.nombreUsuario = null;
+        this.tipoUsuario = null;
+      }
+      this.esOrganizacion = this.authService.esOrganizacion();
+    });
+  }
 
   logout() {
     this.authService.logout().subscribe(() => {
-      // Puedes agregar navegación u otras cosas
     });
   }
+
+  cerrarMenu() {
+    const menuBtn = document.getElementById('menu-btn') as HTMLInputElement;
+    const navLinks = document.querySelector('.nav-links') as HTMLElement;
+
+    // Solo cerramos el menú si está visible en móvil (pantallas pequeñas)
+    if (menuBtn && navLinks && window.innerWidth <= 970) {
+      menuBtn.checked = false;
+    }
+  }
+
 
 }

@@ -1,7 +1,6 @@
 <div class="center-wrapper">
   <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <p class="title">¡Crea tu cuenta en PetHome!</p>
-    <p class="obligatorios">* Campos obligatorios</p>
 
     <mat-button-toggle-group formControlName="tipoUsuario" appearance="legacy" class="user-toggle">
       <mat-button-toggle value="cliente">Cliente</mat-button-toggle>
@@ -16,13 +15,13 @@
       <div class="form-group">
         <label for="nombre">Nombre</label>
         <input id="nombre" formControlName="nombre" type="text" class="input" />
-        <div class="error" *ngIf="isInvalid('nombre')">Este campo es obligatorio</div>
+        <div class="error" *ngIf="isInvalid('nombre')">* Este campo es obligatorio</div>
       </div>
 
       <div class="form-group">
         <label for="telefono">Teléfono</label>
         <input id="telefono" formControlName="telefono" type="text" class="input" />
-        <div class="error" *ngIf="isInvalid('telefono')">Este campo es obligatorio</div>
+        <div class="error" *ngIf="isInvalid('telefono')">* Este campo es obligatorio</div>
       </div>
     </div>
 
@@ -31,10 +30,10 @@
       <input id="email" formControlName="email" type="email" class="input" />
       <div class="error" *ngIf="isInvalid('email')">
         <ng-container *ngIf="registerForm.get('email')?.errors?.['required']">
-          Este campo es obligatorio
+          * Este campo es obligatorio
         </ng-container>
         <ng-container *ngIf="registerForm.get('email')?.errors?.['email']">
-          El formato del email no es válido
+          * El formato del email no es válido
         </ng-container>
       </div>
     </div>
@@ -42,33 +41,35 @@
     <div class="form-group">
       <label for="contrasena">Contraseña</label>
       <input id="contrasena" formControlName="contrasena" type="password" class="input" />
-      <div class="error" *ngIf="isInvalid('contrasena')">Este campo es obligatorio</div>
+      <div class="error" *ngIf="isInvalid('contrasena')">* Este campo es obligatorio</div>
     </div>
 
     @if (registerForm.get('tipoUsuario')?.value === 'protectora') {
-
+      <div class="form-group-img">
       <label for="imagen">Imagen</label>
-  <input id="imagen" type="file" (change)="onFileSelected($event)" />
-  <div class="error" *ngIf="imagenError">Selecciona una imagen válida</div>
-
+      <input id="imagen" type="file" (change)="onFileSelected($event)" />
+      <div class="error" *ngIf="imagenError">* Selecciona una imagen válida</div>
+      </div>
+      
       <div class="form-group">
         <label for="direccion">Dirección</label>
         <input id="direccion" formControlName="direccion" type="text" class="input" />
-        <div class="error" *ngIf="isInvalid('direccion')">Este campo es obligatorio</div>
+        <div class="error" *ngIf="isInvalid('direccion')">* Este campo es obligatorio</div>
       </div>
 
       <div class="form-group">
         <label for="provincia">Localidad</label>
         <input id="provincia" formControlName="provincia" type="text" class="input" />
-        <div class="error" *ngIf="isInvalid('provincia')">Este campo es obligatorio</div>
+        <div class="error" *ngIf="isInvalid('provincia')">* Este campo es obligatorio</div>
       </div>
 
       <div class="form-group">
         <label for="descripcion">Descripción</label>
         <input id="descripcion" formControlName="descripcion" type="text" class="input" />
-        <div class="error" *ngIf="isInvalid('descripcion')">Este campo es obligatorio</div>
+        <div class="error" *ngIf="isInvalid('descripcion')">* Este campo es obligatorio</div>
       </div>
     }
+
 
     <button class="submit" type="submit" [disabled]="!registerForm.valid">Registrarme</button>
     <p class="signin">
