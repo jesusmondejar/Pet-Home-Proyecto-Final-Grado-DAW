@@ -108,6 +108,8 @@
   font-size: 1.2rem;
 }
 
+
+
 .flex {
   display: flex;
   gap: 10px;
@@ -119,6 +121,13 @@
 }
 
 /* Botón de submit */
+
+button:focus-visible,
+button:focus {
+  outline: 3px solid #fc713e;
+  outline-offset: 2px;
+}
+
 .submit {
   border: none;
   outline: none;
