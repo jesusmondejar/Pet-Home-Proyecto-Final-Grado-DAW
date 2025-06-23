@@ -240,6 +240,7 @@ export class MascotaDetalleComponent implements OnInit {
       },
       buttonsStyling: false
     }).then((result) => {
+      const protectoraId = localStorage.getItem('id');
       if (result.isConfirmed) {
         // Si confirma, llamamos al servicio para eliminar
         this.conxionSrvc2.borrarMascota(id).subscribe({
@@ -254,7 +255,7 @@ export class MascotaDetalleComponent implements OnInit {
               },
               buttonsStyling: false
             }).then(() => {
-              this.route.navigate(['/adopta']);
+              this.route.navigate([`/detalle-organizacion/${protectoraId}`]);
             });
           },
           error: (err) => {
